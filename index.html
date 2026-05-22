@@ -9222,29 +9222,30 @@ async function run() {
       const ternoveoU = computeUnion(ternoveoMarkers);
       const overlaps = [];
 
-      // Unéal ∩ Noriap
+      // Unéal ∩ Noriap (calculé mais masqué par défaut — activable via panel Layers)
       if (unealU && noriapU) {
         try {
           const o = turf.intersect(unealU, noriapU);
           if (o) {
             L.geoJSON(o, { style: { color: '#ff8c00', weight: 2, fillColor: '#ff8c00', fillOpacity: 0.55 } }).addTo(overlapLayer);
-            map.addLayer(overlapLayer);
             overlaps.push(`Unéal∩Noriap ${(turf.area(o)/1e6).toFixed(0)} km²`);
           }
         } catch(e) { console.warn('intersect U∩N failed', e); }
       }
 
-      // Noriap ∩ Ternoveo
+      // Noriap ∩ Ternoveo (calculé mais masqué par défaut)
       if (noriapU && ternoveoU) {
         try {
           const o = turf.intersect(noriapU, ternoveoU);
           if (o) {
             L.geoJSON(o, { style: { color: '#673ab7', weight: 2, fillColor: '#673ab7', fillOpacity: 0.55 } }).addTo(overlapNT);
-            map.addLayer(overlapNT);
             overlaps.push(`Noriap∩Ternoveo ${(turf.area(o)/1e6).toFixed(0)} km²`);
           }
         } catch(e) { console.warn('intersect N∩T failed', e); }
       }
+      // Retirer les overlaps de la carte par défaut (rest accessibles via control)
+      if (map.hasLayer(overlapLayer)) map.removeLayer(overlapLayer);
+      if (map.hasLayer(overlapNT)) map.removeLayer(overlapNT);
 
       const dt = ((performance.now() - t0) / 1000).toFixed(1);
       statusEl.textContent = `U:${unealMarkers.length} N:${noriapMarkers.length} T:${ternoveoMarkers.length} • ${overlaps.join(' • ') || 'pas de chevauchement'} (calc ${dt}s)`;
