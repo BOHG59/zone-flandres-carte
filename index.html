@@ -8,4418 +8,2480 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 <script>
-const noriapData = [
- {
-  "commune": "ABBEVILLE",
-  "cp": "80102",
-  "dep": "80",
-  "adresse": "68, RIVE DROITE DE LA SOMME",
-  "nom": "ABBEVILLE RIVE DROITE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-24-27-16",
-  "lat": 50.105799,
-  "lng": 1.828902,
-  "score": 0.3
- },
- {
-  "commune": "BOVES",
-  "cp": "80440",
-  "dep": "80",
-  "adresse": "22 BOULEVARD MICHEL STROGOFF",
-  "nom": "ACTIVITE  SFP (Longpre)",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP",
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-22-50-44-44",
-  "lat": 49.866011,
-  "lng": 2.368587,
-  "score": 0.540744633431085
- },
- {
-  "commune": "LE HAVRE",
-  "cp": "76600",
-  "dep": "76",
-  "adresse": "",
-  "nom": "AGROPORT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.507345,
-  "lng": 0.129995,
-  "score": 0.3
- },
- {
-  "commune": "AIGNEVILLE",
-  "cp": "80210",
-  "dep": "80",
-  "adresse": "286 RUE DU STADE",
-  "nom": "AIGNEVILLE CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.035824,
-  "lng": 1.612649,
-  "score": 0.9486690909090908
- },
- {
-  "commune": "AILLY LE HAUT CLOCHER",
-  "cp": "80690",
-  "dep": "80",
-  "adresse": "15, RUE D'ERGNIES",
-  "nom": "AILLY LE HAUT CLOCHER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-28-02-58",
-  "lat": 50.079887,
-  "lng": 2.002,
-  "score": 0.9539145454545455
- },
- {
-  "commune": "AILLY SUR NOYE",
-  "cp": "80250",
-  "dep": "80",
-  "adresse": "CHEMIN DE L'AUGE",
-  "nom": "AILLY SUR NOYE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-41-04-54",
-  "lat": 49.751764,
-  "lng": 2.363582,
-  "score": 0.9462290909090909
- },
- {
-  "commune": "AIRAINES",
-  "cp": "80270",
-  "dep": "80",
-  "adresse": "1 RUE PAQUET GREUX",
-  "nom": "AIRAINES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-29-40-76",
-  "lat": 49.967259,
-  "lng": 1.941853,
-  "score": 0.9516972727272727
- },
- {
-  "commune": "ALBERT",
-  "cp": "80300",
-  "dep": "80",
-  "adresse": "Route d Aveluy",
-  "nom": "ALBERT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.013553,
-  "lng": 2.651959,
-  "score": 0.9654254545454545
- },
- {
-  "commune": "AMIENS",
-  "cp": "80000",
-  "dep": "80",
-  "adresse": "16 RUE DE VAUX",
-  "nom": "AMIENS NORIAP PL1",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "09-70-72-22-00",
-  "lat": 49.891666,
-  "lng": 2.307482,
-  "score": 0.5642109090909091
- },
- {
-  "commune": "ANDECHY",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "CHEMIN DAMERY",
-  "nom": "ANDECHY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-37-45-39",
-  "lat": 49.714381,
-  "lng": 2.709702,
-  "score": 0.3
- },
- {
-  "commune": "ANDRES",
-  "cp": "62340",
-  "dep": "62",
-  "adresse": "",
-  "nom": "ANDRES TERRAIN NU",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.869744,
-  "lng": 1.924509,
-  "score": 0.3
- },
- {
-  "commune": "ANNEVILLE SUR SCIE",
-  "cp": "76590",
-  "dep": "76",
-  "adresse": "B.P. 21",
-  "nom": "ANNEVILLE/SCIE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-85-38-83",
-  "lat": 49.834955,
-  "lng": 1.085421,
-  "score": 0.3
- },
- {
-  "commune": "LA CHAPELLE D ARMENTIERES",
-  "cp": "59930",
-  "dep": "59",
-  "adresse": "C.D 222 - 1700, AVENUE KENNEDY",
-  "nom": "ARMENTIERES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-20-77-01-18",
-  "lat": 50.657921,
-  "lng": 2.88977,
-  "score": 0.5095736363636363
- },
- {
-  "commune": "ARQUES",
-  "cp": "62510",
-  "dep": "62",
-  "adresse": "",
-  "nom": "ARQUES CEREALES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.734524,
-  "lng": 2.305321,
-  "score": 0.3
- },
- {
-  "commune": "ARVILLERS",
-  "cp": "80910",
-  "dep": "80",
-  "adresse": "ROUTE HANGEST",
-  "nom": "ARVILLERS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-37-40-78",
-  "lat": 49.746231,
-  "lng": 2.638252,
-  "score": 0.8152898701298701
- },
- {
-  "commune": "PORT JEROME SUR SEINE",
-  "cp": "76170",
-  "dep": "76",
-  "adresse": "",
-  "nom": "AUBERVILLE LA CAMPAGNE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.506318,
-  "lng": 0.599865,
-  "score": 0.3
- },
- {
-  "commune": "AUDEMBERT",
-  "cp": "62250",
-  "dep": "62",
-  "adresse": "HAMEAU DE WARCOVE",
-  "nom": "AUDEMBERT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.856811,
-  "lng": 1.675246,
-  "score": 0.9436236363636363
- },
- {
-  "commune": "VAL DE SCIE",
-  "cp": "76720",
-  "dep": "76",
-  "adresse": "",
-  "nom": "AUFFAY",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.714532,
-  "lng": 1.128645,
-  "score": 0.3
- },
- {
-  "commune": "AUMALE",
-  "cp": "76390",
-  "dep": "76",
-  "adresse": "",
-  "nom": "AUMALE CAP SEINE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.771602,
-  "lng": 1.747712,
-  "score": 0.3
- },
- {
-  "commune": "AUTHIE",
-  "cp": "80560",
-  "dep": "80",
-  "adresse": "11 RUE WARNIVAL",
-  "nom": "AUTHIE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-76-40-53",
-  "lat": 50.047964,
-  "lng": 2.536092,
-  "score": 0.54597
- },
- {
-  "commune": "BACQUEPUIS",
-  "cp": "27930",
-  "dep": "27",
-  "adresse": "",
-  "nom": "BACQUEPUIS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.090495,
-  "lng": 1.045986,
-  "score": 0.3
- },
- {
-  "commune": "BAILLEUL",
-  "cp": "59270",
-  "dep": "59",
-  "adresse": "501 ROUTE D'ESTAIRES",
-  "nom": "BAILLEUL",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-49-01-16",
-  "lat": 50.723294,
-  "lng": 2.702235,
-  "score": 0.95972
- },
- {
-  "commune": "BAILLEUL",
-  "cp": "80490",
-  "dep": "80",
-  "adresse": "2 RUE NEUVE",
-  "nom": "BAILLEUL CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 50.0289,
-  "lng": 1.848852,
-  "score": 0.9429190909090909
- },
- {
-  "commune": "SONGEONS",
-  "cp": "60380",
-  "dep": "60",
-  "adresse": "6, Rue du Puits",
-  "nom": "BALLEUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.555607,
-  "lng": 1.881684,
-  "score": 0.9378545454545453
- },
- {
-  "commune": "BARENTIN",
-  "cp": "76360",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BARENTIN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-91-46-94",
-  "lat": 49.544169,
-  "lng": 0.949823,
-  "score": 0.3
- },
- {
-  "commune": "BAROMESNIL",
-  "cp": "76260",
-  "dep": "76",
-  "adresse": "VILLAGE",
-  "nom": "BAROMESNIL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-50-39-83",
-  "lat": 50.027854,
-  "lng": 1.38783,
-  "score": 0.46054951048951054
- },
- {
-  "commune": "BAVINCHOVE",
-  "cp": "59670",
-  "dep": "59",
-  "adresse": "ROUTE NATIONALE",
-  "nom": "BAVINCHOVE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.786543,
-  "lng": 2.525876,
-  "score": 0.9492690909090907
- },
- {
-  "commune": "BEAUCAMPS LE VIEUX",
-  "cp": "80430",
-  "dep": "80",
-  "adresse": "ZONE D'ACTIVITE \"A LA FERME\"",
-  "nom": "BEAUCAMPS LE VIEUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.842841,
-  "lng": 1.776159,
-  "score": 0.3
- },
- {
-  "commune": "BEAUCHAMPS",
-  "cp": "80770",
-  "dep": "80",
-  "adresse": "9 GRANDE RUE",
-  "nom": "BEAUCHAMPS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.017013,
-  "lng": 1.50882,
-  "score": 0.9567827272727273
- },
- {
-  "commune": "BEAUDEDUIT",
-  "cp": "60210",
-  "dep": "60",
-  "adresse": "LIEU DIT FOLEMPRISE",
-  "nom": "BEAUDEDUIT PLAINE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-46-61-31",
-  "lat": 49.679339,
-  "lng": 2.064352,
-  "score": 0.3
- },
- {
-  "commune": "BEAUDEDUIT",
-  "cp": "60210",
-  "dep": "60",
-  "adresse": "RUE GRANDVILLIERS",
-  "nom": "BEAUDEDUIT VILLAGE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.678064,
-  "lng": 1.987618,
-  "score": 0.803802966507177
- },
- {
-  "commune": "BEAUMETZ",
-  "cp": "80370",
-  "dep": "80",
-  "adresse": "4 RUE DE DOMART",
-  "nom": "BEAUMETZ",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-32-71-64",
-  "lat": 50.139605,
-  "lng": 2.116748,
-  "score": 0.9405681818181817
- },
- {
-  "commune": "BEAUVAL",
-  "cp": "80630",
-  "dep": "80",
-  "adresse": "ROUTE DE DOULLENS",
-  "nom": "BEAUVAL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-32-92-51",
-  "lat": 50.117098,
-  "lng": 2.340049,
-  "score": 0.9573936363636364
- },
- {
-  "commune": "BEHENCOURT",
-  "cp": "80260",
-  "dep": "80",
-  "adresse": "",
-  "nom": "BEHENCOURT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.974159,
-  "lng": 2.453112,
-  "score": 0.3
- },
- {
-  "commune": "FONTAINE SOUS MONTDIDIER",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "BELLE ASSISE",
-  "nom": "BELLE ASSISE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-78-08-69",
-  "lat": 49.653057,
-  "lng": 2.465408,
-  "score": 0.5870991919191919
- },
- {
-  "commune": "BENESVILLE",
-  "cp": "76560",
-  "dep": "76",
-  "adresse": "ROUTE DU BAILLAGE",
-  "nom": "BENESVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-56-48-01",
-  "lat": 49.752654,
-  "lng": 0.833619,
-  "score": 0.9425
- },
- {
-  "commune": "LILLEBONNE",
-  "cp": "76170",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BENP LILLEBONNE/NORIAP",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.519589,
-  "lng": 0.534929,
-  "score": 0.3
- },
- {
-  "commune": "BERNAVILLE",
-  "cp": "80370",
-  "dep": "80",
-  "adresse": "ROUTE DE CANAPLES",
-  "nom": "BERNAVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-32-69-31",
-  "lat": 50.130831,
-  "lng": 2.172447,
-  "score": 0.9473554545454546
- },
- {
-  "commune": "PETIT CAUX",
-  "cp": "76370",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BERNEVAL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.966392,
-  "lng": 1.223451,
-  "score": 0.3
- },
- {
-  "commune": "BERTREVILLE ST OUEN",
-  "cp": "76590",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BERTREVILLE ST OUEN",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.809326,
-  "lng": 1.048607,
-  "score": 0.3
- },
- {
-  "commune": "BETTEMBOS",
-  "cp": "80290",
-  "dep": "80",
-  "adresse": "33 AVENUE GARE",
-  "nom": "BETTEMBOS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-38-03-09",
-  "lat": 49.777873,
-  "lng": 1.987647,
-  "score": 0.5224688995215311
- },
- {
-  "commune": "BEUVRAIGNES",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "1 RUE OCTAVE DUFOUR",
-  "nom": "BEUVRAIGNES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-19-54",
-  "lat": 49.647453,
-  "lng": 2.771266,
-  "score": 0.9537181818181818
- },
- {
-  "commune": "BLANGY SUR BRESLE",
-  "cp": "76340",
-  "dep": "76",
-  "adresse": "HAMEAU DE GREMONTMESNIL",
-  "nom": "BLANGY SUR BRESLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-32-97-01-64",
-  "lat": 49.92268,
-  "lng": 1.642625,
-  "score": 0.9475272727272728
- },
- {
-  "commune": "AIRAINES",
-  "cp": "80270",
-  "dep": "80",
-  "adresse": "LIEU DIT BOIS BLEU",
-  "nom": "BOIS BLEU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.968574,
-  "lng": 1.936719,
-  "score": 0.3
- },
- {
-  "commune": "BOIS HIMONT",
-  "cp": "76190",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BOIS HIMONT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.574531,
-  "lng": 0.69134,
-  "score": 0.3
- },
- {
-  "commune": "BOLBEC",
-  "cp": "76210",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BOLBEC",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.575224,
-  "lng": 0.483302,
-  "score": 0.3
- },
- {
-  "commune": "BOLLEZEELE",
-  "cp": "59470",
-  "dep": "59",
-  "adresse": "307 ROUTE DE MERCKEGHEM",
-  "nom": "BOLLEZEELE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-68-82-69",
-  "lat": 50.866356,
-  "lng": 2.323849,
-  "score": 0.9560827272727271
- },
- {
-  "commune": "BONNEUIL LES EAUX",
-  "cp": "60120",
-  "dep": "60",
-  "adresse": "BOIS DE L'EGLISE",
-  "nom": "BONNEUIL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-80-00-82",
-  "lat": 49.680289,
-  "lng": 2.233384,
-  "score": 0.654620165289256
- },
- {
-  "commune": "BONNINGUES LES ARDRES",
-  "cp": "62890",
-  "dep": "62",
-  "adresse": "RUE CLERQUES",
-  "nom": "BONNINGUES CLERQUES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-21-36-85-94",
-  "lat": 50.790453,
-  "lng": 1.98784,
-  "score": 0.6051305785123966
- },
- {
-  "commune": "BOUQUEMAISON",
-  "cp": "80600",
-  "dep": "80",
-  "adresse": "RUE NEUVILETTE",
-  "nom": "BOUQUEMAISON",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-27-38-02",
-  "lat": 50.200071,
-  "lng": 2.274008,
-  "score": 0.7668109090909091
- },
- {
-  "commune": "BOVES",
-  "cp": "80440",
-  "dep": "80",
-  "adresse": "26, RUE DES DEPORTES RESISTANT",
-  "nom": "BOVES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-09-37-08",
-  "lat": 49.847417,
-  "lng": 2.393733,
-  "score": 0.9293484012539185
- },
- {
-  "commune": "BRASSY",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "GRANDE RUE",
-  "nom": "BRASSY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-09-09",
-  "lat": 49.819054,
-  "lng": 2.231836,
-  "score": 0.9494627272727271
- },
- {
-  "commune": "BREAUTE",
-  "cp": "76110",
-  "dep": "76",
-  "adresse": "LA GARE",
-  "nom": "BREAUTE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-31-71-73",
-  "lat": 49.628414,
-  "lng": 0.400006,
-  "score": 0.9399499999999998
- },
- {
-  "commune": "BRIE",
-  "cp": "80200",
-  "dep": "80",
-  "adresse": "",
-  "nom": "BRIE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-84-11-03",
-  "lat": 49.87642,
-  "lng": 2.933245,
-  "score": 0.3
- },
- {
-  "commune": "BROQUIERS",
-  "cp": "60220",
-  "dep": "60",
-  "adresse": "",
-  "nom": "BROQUIERS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "06-44-46-00-05",
-  "lat": 49.659585,
-  "lng": 1.828421,
-  "score": 0.3
- },
- {
-  "commune": "BUCHY",
-  "cp": "76750",
-  "dep": "76",
-  "adresse": "ROUTE ARGUEIL",
-  "nom": "BUCHY/BOSC ROGER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-34-40-12",
-  "lat": 49.548232,
-  "lng": 1.420221,
-  "score": 0.8187162337662336
- },
- {
-  "commune": "MESNILS SUR ITON",
-  "cp": "27240",
-  "dep": "27",
-  "adresse": "2 rue des vanneaux",
-  "nom": "BUIS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-32-34-58-49",
-  "lat": 48.841177,
-  "lng": 1.109398,
-  "score": 0.9570854545454545
- },
- {
-  "commune": "VOYENNES",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "RUE DE MATIGNY",
-  "nom": "BUNY/VOYENNES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-88-97-82",
-  "lat": 49.776434,
-  "lng": 2.988231,
-  "score": 0.9493199999999998
- },
- {
-  "commune": "BURES EN BRAY",
-  "cp": "76660",
-  "dep": "76",
-  "adresse": "",
-  "nom": "BURES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.780571,
-  "lng": 1.33875,
-  "score": 0.3
- },
- {
-  "commune": "CANAPLES",
-  "cp": "80670",
-  "dep": "80",
-  "adresse": "RUE DE LA GARE",
-  "nom": "CANAPLES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-52-91-78",
-  "lat": 50.059092,
-  "lng": 2.216963,
-  "score": 0.93892
- },
- {
-  "commune": "CANDAS",
-  "cp": "80750",
-  "dep": "80",
-  "adresse": "93, RUE DE LA GARE",
-  "nom": "CANDAS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-32-03-27",
-  "lat": 50.113329,
-  "lng": 2.252069,
-  "score": 0.9555836363636363
- },
- {
-  "commune": "HAZEBROUCK",
-  "cp": "59190",
-  "dep": "59",
-  "adresse": "415 CHEMIN DE BROCK",
-  "nom": "CANNEWELLE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.711814,
-  "lng": 2.507673,
-  "score": 0.47389
- },
- {
-  "commune": "CHAULNES",
-  "cp": "80320",
-  "dep": "80",
-  "adresse": "ROUTE DE NESLE",
-  "nom": "CHAULNES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-83-56-70",
-  "lat": 49.807765,
-  "lng": 2.80674,
-  "score": 0.5917136363636363
- },
- {
-  "commune": "HAZEBROUCK",
-  "cp": "59190",
-  "dep": "59",
-  "adresse": "5 BIS RUE DE DUNKERQUE",
-  "nom": "CLINIQUE VETERINAIRE - VET FLANDRES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "328419652",
-  "lat": 50.725346,
-  "lng": 2.537094,
-  "score": 0.834406694214876
- },
- {
-  "commune": "CONTEVILLE",
-  "cp": "80370",
-  "dep": "80",
-  "adresse": "RUE DE LA GARE",
-  "nom": "CONTEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-29-60-90",
-  "lat": 50.174474,
-  "lng": 2.066137,
-  "score": 0.9432763636363636
- },
- {
-  "commune": "CONTY",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "RUE DE LA GARE",
-  "nom": "CONTY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-41-60-00",
-  "lat": 49.740461,
-  "lng": 2.15586,
-  "score": 0.9509463636363635
- },
- {
-  "commune": "CRECY EN PONTHIEU",
-  "cp": "80150",
-  "dep": "80",
-  "adresse": "14 AVENUE DES FUSILLES",
-  "nom": "CRECY EN PONTHIEU CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 50.251807,
-  "lng": 1.890131,
-  "score": 0.8242871428571428
- },
- {
-  "commune": "CALLENGEVILLE",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "",
-  "nom": "CRESSY",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.818851,
-  "lng": 1.528194,
-  "score": 0.3
- },
- {
-  "commune": "CRIQUETOT L ESNEVAL",
-  "cp": "76280",
-  "dep": "76",
-  "adresse": "26 ROUTE DE GODERVILLE",
-  "nom": "CRIQUETOT L ESNEVAL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-27-22-52",
-  "lat": 49.644524,
-  "lng": 0.275186,
-  "score": 0.9563754545454546
- },
- {
-  "commune": "CRIQUETOT SUR LONGUEVILLE",
-  "cp": "76590",
-  "dep": "76",
-  "adresse": "VILLAGE",
-  "nom": "CRIQUETOT/LONGUEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-83-38-92",
-  "lat": 49.776077,
-  "lng": 1.045757,
-  "score": 0.6319160606060605
- },
- {
-  "commune": "CRITOT",
-  "cp": "76680",
-  "dep": "76",
-  "adresse": "RTE ST SAENS",
-  "nom": "CRITOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-34-20-47",
-  "lat": 49.614047,
-  "lng": 1.280043,
-  "score": 0.4308685714285714
- },
- {
-  "commune": "DANCOURT POPINCOURT",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "45 GRANDE RUE",
-  "nom": "DANCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-04-65",
-  "lat": 49.705584,
-  "lng": 2.824547,
-  "score": 0.9500427272727272
- },
- {
-  "commune": "NEUVILLE AU BOIS",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "",
-  "nom": "DE THEZY A NEUVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.97271,
-  "lng": 1.788124,
-  "score": 0.3
- },
- {
-  "commune": "DOMART EN PONTHIEU",
-  "cp": "80620",
-  "dep": "80",
-  "adresse": "3 RUE DU MARAIS",
-  "nom": "DOMART EN PONTHIEU_ANCIEN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-54-02-53",
-  "lat": 50.073838,
-  "lng": 2.133654,
-  "score": 0.9471581818181817
- },
- {
-  "commune": "DOMART EN PONTHIEU",
-  "cp": "80620",
-  "dep": "80",
-  "adresse": "CHEMIN DE L'ETOILE",
-  "nom": "DOMART EN PONTHIEU_NOUVEAU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.074734,
-  "lng": 2.119864,
-  "score": 0.49391999999999997
- },
- {
-  "commune": "DOUDEVILLE",
-  "cp": "76560",
-  "dep": "76",
-  "adresse": "",
-  "nom": "DOUDEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP",
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-35-96-54-23",
-  "lat": 49.725499,
-  "lng": 0.784482,
-  "score": 0.3
- },
- {
-  "commune": "DOULLENS",
-  "cp": "80600",
-  "dep": "80",
-  "adresse": "4 RUE HENRI DUNANT",
-  "nom": "DOULLENS LA HUTTE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-22-77-04-03",
-  "lat": 50.159867,
-  "lng": 2.34511,
-  "score": 0.8509435828877004
- },
- {
-  "commune": "ENVERMEU",
-  "cp": "76630",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ENVERMEU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.899498,
-  "lng": 1.265665,
-  "score": 0.3
- },
- {
-  "commune": "EPENANCOURT",
-  "cp": "80190",
-  "dep": "80",
-  "adresse": "ROUTE LICOURT",
-  "nom": "EPENANCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.823045,
-  "lng": 2.932543,
-  "score": 0.3
- },
- {
-  "commune": "EPLESSIER",
-  "cp": "80290",
-  "dep": "80",
-  "adresse": "17 RUE PRINCIPALE",
-  "nom": "EPLESSIER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-01-18",
-  "lat": 49.782474,
-  "lng": 1.962076,
-  "score": 0.9499699999999999
- },
- {
-  "commune": "EPRETOT",
-  "cp": "76430",
-  "dep": "76",
-  "adresse": "Route Départementale 39",
-  "nom": "EPRETOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "09-70-72-35-36",
-  "lat": 49.550348,
-  "lng": 0.333739,
-  "score": 0.9406972727272727
- },
- {
-  "commune": "ERCHEU",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "1 ROUTE DE ROYE",
-  "nom": "ERCHEU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-16-60",
-  "lat": 49.7021,
-  "lng": 2.934167,
-  "score": 0.9436645454545453
- },
- {
-  "commune": "ESCALLES",
-  "cp": "62179",
-  "dep": "62",
-  "adresse": "ROUTE DE PEUPLINGUES",
-  "nom": "ESCALLES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-35-69-52",
-  "lat": 50.916395,
-  "lng": 1.718567,
-  "score": 0.9440418181818181
- },
- {
-  "commune": "ESSERTAUX",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "ROUTE CONTY",
-  "nom": "ESSERTAUX VILLAGE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.815328,
-  "lng": 2.219704,
-  "score": 0.7378297902097902
- },
- {
-  "commune": "ESSERTAUX",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "ROUTE DE PARIS",
-  "nom": "ESSERTAUX ZONE INDUSTRIELLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-09-41-68",
-  "lat": 49.743324,
-  "lng": 2.249179,
-  "score": 0.9404945454545452
- },
- {
-  "commune": "ESTREES MONS",
-  "cp": "80200",
-  "dep": "80",
-  "adresse": "RUE D'ENFER",
-  "nom": "ESTREES MONS NORIAP",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "322856807",
-  "lat": 49.933793,
-  "lng": 2.941632,
-  "score": 0.9548672727272727
- },
- {
-  "commune": "ESTREES DENIECOURT",
-  "cp": "80200",
-  "dep": "80",
-  "adresse": "RUE DE CHAULNES",
-  "nom": "ESTREES-DENIECOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-16-60",
-  "lat": 49.884764,
-  "lng": 2.809573,
-  "score": 0.939000909090909
- },
- {
-  "commune": "ETAINHUS",
-  "cp": "76430",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ETAINHUS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.567034,
-  "lng": 0.305233,
-  "score": 0.3
- },
- {
-  "commune": "TERRES DE CAUX",
-  "cp": "76640",
-  "dep": "76",
-  "adresse": "ROUTE DE YEBLERON-C DEPT 149",
-  "nom": "FAUVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-56-96-60",
-  "lat": 49.651625,
-  "lng": 0.601001,
-  "score": 0.3
- },
- {
-  "commune": "FERRIERES EN BRAY",
-  "cp": "76220",
-  "dep": "76",
-  "adresse": "ROUTE DE BEAUVAIS",
-  "nom": "FERRIERES EN BRAY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-90-03-96",
-  "lat": 49.475295,
-  "lng": 1.743848,
-  "score": 0.9558790909090907
- },
- {
-  "commune": "LA FEUILLIE",
-  "cp": "76220",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FEUILLIE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.462677,
-  "lng": 1.518973,
-  "score": 0.3
- },
- {
-  "commune": "FEUQUIERES EN VIMEU",
-  "cp": "80210",
-  "dep": "80",
-  "adresse": "56 RUE VICTOR HUGO",
-  "nom": "FEUQUIERES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-30-30-60",
-  "lat": 50.062354,
-  "lng": 1.59302,
-  "score": 0.7974576470588234
- },
- {
-  "commune": "FEUQUIERES",
-  "cp": "60960",
-  "dep": "60",
-  "adresse": "ZONE INDUSTRIEL",
-  "nom": "FEUQUIERES OISE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-13-03-10",
-  "lat": 49.648394,
-  "lng": 1.843105,
-  "score": 0.3
- },
- {
-  "commune": "FLAMETS FRETILS",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FLAMETS FRETILS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.731566,
-  "lng": 1.578873,
-  "score": 0.3
- },
- {
-  "commune": "FLAVY LE MELDEUX",
-  "cp": "60640",
-  "dep": "60",
-  "adresse": "",
-  "nom": "FLAVY LE MELDEUX",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.68551,
-  "lng": 3.042049,
-  "score": 0.3
- },
- {
-  "commune": "FLEURBAIX",
-  "cp": "62840",
-  "dep": "62",
-  "adresse": "RUE DUQUESNE",
-  "nom": "FLEURBAIX",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-65-21-88",
-  "lat": 50.624269,
-  "lng": 2.774006,
-  "score": 0.6006137373737375
- },
- {
-  "commune": "FLEURY",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "Route Dépt.920",
-  "nom": "FLEURY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-41-98-79",
-  "lat": 49.74074,
-  "lng": 2.118319,
-  "score": 0.3
- },
- {
-  "commune": "FLIXECOURT",
-  "cp": "80420",
-  "dep": "80",
-  "adresse": "ROUTE NATIONALE",
-  "nom": "FLIXECOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-51-60-08",
-  "lat": 50.015907,
-  "lng": 2.071713,
-  "score": 0.3
- },
- {
-  "commune": "FORGES LES EAUX",
-  "cp": "76440",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FORGES LES EAUX",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.61255,
-  "lng": 1.552617,
-  "score": 0.3
- },
- {
-  "commune": "FORMERIE",
-  "cp": "60220",
-  "dep": "60",
-  "adresse": "RTE D'HAUCOURT",
-  "nom": "FORMERIE NORIAP",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-46-18-66",
-  "lat": 49.650402,
-  "lng": 1.722994,
-  "score": 0.7239054545454545
- },
- {
-  "commune": "FOUILLOY",
-  "cp": "60220",
-  "dep": "60",
-  "adresse": "13 RUE DU PONT NEUF",
-  "nom": "FOUILLOY ANCIEN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-04-23-47",
-  "lat": 49.734633,
-  "lng": 1.822425,
-  "score": 0.9429127272727272
- },
- {
-  "commune": "FOUILLOY",
-  "cp": "60220",
-  "dep": "60",
-  "adresse": "RUE DE LA GARE",
-  "nom": "FOUILLOY NOUVEAU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-04-51-00",
-  "lat": 49.652806,
-  "lng": 1.721518,
-  "score": 0.9470127272727272
- },
- {
-  "commune": "FRANLEU",
-  "cp": "80210",
-  "dep": "80",
-  "adresse": "2 RUE D'ARREST",
-  "nom": "FRANLEU CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 50.100725,
-  "lng": 1.640959,
-  "score": 0.9495827272727272
- },
- {
-  "commune": "FRESNE LE PLAN",
-  "cp": "76520",
-  "dep": "76",
-  "adresse": "1300 ROUTE MARTAINVILLE",
-  "nom": "FRESNE LE PLAN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-79-22-01",
-  "lat": 49.422318,
-  "lng": 1.295317,
-  "score": 0.8371290909090909
- },
- {
-  "commune": "FRESNOY FOLNY",
-  "cp": "76660",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FRESNOY FOLNY",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.887741,
-  "lng": 1.431144,
-  "score": 0.3
- },
- {
-  "commune": "FRESNOY LES ROYE",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "",
-  "nom": "FRESNOY LES ROYE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.737516,
-  "lng": 2.776248,
-  "score": 0.3
- },
- {
-  "commune": "FRETHUN",
-  "cp": "62185",
-  "dep": "62",
-  "adresse": "ROUTE DE ST-TRICAT",
-  "nom": "FRETHUN",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-85-28-87",
-  "lat": 50.907383,
-  "lng": 1.828813,
-  "score": 0.7183016017316016
- },
- {
-  "commune": "ST MARTIN DE L IF",
-  "cp": "76190",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FREVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-91-27-05",
-  "lat": 49.573037,
-  "lng": 0.802374,
-  "score": 0.3
- },
- {
-  "commune": "FRIAUCOURT",
-  "cp": "80460",
-  "dep": "80",
-  "adresse": "",
-  "nom": "FRIAUCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-60-41-39",
-  "lat": 50.086049,
-  "lng": 1.474938,
-  "score": 0.3
- },
- {
-  "commune": "FROBERVILLE",
-  "cp": "76400",
-  "dep": "76",
-  "adresse": "",
-  "nom": "FROBERVILLE CAP SEINE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.719429,
-  "lng": 0.332435,
-  "score": 0.3
- },
- {
-  "commune": "GANNES",
-  "cp": "60120",
-  "dep": "60",
-  "adresse": "21 RUE GARE",
-  "nom": "GANNES",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-51-42-15",
-  "lat": 49.571769,
-  "lng": 2.437617,
-  "score": 0.603180909090909
- },
- {
-  "commune": "GODERVILLE",
-  "cp": "76110",
-  "dep": "76",
-  "adresse": "",
-  "nom": "GODERVILLE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.651388,
-  "lng": 0.358996,
-  "score": 0.3
- },
- {
-  "commune": "GONNEHEM",
-  "cp": "62920",
-  "dep": "62",
-  "adresse": "ROUTE DE SAINT-VENANT",
-  "nom": "GONNEHEM",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.583229,
-  "lng": 2.580847,
-  "score": 0.7053952066115702
- },
- {
-  "commune": "GONNEVILLE LA MALLET",
-  "cp": "76280",
-  "dep": "76",
-  "adresse": "",
-  "nom": "GONNEVILLE LA MALLET",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.633017,
-  "lng": 0.214192,
-  "score": 0.3
- },
- {
-  "commune": "GRAINVILLE YMAUVILLE",
-  "cp": "76110",
-  "dep": "76",
-  "adresse": "LA GARE",
-  "nom": "GRAINVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-27-75-01",
-  "lat": 49.628414,
-  "lng": 0.400006,
-  "score": 0.9399499999999998
- },
- {
-  "commune": "GRAND COURONNE",
-  "cp": "76530",
-  "dep": "76",
-  "adresse": "BOULEVARD MARITIME",
-  "nom": "GRAND COURONNE - CAP INVEST",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 49.363162,
-  "lng": 0.997429,
-  "score": 0.9558445454545453
- },
- {
-  "commune": "GRANDCOURT",
-  "cp": "76660",
-  "dep": "76",
-  "adresse": "",
-  "nom": "GRANDCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-93-89-14",
-  "lat": 49.913608,
-  "lng": 1.487486,
-  "score": 0.3
- },
- {
-  "commune": "GRANDVILLIERS",
-  "cp": "60210",
-  "dep": "60",
-  "adresse": "RUE DE LA PETITE VITESSE",
-  "nom": "GRANDVILLIERS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-13-31-11",
-  "lat": 49.658912,
-  "lng": 1.939339,
-  "score": 0.9501454545454545
- },
- {
-  "commune": "LONGUEAU",
-  "cp": "80330",
-  "dep": "80",
-  "adresse": "BP22",
-  "nom": "GRAP",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "",
-  "lat": 49.87055,
-  "lng": 2.362139,
-  "score": 0.3
- },
- {
-  "commune": "GRUCHET ST SIMEON",
-  "cp": "76810",
-  "dep": "76",
-  "adresse": "1598 rue André Lecomte",
-  "nom": "GRUCHET ST SIMEON NATUP",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.825323,
-  "lng": 0.884035,
-  "score": 0.9509772727272727
- },
- {
-  "commune": "GUARBECQUE",
-  "cp": "62330",
-  "dep": "62",
-  "adresse": "RUE DE SAINT HUBERT",
-  "nom": "GUARBECQUE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.616424,
-  "lng": 2.500486,
-  "score": 0.7985957575757575
- },
- {
-  "commune": "GUILLAUCOURT",
-  "cp": "80170",
-  "dep": "80",
-  "adresse": "CHEMIN GARE",
-  "nom": "GUILLAUCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-85-36-85",
-  "lat": 49.842844,
-  "lng": 2.630147,
-  "score": 0.3
- },
- {
-  "commune": "GUINES",
-  "cp": "62340",
-  "dep": "62",
-  "adresse": "28, RUE GUIZELIN",
-  "nom": "GUINES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-35-20-01",
-  "lat": 50.86665,
-  "lng": 1.864712,
-  "score": 0.8013367379679144
- },
- {
-  "commune": "HALLENCOURT",
-  "cp": "80490",
-  "dep": "80",
-  "adresse": "ROUTE DE OISEMONT",
-  "nom": "HALLENCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-28-68-11",
-  "lat": 49.981587,
-  "lng": 1.820167,
-  "score": 0.6433387878787877
- },
- {
-  "commune": "HANGEST EN SANTERRE",
-  "cp": "80134",
-  "dep": "80",
-  "adresse": "RUE CONTOIRE",
-  "nom": "HANGEST EN SANTERRE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-94-32-25",
-  "lat": 49.750442,
-  "lng": 2.6047,
-  "score": 0.7582284415584415
- },
- {
-  "commune": "BOURDON",
-  "cp": "80310",
-  "dep": "80",
-  "adresse": "Noriap 17 rue d' Hangest",
-  "nom": "HANGEST SUR SOMME",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-51-10-06",
-  "lat": 49.981961,
-  "lng": 2.070393,
-  "score": 0.653488347107438
- },
- {
-  "commune": "TROIS RIVIERES",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "6 RUE DE L'AVENIR",
-  "nom": "HARGICOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-78-79-10",
-  "lat": 49.715054,
-  "lng": 2.527919,
-  "score": 0.9506772727272725
- },
- {
-  "commune": "TROIS RIVIERES",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "",
-  "nom": "HARGICOURT LAMBERT (NPU)",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.715314,
-  "lng": 2.543824,
-  "score": 0.3
- },
- {
-  "commune": "HATTENCOURT",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "RUE DE LA GARE",
-  "nom": "HATTENCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-17-40",
-  "lat": 49.768561,
-  "lng": 2.787151,
-  "score": 0.9382427272727273
- },
- {
-  "commune": "HAUDIVILLERS",
-  "cp": "60510",
-  "dep": "60",
-  "adresse": "9 RUE MAURICE BAVARD",
-  "nom": "HAUDIVILLERS",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-80-40-39",
-  "lat": 49.489489,
-  "lng": 2.240319,
-  "score": 0.8486371291866028
- },
- {
-  "commune": "HAUDIVILLERS",
-  "cp": "60510",
-  "dep": "60",
-  "adresse": "ROUTE DE LAFRAYE",
-  "nom": "HAUDIVILLERS 2",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-80-40-39",
-  "lat": 49.473971,
-  "lng": 2.18571,
-  "score": 0.9338090909090909
- },
- {
-  "commune": "HAUDIVILLERS",
-  "cp": "60510",
-  "dep": "60",
-  "adresse": "RUE MAURICE BAVARD",
-  "nom": "HAUDIVILLERS 3",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "",
-  "lat": 49.489489,
-  "lng": 2.240319,
-  "score": 0.944330909090909
- },
- {
-  "commune": "HAUTVILLERS OUVILLE",
-  "cp": "80132",
-  "dep": "80",
-  "adresse": "RD 1001",
-  "nom": "HAUTVILLERS OUVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-24-21-56",
-  "lat": 50.170222,
-  "lng": 1.817013,
-  "score": 0.3
- },
- {
-  "commune": "HEROUVILLE EN VEXIN",
-  "cp": "95300",
-  "dep": "95",
-  "adresse": "",
-  "nom": "HEROUVILLLE ODIEVRE ETS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.100633,
-  "lng": 2.131949,
-  "score": 0.3
- },
- {
-  "commune": "MARTAINNEVILLE",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "",
-  "nom": "HERVELOY A MARTAINNEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.997821,
-  "lng": 1.709944,
-  "score": 0.3
- },
- {
-  "commune": "HEUGLEVILLE SUR SCIE",
-  "cp": "76720",
-  "dep": "76",
-  "adresse": "90 ROUTE VALLEE",
-  "nom": "HEUGLEVILLE/SCIE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-32-81-54",
-  "lat": 49.723973,
-  "lng": 1.096611,
-  "score": 0.6757145454545455
- },
- {
-  "commune": "HOLQUE",
-  "cp": "59143",
-  "dep": "59",
-  "adresse": "8, RUE DE L'AA",
-  "nom": "HOLQUE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-88-95-15",
-  "lat": 50.832676,
-  "lng": 2.209973,
-  "score": 0.9550872727272727
- },
- {
-  "commune": "HORNOY LE BOURG",
-  "cp": "80640",
-  "dep": "80",
-  "adresse": "9 ROUTE DE LIOMER",
-  "nom": "HORNOY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-60-34",
-  "lat": 49.850253,
-  "lng": 1.891989,
-  "score": 0.5425077777777777
- },
- {
-  "commune": "IVRY LE TEMPLE",
-  "cp": "60173",
-  "dep": "60",
-  "adresse": "",
-  "nom": "IVRY LE TEMPLE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-44-08-76-27",
-  "lat": 49.23011,
-  "lng": 2.028625,
-  "score": 0.3
- },
- {
-  "commune": "FLAMETS FRETILS",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "LIEU DIT L'AVENTURE",
-  "nom": "L AVENTURE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-93-68-63",
-  "lat": 49.748364,
-  "lng": 1.604417,
-  "score": 0.45921533596837943
- },
- {
-  "commune": "LA CHAUSSEE TIRANCOURT",
-  "cp": "80310",
-  "dep": "80",
-  "adresse": "ROUTE DE VIGNACOURT",
-  "nom": "LA CHAUSSEE TIRANCOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-51-24-08",
-  "lat": 49.957384,
-  "lng": 2.152653,
-  "score": 0.6720599999999999
- },
- {
-  "commune": "LA FALOISE",
-  "cp": "80250",
-  "dep": "80",
-  "adresse": "19, RUE DE LA GARE",
-  "nom": "LA FALOISE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-41-40-51",
-  "lat": 49.698001,
-  "lng": 2.351134,
-  "score": 0.941720909090909
- },
- {
-  "commune": "LA FALOISE",
-  "cp": "80250",
-  "dep": "80",
-  "adresse": "",
-  "nom": "LA FALOISE 2",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.698791,
-  "lng": 2.34329,
-  "score": 0.3
- },
- {
-  "commune": "LA NEUVILLE LES BRAY",
-  "cp": "80340",
-  "dep": "80",
-  "adresse": "61 ROUTE DE ROYE",
-  "nom": "LA NEUVILLE LES BRAY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-76-01-39",
-  "lat": 49.922249,
-  "lng": 2.724776,
-  "score": 0.949101818181818
- },
- {
-  "commune": "LABOISSIERE EN SANTERRE",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "26 CHEMIN DE ROLLOT",
-  "nom": "LABOISSIERE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-07-34",
-  "lat": 49.593572,
-  "lng": 2.647356,
-  "score": 0.5015195622895622
- },
- {
-  "commune": "LAFRESGUIMONT ST MARTIN",
-  "cp": "80430",
-  "dep": "80",
-  "adresse": "RUE DES CORDONNIERS",
-  "nom": "LAFRESGUIMONT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-49-06",
-  "lat": 49.815658,
-  "lng": 1.803474,
-  "score": 0.9457063636363636
- },
- {
-  "commune": "LALANDELLE",
-  "cp": "60850",
-  "dep": "60",
-  "adresse": "",
-  "nom": "LALANDELLE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.394586,
-  "lng": 1.876624,
-  "score": 0.3
- },
- {
-  "commune": "LAMBRES",
-  "cp": "62120",
-  "dep": "62",
-  "adresse": "730 RUE DE  LILLERS",
-  "nom": "LAMBRES-LEZ-AIRE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-85-56-57",
-  "lat": 50.626303,
-  "lng": 2.420945,
-  "score": 0.9536881818181816
- },
- {
-  "commune": "LANCHERES",
-  "cp": "80230",
-  "dep": "80",
-  "adresse": "620 ROUTE DE PENDE",
-  "nom": "LANCHERES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-60-04-56",
-  "lat": 50.170102,
-  "lng": 1.573845,
-  "score": 0.46914837320574154
- },
- {
-  "commune": "LANGUEVOISIN QUIQUERY",
-  "cp": "80190",
-  "dep": "80",
-  "adresse": "PORT DE LANGUEVOISIN",
-  "nom": "LANGUEVOISIN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-88-21-17",
-  "lat": 49.750288,
-  "lng": 2.915534,
-  "score": 0.6046481818181817
- },
- {
-  "commune": "ST MARTIN LE GAILLARD",
-  "cp": "76260",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LE BUREL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-35-85-20-24",
-  "lat": 49.959386,
-  "lng": 1.355474,
-  "score": 0.3
- },
- {
-  "commune": "COTTENCHY",
-  "cp": "80440",
-  "dep": "80",
-  "adresse": "LIEU DIT LE PARACLET",
-  "nom": "LE PARACLET",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-09-37-06",
-  "lat": 49.811905,
-  "lng": 2.384556,
-  "score": 0.4865318181818182
- },
- {
-  "commune": "LE PLESSIER SUR ST JUST",
-  "cp": "60130",
-  "dep": "60",
-  "adresse": "RUE DE COMPIEGNE",
-  "nom": "LE PLESSIER ST JUST",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-78-68-11",
-  "lat": 49.509205,
-  "lng": 2.450864,
-  "score": 0.9496545454545454
- },
- {
-  "commune": "LE QUESNEL",
-  "cp": "80118",
-  "dep": "80",
-  "adresse": "1 RUE DE BEAUFORT",
-  "nom": "LE QUESNEL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-94-32-61",
-  "lat": 49.77479,
-  "lng": 2.628261,
-  "score": 0.952250909090909
- },
- {
-  "commune": "FRETTEMEULE",
-  "cp": "80220",
-  "dep": "80",
-  "adresse": "RD 936",
-  "nom": "LE TRANSLAY CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 49.999759,
-  "lng": 1.643902,
-  "score": 0.3
- },
- {
-  "commune": "LEDERZEELE",
-  "cp": "59143",
-  "dep": "59",
-  "adresse": "1 bis route de bergues",
-  "nom": "LEDERZEELE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-62-42-28",
-  "lat": 50.819805,
-  "lng": 2.30238,
-  "score": 0.8258403305785124
- },
- {
-  "commune": "ETALONDES",
-  "cp": "76260",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LES ETALONDES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-35-86-11-86",
-  "lat": 50.031846,
-  "lng": 1.388968,
-  "score": 0.3
- },
- {
-  "commune": "LES GRANDES VENTES",
-  "cp": "76950",
-  "dep": "76",
-  "adresse": "ROUTE DE DIEPPE",
-  "nom": "LES GRANDES VENTES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.788343,
-  "lng": 1.222568,
-  "score": 0.9580681818181817
- },
- {
-  "commune": "LES LOGES",
-  "cp": "76790",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LES LOGES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-29-50-94",
-  "lat": 49.701877,
-  "lng": 0.29019,
-  "score": 0.3
- },
- {
-  "commune": "LEULINGHEM",
-  "cp": "62500",
-  "dep": "62",
-  "adresse": "26 RUE LEULINE",
-  "nom": "LEULINGHEM",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.748845,
-  "lng": 2.168141,
-  "score": 0.5428136363636363
- },
- {
-  "commune": "ERCHEU",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "64 RUE DU BOIS",
-  "nom": "LIBERMONT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-87-16-66",
-  "lat": 49.695752,
-  "lng": 2.943593,
-  "score": 0.9528981818181816
- },
- {
-  "commune": "LIEUVILLERS",
-  "cp": "60130",
-  "dep": "60",
-  "adresse": "RUE 34EME BATAILLON DES CHARS",
-  "nom": "LIEUVILLERS",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-51-70-48",
-  "lat": 49.468965,
-  "lng": 2.497732,
-  "score": 0.7259827272727272
- },
- {
-  "commune": "LIGNIERES CHATELAIN",
-  "cp": "80290",
-  "dep": "80",
-  "adresse": "",
-  "nom": "LIGNIERES CHATELAIN",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-22-38-06-37",
-  "lat": 49.77608,
-  "lng": 1.862934,
-  "score": 0.3
- },
- {
-  "commune": "LINDEBEUF",
-  "cp": "76760",
-  "dep": "76",
-  "adresse": "377 ROUTE DE LA TRIOLAINE",
-  "nom": "LINDEBEUF",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.708648,
-  "lng": 0.898319,
-  "score": 0.9424990909090908
- },
- {
-  "commune": "LINTOT",
-  "cp": "76210",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LINTOT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.561386,
-  "lng": 0.566983,
-  "score": 0.3
- },
- {
-  "commune": "REIMS",
-  "cp": "51684",
-  "dep": "51",
-  "adresse": "16 Boulvard du Val de Vesle",
-  "nom": "LIVRE CHEZ ACOLYANCE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.250948,
-  "lng": 4.055595,
-  "score": 0.3
- },
- {
-  "commune": "ETREPAGNY",
-  "cp": "27150",
-  "dep": "27",
-  "adresse": "",
-  "nom": "LIVRE CHEZ CAPN",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.312199,
-  "lng": 1.623264,
-  "score": 0.3
- },
- {
-  "commune": "ROUEN",
-  "cp": "76000",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LIVRE CHEZ DOMELIERS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.440051,
-  "lng": 1.093912,
-  "score": 0.3
- },
- {
-  "commune": "CLERMONT",
-  "cp": "60600",
-  "dep": "60",
-  "adresse": "",
-  "nom": "LIVRE CHEZ UCAC",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.37814,
-  "lng": 2.413758,
-  "score": 0.3
- },
- {
-  "commune": "LONDINIERES",
-  "cp": "76660",
-  "dep": "76",
-  "adresse": "",
-  "nom": "LONDINIERES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.837219,
-  "lng": 1.396518,
-  "score": 0.3
- },
- {
-  "commune": "LONGPRE LES CORPS SAINTS",
-  "cp": "80510",
-  "dep": "80",
-  "adresse": "ROUTE D'AMIENS",
-  "nom": "LONGPRE LES CORPS SAINTS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-31-90-46",
-  "lat": 50.010576,
-  "lng": 1.99409,
-  "score": 0.3
- },
- {
-  "commune": "LOOBERGHE",
-  "cp": "59630",
-  "dep": "59",
-  "adresse": "300 ROUTE DE WATTEN",
-  "nom": "LOOBERGHE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-29-84-09",
-  "lat": 50.91487,
-  "lng": 2.266029,
-  "score": 0.9504909090909089
- },
- {
-  "commune": "LUCHY",
-  "cp": "60360",
-  "dep": "60",
-  "adresse": "ROUGEMAISON",
-  "nom": "LUCHY",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-81-77-62",
-  "lat": 49.545805,
-  "lng": 2.097286,
-  "score": 0.48238181818181813
- },
- {
-  "commune": "AIRAINES",
-  "cp": "80270",
-  "dep": "80",
-  "adresse": "ROUTE DE LONGPRE",
-  "nom": "MAGASIN CENTRAL OUEST AIRAINES -PL2-",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "07-84-30-34-65",
-  "lat": 49.971558,
-  "lng": 1.944933,
-  "score": 0.9522327272727271
- },
- {
-  "commune": "MAIGNELAY MONTIGNY",
-  "cp": "60420",
-  "dep": "60",
-  "adresse": "RUE DE L'ECU DE FRANCE",
-  "nom": "MAIGNELAY MONTIGNY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-51-15-71",
-  "lat": 49.548561,
-  "lng": 2.5029,
-  "score": 0.9459181818181818
- },
- {
-  "commune": "MANNEVILLE LA GOUPIL",
-  "cp": "76110",
-  "dep": "76",
-  "adresse": "ROUTE DES CAMELIAS",
-  "nom": "MANNEVILLE LA GOUPIL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-27-37-97",
-  "lat": 49.610827,
-  "lng": 0.357272,
-  "score": 0.9486263636363637
- },
- {
-  "commune": "MARCHE ALLOUARDE",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "2 PLACE DE BAYONNE",
-  "nom": "MARCHE ALLOUARDE DAUDRE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.727109,
-  "lng": 2.866791,
-  "score": 0.9285299999999999
- },
- {
-  "commune": "MARCHELEPOT MISERY",
-  "cp": "80200",
-  "dep": "80",
-  "adresse": "41 RUE FLANDRE",
-  "nom": "MARCHELEPOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-83-90-70",
-  "lat": 49.839429,
-  "lng": 2.867786,
-  "score": 0.73747807486631
- },
- {
-  "commune": "MARQUISE",
-  "cp": "62250",
-  "dep": "62",
-  "adresse": "RUE EDOUARD QUÉNU",
-  "nom": "MARQUISE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-87-45-46",
-  "lat": 50.817894,
-  "lng": 1.700746,
-  "score": 0.9603109090909089
- },
- {
-  "commune": "MARTAINNEVILLE",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "59 RUE D'HERVELOY",
-  "nom": "MARTAINNEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-28-47-06",
-  "lat": 49.994435,
-  "lng": 1.714025,
-  "score": 0.7781181818181817
- },
- {
-  "commune": "MAUCOMBLE",
-  "cp": "76680",
-  "dep": "76",
-  "adresse": "",
-  "nom": "MAUCOMBLE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.682671,
-  "lng": 1.337496,
-  "score": 0.3
- },
- {
-  "commune": "MENEVILLERS",
-  "cp": "60420",
-  "dep": "60",
-  "adresse": "1 ROUTE ST MARTIN AUX BOIS",
-  "nom": "MENEVILLERS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-51-07-71",
-  "lat": 49.522402,
-  "lng": 2.592581,
-  "score": 0.5572648128342246
- },
- {
-  "commune": "MERVILLE",
-  "cp": "59660",
-  "dep": "59",
-  "adresse": "48 QUAI COURBET",
-  "nom": "MERVILLE - CIACAM",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 50.638847,
-  "lng": 2.64264,
-  "score": 0.9610218181818181
- },
- {
-  "commune": "MESNIERES EN BRAY",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "17 route de Neufchatel",
-  "nom": "MESNIERES en BRAY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.727189,
-  "lng": 1.369987,
-  "score": 0.9547599999999998
- },
- {
-  "commune": "MOLLIENS DREUIL",
-  "cp": "80540",
-  "dep": "80",
-  "adresse": "ROUTE DE OISSY",
-  "nom": "MOLLIENS DREUIL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-30-23",
-  "lat": 49.884931,
-  "lng": 2.08499,
-  "score": 0.5783045454545455
- },
- {
-  "commune": "MONTDIDIER",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "36 AVENUE MAURICE LECONTE",
-  "nom": "MONTDIDIER GRAP",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-78-08-71",
-  "lat": 49.641374,
-  "lng": 2.553973,
-  "score": 0.9604727272727271
- },
- {
-  "commune": "MONTDIDIER",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "",
-  "nom": "MONTDIDIER LANCKRIET",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.646548,
-  "lng": 2.570061,
-  "score": 0.3
- },
- {
-  "commune": "MONTDIDIER",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "36, RUE GASTON et GUY FLOURY",
-  "nom": "MONTDIDIER NORIAP floury",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-78-76-70",
-  "lat": 49.644732,
-  "lng": 2.574868,
-  "score": 0.9601281818181817
- },
- {
-  "commune": "MONTEREAU FAULT YONNE",
-  "cp": "77130",
-  "dep": "77",
-  "adresse": "",
-  "nom": "MONTEREAU FAULT YONNE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 48.389786,
-  "lng": 2.957396,
-  "score": 0.3
- },
- {
-  "commune": "MOREUIL",
-  "cp": "80110",
-  "dep": "80",
-  "adresse": "RUE DE LA REPUBLIQUE",
-  "nom": "MOREUIL ATELIER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-09-89-09",
-  "lat": 49.771261,
-  "lng": 2.477267,
-  "score": 0.9601845454545453
- },
- {
-  "commune": "MORGNY LA POMMERAYE",
-  "cp": "76750",
-  "dep": "76",
-  "adresse": "Rue du Moulin",
-  "nom": "MORGNY LA POMMERAYE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.530714,
-  "lng": 1.317533,
-  "score": 0.9451836363636362
- },
- {
-  "commune": "MOYENNEVILLE",
-  "cp": "80870",
-  "dep": "80",
-  "adresse": "13 CHEMIN PRES",
-  "nom": "MOYENNEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "09-70-72-35-22",
-  "lat": 50.079047,
-  "lng": 1.756236,
-  "score": 0.7322544385026737
- },
- {
-  "commune": "NAOURS",
-  "cp": "80260",
-  "dep": "80",
-  "adresse": "18 Rue Haute Carnoye",
-  "nom": "NAOURS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-93-71-74",
-  "lat": 50.041346,
-  "lng": 2.2803,
-  "score": 0.9495563636363636
- },
- {
-  "commune": "NESLE",
-  "cp": "80190",
-  "dep": "80",
-  "adresse": "ROUTE DE GRAND MESNIL",
-  "nom": "NESLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-88-43-00",
-  "lat": 49.764663,
-  "lng": 2.912973,
-  "score": 0.6769954545454545
- },
- {
-  "commune": "NEUFBOSC",
-  "cp": "76680",
-  "dep": "76",
-  "adresse": "Route du Mauray",
-  "nom": "NEUFBOSC",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-34-10-14",
-  "lat": 49.646461,
-  "lng": 1.359641,
-  "score": 0.9467909090909089
- },
- {
-  "commune": "NEUFCHATEL EN BRAY",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "2, RUE DU VAL BOURY",
-  "nom": "NEUFCHATEL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-35-93-01-25",
-  "lat": 49.734653,
-  "lng": 1.445345,
-  "score": 0.9571281818181817
- },
- {
-  "commune": "NEUFCHATEL EN BRAY",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "",
-  "nom": "NEUFCHATEL en BRAY",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.731987,
-  "lng": 1.44597,
-  "score": 0.3
- },
- {
-  "commune": "NEUILLY LE DIEN",
-  "cp": "80150",
-  "dep": "80",
-  "adresse": "",
-  "nom": "NEUILLY LE DIEN",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.224918,
-  "lng": 2.045186,
-  "score": 0.3
- },
- {
-  "commune": "NEVILLE",
-  "cp": "76460",
-  "dep": "76",
-  "adresse": "ANCIENNE ROUTE DE DIEPPE",
-  "nom": "NEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-97-03-72",
-  "lat": 49.822257,
-  "lng": 0.708135,
-  "score": 0.9448436363636363
- },
- {
-  "commune": "NOLLEVAL",
-  "cp": "76780",
-  "dep": "76",
-  "adresse": "",
-  "nom": "NOLLEVAL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.49512,
-  "lng": 1.481277,
-  "score": 0.3
- },
- {
-  "commune": "PORT JEROME SUR SEINE",
-  "cp": "76330",
-  "dep": "76",
-  "adresse": "1 RD 28",
-  "nom": "NOTRE DAME DE GRAVENCHON",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-38-31-57",
-  "lat": 49.506318,
-  "lng": 0.599865,
-  "score": 0.3
- },
- {
-  "commune": "NOUVION",
-  "cp": "80860",
-  "dep": "80",
-  "adresse": "ROUTE NATIONALE",
-  "nom": "NOUVION EN PONTHIEU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.209857,
-  "lng": 1.781091,
-  "score": 0.9587509090909091
- },
- {
-  "commune": "NOYELLES EN CHAUSSEE",
-  "cp": "80150",
-  "dep": "80",
-  "adresse": "RUE DE L'EGLISE",
-  "nom": "NOYELLES EN CHAUSSEE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-29-24-34",
-  "lat": 50.251657,
-  "lng": 1.87936,
-  "score": 0.9510072727272727
- },
- {
-  "commune": "NOYELLES SUR ESCAUT",
-  "cp": "59159",
-  "dep": "59",
-  "adresse": "",
-  "nom": "NOYELLES SUR ESCAUT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.138143,
-  "lng": 3.183536,
-  "score": 0.3
- },
- {
-  "commune": "NOYELLES SUR MER",
-  "cp": "80860",
-  "dep": "80",
-  "adresse": "ROUTE DU CROTOY",
-  "nom": "NOYELLES SUR MER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-23-64-63",
-  "lat": 50.189821,
-  "lng": 1.702545,
-  "score": 0.9475109090909091
- },
- {
-  "commune": "OCQUEVILLE",
-  "cp": "76450",
-  "dep": "76",
-  "adresse": "chez M. LECONTE Georges",
-  "nom": "OCQUEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.796826,
-  "lng": 0.685801,
-  "score": 0.3
- },
- {
-  "commune": "OFFOY",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "chez SARL RIMETTE",
-  "nom": "OFFOY",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.762552,
-  "lng": 3.015637,
-  "score": 0.3
- },
- {
-  "commune": "OFFOY",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "",
-  "nom": "OFFOY RIMETTE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.762552,
-  "lng": 3.015637,
-  "score": 0.3
- },
- {
-  "commune": "OISEMONT",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "26 RUE JEAN JAURES",
-  "nom": "OISEMONT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-25-10-51",
-  "lat": 49.958503,
-  "lng": 1.774148,
-  "score": 0.9518045454545454
- },
- {
-  "commune": "OUAINVILLE",
-  "cp": "76450",
-  "dep": "76",
-  "adresse": "LE VILLAGE",
-  "nom": "OUAINVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-97-73-17",
-  "lat": 49.715139,
-  "lng": 0.615922,
-  "score": 0.943640909090909
- },
- {
-  "commune": "OUDEZEELE",
-  "cp": "59670",
-  "dep": "59",
-  "adresse": "S.C.A. LA FLANDRE",
-  "nom": "OUDEZEELE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-48-47-40",
-  "lat": 50.840235,
-  "lng": 2.514253,
-  "score": 0.3
- },
- {
-  "commune": "OUTREBOIS",
-  "cp": "80600",
-  "dep": "80",
-  "adresse": "RUE DE LA FABRIQUE",
-  "nom": "OUTREBOIS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-77-09-58",
-  "lat": 50.176816,
-  "lng": 2.253248,
-  "score": 0.9375754545454545
- },
- {
-  "commune": "OYE PLAGE",
-  "cp": "62215",
-  "dep": "62",
-  "adresse": "424, RUE DE LA RIVIERE D'OYE",
-  "nom": "OYE PLAGE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-82-89-79",
-  "lat": 50.964163,
-  "lng": 2.043208,
-  "score": 0.9584545454545453
- },
- {
-  "commune": "CAMON",
-  "cp": "80450",
-  "dep": "80",
-  "adresse": "111 RUE CROISETTES",
-  "nom": "PETIT CAMON",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-93-04-80",
-  "lat": 49.919085,
-  "lng": 2.367923,
-  "score": 0.60847329004329
- },
- {
-  "commune": "PEUPLINGUES",
-  "cp": "62231",
-  "dep": "62",
-  "adresse": "",
-  "nom": "PEUPLINGUES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-85-56-57",
-  "lat": 50.915052,
-  "lng": 1.769342,
-  "score": 0.3
- },
- {
-  "commune": "LONGUEAU",
-  "cp": "80332",
-  "dep": "80",
-  "adresse": "35 RUE DE L'ILE MYSTERIEUSE",
-  "nom": "PHARMACIE VETERINAIRE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-50-44-44",
-  "lat": 49.87055,
-  "lng": 2.362139,
-  "score": 0.3
- },
- {
-  "commune": "PIHEM",
-  "cp": "62570",
-  "dep": "62",
-  "adresse": "129 RUE PRINCIPALE",
-  "nom": "PIHEM",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "",
-  "lat": 50.691856,
-  "lng": 2.224791,
-  "score": 0.9571099999999999
- },
- {
-  "commune": "POIX DE PICARDIE",
-  "cp": "80290",
-  "dep": "80",
-  "adresse": "RUE DE LA GARE",
-  "nom": "POIX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-35-20",
-  "lat": 49.777763,
-  "lng": 1.989172,
-  "score": 0.9480972727272726
- },
- {
-  "commune": "LES ATTAQUES",
-  "cp": "62730",
-  "dep": "62",
-  "adresse": "3896, ROUTE NATIONALE 43",
-  "nom": "PONT D ARDRES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-82-13-42",
-  "lat": 50.895109,
-  "lng": 1.968977,
-  "score": 0.9612581818181818
- },
- {
-  "commune": "PONT STE MAXENCE",
-  "cp": "60700",
-  "dep": "60",
-  "adresse": "",
-  "nom": "PONT STE MAXENCE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.309303,
-  "lng": 2.60379,
-  "score": 0.3
- },
- {
-  "commune": "PONTS ET MARAIS",
-  "cp": "76260",
-  "dep": "76",
-  "adresse": "",
-  "nom": "PONTS ET MARAIS GROS JACQUES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-60-57-57",
-  "lat": 50.045695,
-  "lng": 1.448859,
-  "score": 0.3
- },
- {
-  "commune": "PROUZEL",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "ROUTE DE LA GARE",
-  "nom": "PROUZEL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-42-13-25",
-  "lat": 49.740461,
-  "lng": 2.15586,
-  "score": 0.6300907486631016
- },
- {
-  "commune": "QUAEDYPRE",
-  "cp": "59380",
-  "dep": "59",
-  "adresse": "25 rue de la Chapelle",
-  "nom": "QUAËDYPRE LEDEIN",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "328681121",
-  "lat": 50.958909,
-  "lng": 2.435468,
-  "score": 0.9485772727272728
- },
- {
-  "commune": "QUEND",
-  "cp": "80120",
-  "dep": "80",
-  "adresse": "CHEMIN MURET",
-  "nom": "QUEND",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.331924,
-  "lng": 1.639886,
-  "score": 0.7554402597402597
- },
- {
-  "commune": "QUESNOY LE MONTANT",
-  "cp": "80132",
-  "dep": "80",
-  "adresse": "",
-  "nom": "QUESNOY LE MONTANT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-24-64-18",
-  "lat": 50.107883,
-  "lng": 1.6867,
-  "score": 0.3
- },
- {
-  "commune": "QUEVAUVILLERS",
-  "cp": "80710",
-  "dep": "80",
-  "adresse": "2, Chaussée Thiers",
-  "nom": "QUEVAUVILLERS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-90-80-09",
-  "lat": 49.825251,
-  "lng": 2.090853,
-  "score": 0.9579327272727272
- },
- {
-  "commune": "QUIVIERES",
-  "cp": "80400",
-  "dep": "80",
-  "adresse": "11 RUE UGNY",
-  "nom": "QUIVIERES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-88-93-46",
-  "lat": 49.825292,
-  "lng": 3.033999,
-  "score": 0.3
- },
- {
-  "commune": "RAMBURES",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "3 RUE DU MOULIN",
-  "nom": "RAMBURES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-25-12-16",
-  "lat": 50.011243,
-  "lng": 1.675059,
-  "score": 0.9478845454545454
- },
- {
-  "commune": "REALCAMP",
-  "cp": "76340",
-  "dep": "76",
-  "adresse": "",
-  "nom": "REALCAMP",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.858804,
-  "lng": 1.618544,
-  "score": 0.3
- },
- {
-  "commune": "REXPOEDE",
-  "cp": "59122",
-  "dep": "59",
-  "adresse": "64 ROUTE DE BAMBECQUE",
-  "nom": "REXPOEDE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-20-60-08",
-  "lat": 50.926703,
-  "lng": 2.579785,
-  "score": 0.8019627272727272
- },
- {
-  "commune": "ROISEL",
-  "cp": "80240",
-  "dep": "80",
-  "adresse": "Ferme de Nobecourt",
-  "nom": "ROISEL LEROY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.921964,
-  "lng": 3.078985,
-  "score": 0.7991675119617224
- },
- {
-  "commune": "ROLLOT",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "",
-  "nom": "ROLLOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-78-29-31",
-  "lat": 49.594898,
-  "lng": 2.652493,
-  "score": 0.3
- },
- {
-  "commune": "ROSIERES EN SANTERRE",
-  "cp": "80170",
-  "dep": "80",
-  "adresse": "",
-  "nom": "ROSIERES",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.816153,
-  "lng": 2.701834,
-  "score": 0.3
- },
- {
-  "commune": "ROSIERES EN SANTERRE",
-  "cp": "80170",
-  "dep": "80",
-  "adresse": "RUE DU 14 JUILLET",
-  "nom": "ROSIERES POMME DE TERRE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "03-22-88-43-33",
-  "lat": 49.820478,
-  "lng": 2.709826,
-  "score": 0.954961818181818
- },
- {
-  "commune": "ROUTOT",
-  "cp": "27350",
-  "dep": "27",
-  "adresse": "",
-  "nom": "ROUTOT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.381761,
-  "lng": 0.722641,
-  "score": 0.3
- },
- {
-  "commune": "ROUVIGNIES",
-  "cp": "59220",
-  "dep": "59",
-  "adresse": "RUE DE L'ENCLOS",
-  "nom": "ROUVIGNIES - Ets CARRE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "33",
-  "lat": 50.326252,
-  "lng": 3.399668,
-  "score": 0.9597290909090908
- },
- {
-  "commune": "ROYE",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "PLACE DE LA GARE",
-  "nom": "ROYE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "322797190",
-  "lat": 49.705047,
-  "lng": 2.787143,
-  "score": 0.9523590909090909
- },
- {
-  "commune": "ROYE",
-  "cp": "80700",
-  "dep": "80",
-  "adresse": "54 RUE ST GEORGES",
-  "nom": "ROYE ST GEORGES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.690733,
-  "lng": 2.796587,
-  "score": 0.5978381818181817
- },
- {
-  "commune": "RUBEMPRE",
-  "cp": "80260",
-  "dep": "80",
-  "adresse": "11 RUE DU 8 MAI 1945",
-  "nom": "RUBEMPRE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-93-77-34",
-  "lat": 50.022296,
-  "lng": 2.386126,
-  "score": 0.9471599999999999
- },
- {
-  "commune": "RUBESCOURT",
-  "cp": "80500",
-  "dep": "80",
-  "adresse": "",
-  "nom": "RUBESCOURT MOREAU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.607162,
-  "lng": 2.571824,
-  "score": 0.3
- },
- {
-  "commune": "RUE",
-  "cp": "80120",
-  "dep": "80",
-  "adresse": "RUE SIFFAIT DE MONCOURT",
-  "nom": "RUE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-25-00-83",
-  "lat": 50.274474,
-  "lng": 1.675936,
-  "score": 0.9574636363636363
- },
- {
-  "commune": "PORT LE GRAND",
-  "cp": "80132",
-  "dep": "80",
-  "adresse": "",
-  "nom": "RUE DU BOIS DE BONNANCE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.150831,
-  "lng": 1.752689,
-  "score": 0.3
- },
- {
-  "commune": "SAISSEVAL",
-  "cp": "80540",
-  "dep": "80",
-  "adresse": "ROUTE DE MOLLIENS",
-  "nom": "SAISSEVAL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-38-95-93",
-  "lat": 49.872894,
-  "lng": 2.044207,
-  "score": 0.6391087878787878
- },
- {
-  "commune": "SALEUX",
-  "cp": "80480",
-  "dep": "80",
-  "adresse": "CHEMIN DE GUIGNEMICOURT",
-  "nom": "SALEUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-53-28-80",
-  "lat": 49.877824,
-  "lng": 2.212301,
-  "score": 0.5764732659932659
- },
- {
-  "commune": "SAUQUEVILLE",
-  "cp": "76550",
-  "dep": "76",
-  "adresse": "ROUTE DE LA POMME",
-  "nom": "SAUQUEVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-85-20-22",
-  "lat": 49.853246,
-  "lng": 1.07137,
-  "score": 0.9469745454545453
- },
- {
-  "commune": "SAUVILLERS MONGIVAL",
-  "cp": "80110",
-  "dep": "80",
-  "adresse": "8 RUE D'AUBVILLERS",
-  "nom": "SAUVILLERS GP 8 rue d aubvillers",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-35-00-25",
-  "lat": 49.724936,
-  "lng": 2.472433,
-  "score": 0.9413436363636362
- },
- {
-  "commune": "SENARPONT",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "171 RUE MOULIN",
-  "nom": "SENARPONT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-25-90-27",
-  "lat": 49.88715,
-  "lng": 1.718218,
-  "score": 0.7742072727272727
- },
- {
-  "commune": "SEUX",
-  "cp": "80540",
-  "dep": "80",
-  "adresse": "ROUTE DE BRIQUEMESNIL",
-  "nom": "SEUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-38-96-37",
-  "lat": 49.876994,
-  "lng": 2.090776,
-  "score": 0.6825224793388429
- },
- {
-  "commune": "DUNKERQUE",
-  "cp": "59140",
-  "dep": "59",
-  "adresse": "",
-  "nom": "SICA DUNKERQUE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 51.028256,
-  "lng": 2.346525,
-  "score": 0.3
- },
- {
-  "commune": "BERGUES",
-  "cp": "59380",
-  "dep": "59",
-  "adresse": "58 RUE CARNOT",
-  "nom": "SIEGE SOCIAL LA FLANDRE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-68-66-55",
-  "lat": 50.967083,
-  "lng": 2.43103,
-  "score": 0.9615263636363636
- },
- {
-  "commune": "LONGUEAU",
-  "cp": "80330",
-  "dep": "80",
-  "adresse": "35, ROUTE DE BOVES",
-  "nom": "SIEGE SOCIAL NORIAP",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "4444",
-  "lat": 49.87055,
-  "lng": 2.362139,
-  "score": 0.3
- },
- {
-  "commune": "CAPPELLE LA GRANDE",
-  "cp": "59180",
-  "dep": "59",
-  "adresse": "101, ROUTE DE BOURBOURG",
-  "nom": "SITE LESIEUR",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-60-06-61",
-  "lat": 51.003957,
-  "lng": 2.354041,
-  "score": 0.9666936363636364
- },
- {
-  "commune": "SMERMESNIL",
-  "cp": "76660",
-  "dep": "76",
-  "adresse": "ROUTE DE DIEPPE",
-  "nom": "SMERMESNIL",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-93-88-46",
-  "lat": 49.838913,
-  "lng": 1.389384,
-  "score": 0.9517690909090908
- },
- {
-  "commune": "SOCX",
-  "cp": "59380",
-  "dep": "59",
-  "adresse": "LA CROIX ROUGE CD 916",
-  "nom": "SOCX",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-68-64-77",
-  "lat": 50.940162,
-  "lng": 2.421335,
-  "score": 0.3
- },
- {
-  "commune": "SOMMEREUX",
-  "cp": "60210",
-  "dep": "60",
-  "adresse": "19 RUE PATIS DURAND",
-  "nom": "SOMMEREUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-46-73-83",
-  "lat": 49.676114,
-  "lng": 1.990522,
-  "score": 0.8152053246753246
- },
- {
-  "commune": "ST JUST EN CHAUSSEE",
-  "cp": "60130",
-  "dep": "60",
-  "adresse": "ROUTE DE FOURNIVAL",
-  "nom": "ST JUST EN CHAUSSEE",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "03-44-19-22-30",
-  "lat": 49.503528,
-  "lng": 2.421472,
-  "score": 0.9484899999999999
- },
- {
-  "commune": "ST MAULVIS",
-  "cp": "80140",
-  "dep": "80",
-  "adresse": "ROUTE DE OISEMONT",
-  "nom": "ST MAULVIS",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-25-81-33",
-  "lat": 49.90021,
-  "lng": 1.820914,
-  "score": 0.9347363636363636
- },
- {
-  "commune": "ST OMER",
-  "cp": "62500",
-  "dep": "62",
-  "adresse": "LE MALIXOF",
-  "nom": "ST OMER",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-21-38-06-21",
-  "lat": 50.752672,
-  "lng": 2.26742,
-  "score": 0.8661581818181817
- },
- {
-  "commune": "ST OUEN DU BREUIL",
-  "cp": "76890",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ST OUEN DU BREUIL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.630509,
-  "lng": 1.026811,
-  "score": 0.3
- },
- {
-  "commune": "ST PAER",
-  "cp": "76480",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ST PAER",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.51731,
-  "lng": 0.889206,
-  "score": 0.3
- },
- {
-  "commune": "ST PIERRE EN VAL",
-  "cp": "76260",
-  "dep": "76",
-  "adresse": "RTE ST PIERRE EN VAL",
-  "nom": "ST PIERRE EN VAL (EU)",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "235503983",
-  "lat": 50.011854,
-  "lng": 1.440569,
-  "score": 0.3
- },
- {
-  "commune": "ST RIQUIER",
-  "cp": "80135",
-  "dep": "80",
-  "adresse": "3, RUE DU HAMEL",
-  "nom": "ST RIQUIER",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-28-80-21",
-  "lat": 50.128761,
-  "lng": 1.942112,
-  "score": 0.9475245454545452
- },
- {
-  "commune": "ST ROMAIN DE COLBOSC",
-  "cp": "76430",
-  "dep": "76",
-  "adresse": "RTE DE GODERVILLE",
-  "nom": "ST ROMAIN",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-20-57-58",
-  "lat": 49.53537,
-  "lng": 0.355563,
-  "score": 0.7616888038277512
- },
- {
-  "commune": "ST ROMAIN DE COLBOSC",
-  "cp": "76430",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ST ROMAIN DE COLBOSC",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.52998,
-  "lng": 0.364753,
-  "score": 0.3
- },
- {
-  "commune": "ST SAUFLIEU",
-  "cp": "80160",
-  "dep": "80",
-  "adresse": "ROUTE D'ORESMAUX",
-  "nom": "ST SAUFLIEU",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-42-00-72",
-  "lat": 49.782409,
-  "lng": 2.258312,
-  "score": 0.9435436363636363
- },
- {
-  "commune": "ST SAUVEUR",
-  "cp": "80470",
-  "dep": "80",
-  "adresse": "CHEMIN DEP 97",
-  "nom": "ST SAUVEUR",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-51-79-31",
-  "lat": 49.941111,
-  "lng": 2.215685,
-  "score": 0.3
- },
- {
-  "commune": "ST VAAST DIEPPEDALLE",
-  "cp": "76450",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ST VAAST DIEPPEDALLE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.756906,
-  "lng": 0.720988,
-  "score": 0.3
- },
- {
-  "commune": "STE SEGREE",
-  "cp": "80290",
-  "dep": "80",
-  "adresse": "RUE MEIGNEUX",
-  "nom": "STE SEGREE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-38-05-80",
-  "lat": 49.777434,
-  "lng": 1.976346,
-  "score": 0.7600557142857143
- },
- {
-  "commune": "STEENVOORDE",
-  "cp": "59114",
-  "dep": "59",
-  "adresse": "ROUTE DE WATOU",
-  "nom": "STEENVOORDE",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-48-11-43",
-  "lat": 50.821747,
-  "lng": 2.605948,
-  "score": 0.9602099999999999
- },
- {
-  "commune": "PETIT CAUX",
-  "cp": "76630",
-  "dep": "76",
-  "adresse": "",
-  "nom": "ST-QUENTIN AU BOSC",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "02-35-85-20-24",
-  "lat": 49.966392,
-  "lng": 1.223451,
-  "score": 0.3
- },
- {
-  "commune": "TARTIGNY",
-  "cp": "60120",
-  "dep": "60",
-  "adresse": "route départementale 63",
-  "nom": "TARTIGNY",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 49.633782,
-  "lng": 2.360653,
-  "score": 0.3
- },
- {
-  "commune": "THIENNES",
-  "cp": "59189",
-  "dep": "59",
-  "adresse": "",
-  "nom": "THIENNES",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-42-16-03",
-  "lat": 50.651623,
-  "lng": 2.473579,
-  "score": 0.3
- },
- {
-  "commune": "THIETREVILLE",
-  "cp": "76540",
-  "dep": "76",
-  "adresse": "1 ROUTE DE VALMONT",
-  "nom": "THIETREVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-29-83-76",
-  "lat": 49.696151,
-  "lng": 0.531665,
-  "score": 0.9440072727272727
- },
- {
-  "commune": "THIOUVILLE",
-  "cp": "76450",
-  "dep": "76",
-  "adresse": "ROUTE DEPARTEMENTALE 5",
-  "nom": "THIOUVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-27-61-56",
-  "lat": 49.689017,
-  "lng": 0.619647,
-  "score": 0.3
- },
- {
-  "commune": "TOTES",
-  "cp": "76890",
-  "dep": "76",
-  "adresse": "LIEU DIT LETANTOT",
-  "nom": "TOTES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-32-97-52",
-  "lat": 49.682328,
-  "lng": 1.041714,
-  "score": 0.3
- },
- {
-  "commune": "TOTES",
-  "cp": "76890",
-  "dep": "76",
-  "adresse": "",
-  "nom": "TOTES CAP SEINE",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.682328,
-  "lng": 1.041714,
-  "score": 0.3
- },
- {
-  "commune": "TOURS EN VIMEU",
-  "cp": "80210",
-  "dep": "80",
-  "adresse": "RUE DU HAUT",
-  "nom": "TOURS EN VIMEU CALIPSO",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 50.035176,
-  "lng": 1.68642,
-  "score": 0.9518299999999998
- },
- {
-  "commune": "TOURVILLE LES IFS",
-  "cp": "76400",
-  "dep": "76",
-  "adresse": "",
-  "nom": "TOURVILLE LES IFS",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.710304,
-  "lng": 0.401451,
-  "score": 0.3
- },
- {
-  "commune": "TRICOT",
-  "cp": "60420",
-  "dep": "60",
-  "adresse": "PLACE DE LA GARE",
-  "nom": "TRICOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-44-51-30-18",
-  "lat": 49.550322,
-  "lng": 2.514971,
-  "score": 0.6343707486631016
- },
- {
-  "commune": "VATIERVILLE",
-  "cp": "76270",
-  "dep": "76",
-  "adresse": "3 ROUTE EGLISE",
-  "nom": "VATIERVILLE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-93-11-18",
-  "lat": 49.763506,
-  "lng": 1.380829,
-  "score": 0.4496754545454545
- },
- {
-  "commune": "VAUCHELLES LES AUTHIE",
-  "cp": "80560",
-  "dep": "80",
-  "adresse": "",
-  "nom": "VAUCHELLE LES AUTHIES",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "",
-  "lat": 50.096289,
-  "lng": 2.474509,
-  "score": 0.3
- },
- {
-  "commune": "VERNEUIL D AVRE ET D ITON",
-  "cp": "27130",
-  "dep": "27",
-  "adresse": "RUE AMPERE",
-  "nom": "VERNEUIL",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 48.745414,
-  "lng": 0.927449,
-  "score": 0.9573445454545455
- },
- {
-  "commune": "VIEUX MANOIR",
-  "cp": "76750",
-  "dep": "76",
-  "adresse": "",
-  "nom": "VIEUX MANOIR",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.563077,
-  "lng": 1.294559,
-  "score": 0.3
- },
- {
-  "commune": "VIGNACOURT",
-  "cp": "80650",
-  "dep": "80",
-  "adresse": "",
-  "nom": "VIGNACOURT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-52-77-87",
-  "lat": 50.009722,
-  "lng": 2.193404,
-  "score": 0.3
- },
- {
-  "commune": "VILLERS BRETONNEUX",
-  "cp": "80800",
-  "dep": "80",
-  "adresse": "Chaussée du Val de Somme",
-  "nom": "VILLERS BRETONNEUX",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-50-44-44",
-  "lat": 49.867569,
-  "lng": 2.517891,
-  "score": 0.3
- },
- {
-  "commune": "VRON",
-  "cp": "80120",
-  "dep": "80",
-  "adresse": "RUE MONTGREUX",
-  "nom": "VRON",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-29-93-79",
-  "lat": 50.313504,
-  "lng": 1.759349,
-  "score": 0.9534745454545454
- },
- {
-  "commune": "WAVIGNIES",
-  "cp": "60130",
-  "dep": "60",
-  "adresse": "rue Mathias",
-  "nom": "WAVIGNIES",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "",
-  "lat": 49.544795,
-  "lng": 2.354642,
-  "score": 0.9552172727272727
- },
- {
-  "commune": "WAVIGNIES",
-  "cp": "60130",
-  "dep": "60",
-  "adresse": "",
-  "nom": "WAVIGNIES A.P",
-  "rs": "GRAP",
-  "rs_liees": [
-   "GRAP"
-  ],
-  "tel": "",
-  "lat": 49.545697,
-  "lng": 2.360508,
-  "score": 0.3
- },
- {
-  "commune": "WOIGNARUE",
-  "cp": "80460",
-  "dep": "80",
-  "adresse": "",
-  "nom": "WOIGNARUE",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "03-22-30-30-60",
-  "lat": 50.118363,
-  "lng": 1.481735,
-  "score": 0.3
- },
- {
-  "commune": "WORMHOUT",
-  "cp": "59470",
-  "dep": "59",
-  "adresse": "1 TER RUE ODOUL",
-  "nom": "WORMHOUT",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-62-89-80",
-  "lat": 50.885164,
-  "lng": 2.467637,
-  "score": 0.7748818181818182
- },
- {
-  "commune": "YVETOT",
-  "cp": "76190",
-  "dep": "76",
-  "adresse": "ZONE INDUSTRIELLE",
-  "nom": "YVETOT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "970723550",
-  "lat": 49.61982,
-  "lng": 0.764902,
-  "score": 0.3
- },
- {
-  "commune": "YVETOT",
-  "cp": "76190",
-  "dep": "76",
-  "adresse": "",
-  "nom": "YVETOT",
-  "rs": "UNION FLANDRE PICARDIE",
-  "rs_liees": [
-   "UNION FLANDRE PICARDIE"
-  ],
-  "tel": "",
-  "lat": 49.61982,
-  "lng": 0.764902,
-  "score": 0.3
- },
- {
-  "commune": "VALLIQUERVILLE",
-  "cp": "76190",
-  "dep": "76",
-  "adresse": "ROUTE CANY",
-  "nom": "YVETOT AIRPORT",
-  "rs": "NORIAP",
-  "rs_liees": [
-   "NORIAP"
-  ],
-  "tel": "02-35-95-14-24",
-  "lat": 49.630462,
-  "lng": 0.738158,
-  "score": 0.7281463636363636
- },
- {
-  "commune": "ZEGERSCAPPEL",
-  "cp": "59470",
-  "dep": "59",
-  "adresse": "14, RUE MORSELEY",
-  "nom": "ZEGERSCAPPEL",
-  "rs": "LA FLANDRE",
-  "rs_liees": [
-   "LA FLANDRE"
-  ],
-  "tel": "03-28-68-93-87",
-  "lat": 50.888994,
-  "lng": 2.385702,
-  "score": 0.9539454545454544
+const collecteData = [
+ {
+  "site": "AILLY SUR NOYE",
+  "tonnage": 328171.8,
+  "tonnage_net": 332919.5,
+  "n_mvt": 30136,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 157952.7,
+   "Moisson": 170219.1
+  },
+  "lat": 49.749692,
+  "lng": 2.362143
+ },
+ {
+  "site": "SALEUX",
+  "tonnage": 274382.6,
+  "tonnage_net": 279157.2,
+  "n_mvt": 23885,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 116871.7,
+   "Moisson": 157525.9
+  },
+  "lat": 49.863618,
+  "lng": 2.225265
+ },
+ {
+  "site": "LANGUEVOISIN",
+  "tonnage": 181197.8,
+  "tonnage_net": 187704.0,
+  "n_mvt": 18571,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 55597.7,
+   "Moisson": 125600.2
+  },
+  "lat": 49.751043,
+  "lng": 2.948873
+ },
+ {
+  "site": "BELLE ASSISE",
+  "tonnage": 139341.9,
+  "tonnage_net": 142538.1,
+  "n_mvt": 19267,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 18521.8,
+   "Moisson": 120820.1
+  },
+  "lat": 49.639792,
+  "lng": 2.478221
+ },
+ {
+  "site": "QUIVIERES",
+  "tonnage": 124443.5,
+  "tonnage_net": 125644.3,
+  "n_mvt": 13643,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 5388.7,
+   "Moisson": 119054.8
+  },
+  "lat": 49.824137,
+  "lng": 3.042718
+ },
+ {
+  "site": "FLEURY",
+  "tonnage": 115062.1,
+  "tonnage_net": 116360.4,
+  "n_mvt": 15816,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 5715.9,
+   "Moisson": 109346.2
+  },
+  "lat": 49.738916,
+  "lng": 2.136434
+ },
+ {
+  "site": "GANNES",
+  "tonnage": 111828.9,
+  "tonnage_net": 113355.8,
+  "n_mvt": 14190,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 15357.8,
+   "Moisson": 96471.0
+  },
+  "lat": 49.571594,
+  "lng": 2.437215
+ },
+ {
+  "site": "SMERMESNIL",
+  "tonnage": 97781.4,
+  "tonnage_net": 99106.9,
+  "n_mvt": 12015,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 28829.3,
+   "Moisson": 68952.2
+  },
+  "lat": 49.84348,
+  "lng": 1.473881
+ },
+ {
+  "site": "HAUTVILLERS OUVILLE",
+  "tonnage": 89025.9,
+  "tonnage_net": 90006.0,
+  "n_mvt": 9251,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1934.4,
+   "Moisson": 87091.6
+  },
+  "lat": 50.177235,
+  "lng": 1.804286
+ },
+ {
+  "site": "BOVES",
+  "tonnage": 87579.0,
+  "tonnage_net": 88369.3,
+  "n_mvt": 11128,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1231.8,
+   "Moisson": 86347.2
+  },
+  "lat": 49.850125,
+  "lng": 2.391329
+ },
+ {
+  "site": "FOUILLOY NOUVEAU",
+  "tonnage": 87439.1,
+  "tonnage_net": 88442.2,
+  "n_mvt": 11124,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2074.1,
+   "Moisson": 85365.0
+  },
+  "lat": 49.739036,
+  "lng": 1.833656
+ },
+ {
+  "site": "POIX",
+  "tonnage": 86017.3,
+  "tonnage_net": 88107.8,
+  "n_mvt": 9580,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 19040.3,
+   "Moisson": 66977.0
+  },
+  "lat": 49.776841,
+  "lng": 1.990962
+ },
+ {
+  "site": "AVESNES LES BAPAUME",
+  "tonnage": 83958.8,
+  "tonnage_net": 83994.6,
+  "n_mvt": 4743,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 24424.9,
+   "Moisson": 59533.9
+  },
+  "lat": 50.097173,
+  "lng": 2.825411
+ },
+ {
+  "site": "FEUQUIERES",
+  "tonnage": 80945.2,
+  "tonnage_net": 81646.6,
+  "n_mvt": 8612,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 469.1,
+   "Moisson": 80476.2
+  },
+  "lat": 50.062997,
+  "lng": 1.591291
+ },
+ {
+  "site": "TRICOT",
+  "tonnage": 80313.4,
+  "tonnage_net": 81996.2,
+  "n_mvt": 9998,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 6244.1,
+   "Moisson": 74069.2
+  },
+  "lat": 49.562026,
+  "lng": 2.582068
+ },
+ {
+  "site": "HARGICOURT",
+  "tonnage": 78412.8,
+  "tonnage_net": 80215.6,
+  "n_mvt": 11220,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7222.2,
+   "Moisson": 71190.6
+  },
+  "lat": 49.721469,
+  "lng": 2.525394
+ },
+ {
+  "site": "LANCHERES",
+  "tonnage": 78081.2,
+  "tonnage_net": 78907.9,
+  "n_mvt": 8705,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2043.7,
+   "Moisson": 76037.4
+  },
+  "lat": 50.160563,
+  "lng": 1.563149
+ },
+ {
+  "site": "SEUX",
+  "tonnage": 76243.1,
+  "tonnage_net": 76733.0,
+  "n_mvt": 9469,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 137.6,
+   "Moisson": 76105.5
+  },
+  "lat": 49.873523,
+  "lng": 2.107219
+ },
+ {
+  "site": "MOREUIL CEREALES APPRO",
+  "tonnage": 75672.6,
+  "tonnage_net": 76226.5,
+  "n_mvt": 9243,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2783.1,
+   "Moisson": 72889.6
+  },
+  "lat": 49.771576,
+  "lng": 2.477371
+ },
+ {
+  "site": "MARQUISE",
+  "tonnage": 73696.6,
+  "tonnage_net": 74314.5,
+  "n_mvt": 10470,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -650.1,
+   "Moisson": 74346.7
+  },
+  "lat": 50.814579,
+  "lng": 1.704398
+ },
+ {
+  "site": "LA CHAUSSEE TIRANCOURT",
+  "tonnage": 72987.1,
+  "tonnage_net": 73859.5,
+  "n_mvt": 9111,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 3091.3,
+   "Moisson": 69895.8
+  },
+  "lat": 49.957379,
+  "lng": 2.154115
+ },
+ {
+  "site": "LIEUVILLERS",
+  "tonnage": 72693.9,
+  "tonnage_net": 73562.5,
+  "n_mvt": 8738,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 6781.8,
+   "Moisson": 65912.1
+  },
+  "lat": 49.469332,
+  "lng": 2.498037
+ },
+ {
+  "site": "MONTDIDIER NORIAP floury",
+  "tonnage": 72489.3,
+  "tonnage_net": 74387.9,
+  "n_mvt": 10546,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7735.2,
+   "Moisson": 64754.2
+  },
+  "lat": 49.645353,
+  "lng": 2.572427
+ },
+ {
+  "site": "OUAINVILLE",
+  "tonnage": 71875.9,
+  "tonnage_net": 72882.4,
+  "n_mvt": 8155,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 869.3,
+   "Moisson": 71006.6
+  },
+  "lat": 49.782895,
+  "lng": 0.584625
+ },
+ {
+  "site": "FERRIERES EN BRAY",
+  "tonnage": 71735.5,
+  "tonnage_net": 74027.3,
+  "n_mvt": 9756,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7820.0,
+   "Moisson": 63915.5
+  },
+  "lat": 49.477433,
+  "lng": 1.74198
+ },
+ {
+  "site": "BEUVRAIGNES",
+  "tonnage": 70370.1,
+  "tonnage_net": 72294.3,
+  "n_mvt": 9329,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 6483.1,
+   "Moisson": 63887.0
+  },
+  "lat": 49.647678,
+  "lng": 2.771208
+ },
+ {
+  "site": "HAUDIVILLERS 2",
+  "tonnage": 67734.2,
+  "tonnage_net": 69422.2,
+  "n_mvt": 9170,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7554.0,
+   "Moisson": 60180.2
+  },
+  "lat": 49.489112,
+  "lng": 2.236196
+ },
+ {
+  "site": "FORMERIE NORIAP",
+  "tonnage": 66411.7,
+  "tonnage_net": 67576.1,
+  "n_mvt": 8245,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 3627.2,
+   "Moisson": 62784.5
+  },
+  "lat": 49.648585,
+  "lng": 1.717331
+ },
+ {
+  "site": "ROYE",
+  "tonnage": 65585.6,
+  "tonnage_net": 67544.3,
+  "n_mvt": 6751,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7753.2,
+   "Moisson": 57875.4
+  },
+  "lat": 49.705017,
+  "lng": 2.787226
+ },
+ {
+  "site": "MOLLIENS DREUIL",
+  "tonnage": 64171.2,
+  "tonnage_net": 64828.0,
+  "n_mvt": 7743,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1062.1,
+   "Moisson": 63109.1
+  },
+  "lat": 49.889878,
+  "lng": 2.03411
+ },
+ {
+  "site": "ESSERTAUX ZONE INDUSTRIELLE",
+  "tonnage": 63976.8,
+  "tonnage_net": 66955.2,
+  "n_mvt": 9715,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 8188.1,
+   "Moisson": 55788.7
+  },
+  "lat": 49.748898,
+  "lng": 2.251609
+ },
+ {
+  "site": "VATIERVILLE",
+  "tonnage": 63006.7,
+  "tonnage_net": 63905.5,
+  "n_mvt": 9536,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 4618.6,
+   "Moisson": 58388.0
+  },
+  "lat": 49.777757,
+  "lng": 1.499467
+ },
+ {
+  "site": "ST SAUFLIEU",
+  "tonnage": 60433.3,
+  "tonnage_net": 60524.3,
+  "n_mvt": 8008,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 27.6,
+   "Moisson": 60405.7
+  },
+  "lat": 49.779055,
+  "lng": 2.260015
+ },
+ {
+  "site": "LABOISSIERE",
+  "tonnage": 59475.3,
+  "tonnage_net": 60920.6,
+  "n_mvt": 8064,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 5521.7,
+   "Moisson": 53953.6
+  },
+  "lat": 49.659137,
+  "lng": 2.680283
+ },
+ {
+  "site": "LA NEUVILLE",
+  "tonnage": 59277.4,
+  "tonnage_net": 59819.9,
+  "n_mvt": 6642,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1867.3,
+   "Moisson": 57410.1
+  },
+  "lat": 49.920936,
+  "lng": 2.725531
+ },
+ {
+  "site": "HOLQUE",
+  "tonnage": 58775.0,
+  "tonnage_net": 59337.9,
+  "n_mvt": 5214,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 19970.0,
+   "Moisson": 38805.0
+  },
+  "lat": 50.841862,
+  "lng": 2.204773
+ },
+ {
+  "site": "MESNIERE en BRAY",
+  "tonnage": 57096.0,
+  "tonnage_net": 57819.3,
+  "n_mvt": 7997,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1195.6,
+   "Moisson": 55900.4
+  },
+  "lat": 49.757084,
+  "lng": 1.392773
+ },
+ {
+  "site": "BUCHY/BOSC ROGER",
+  "tonnage": 57067.4,
+  "tonnage_net": 58340.7,
+  "n_mvt": 7326,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 9347.1,
+   "Moisson": 47720.3
+  },
+  "lat": 49.58219,
+  "lng": 1.362116
+ },
+ {
+  "site": "BENESVILLE",
+  "tonnage": 56482.3,
+  "tonnage_net": 57175.5,
+  "n_mvt": 7448,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1481.5,
+   "Moisson": 55000.8
+  },
+  "lat": 49.76189,
+  "lng": 0.838777
+ },
+ {
+  "site": "FAUVILLE",
+  "tonnage": 54855.3,
+  "tonnage_net": 55833.8,
+  "n_mvt": 5038,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 17728.6,
+   "Moisson": 37126.7
+  },
+  "lat": 49.650722,
+  "lng": 0.575128
+ },
+ {
+  "site": "SAINT MAULVIS",
+  "tonnage": 54652.8,
+  "tonnage_net": 55964.1,
+  "n_mvt": 7484,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 3962.0,
+   "Moisson": 50690.9
+  },
+  "lat": 49.90143,
+  "lng": 1.819534
+ },
+ {
+  "site": "CANAPLES",
+  "tonnage": 52751.6,
+  "tonnage_net": 53621.5,
+  "n_mvt": 5870,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 4943.0,
+   "Moisson": 47808.6
+  },
+  "lat": 50.059083,
+  "lng": 2.217383
+ },
+ {
+  "site": "THIETREVILLE",
+  "tonnage": 52310.6,
+  "tonnage_net": 52785.2,
+  "n_mvt": 6810,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1701.5,
+   "Moisson": 50609.1
+  },
+  "lat": 49.7042,
+  "lng": 0.505709
+ },
+ {
+  "site": "MENEVILLERS",
+  "tonnage": 51444.6,
+  "tonnage_net": 52019.8,
+  "n_mvt": 6286,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1801.3,
+   "Moisson": 49643.3
+  },
+  "lat": 49.521867,
+  "lng": 2.600421
+ },
+ {
+  "site": "ESTREES MONS NORIAP",
+  "tonnage": 51047.7,
+  "tonnage_net": 51248.3,
+  "n_mvt": 4138,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 54.6,
+   "Moisson": 50993.1
+  },
+  "lat": 49.876342,
+  "lng": 2.991847
+ },
+ {
+  "site": "CRITOT",
+  "tonnage": 50867.4,
+  "tonnage_net": 52253.6,
+  "n_mvt": 6455,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7686.0,
+   "Moisson": 43181.4
+  },
+  "lat": 49.608064,
+  "lng": 1.244784
+ },
+ {
+  "site": "LONGPRE LES CORPS SAINTS",
+  "tonnage": 50780.7,
+  "tonnage_net": 54054.2,
+  "n_mvt": 7118,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 5362.7,
+   "Moisson": 45417.9
+  },
+  "lat": 50.029626,
+  "lng": 1.942763
+ },
+ {
+  "site": "HANGEST SUR SOMME",
+  "tonnage": 50223.4,
+  "tonnage_net": 50885.0,
+  "n_mvt": 6523,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 676.8,
+   "Moisson": 49546.6
+  },
+  "lat": 50.009772,
+  "lng": 2.033312
+ },
+ {
+  "site": "SOCX",
+  "tonnage": 48945.5,
+  "tonnage_net": 49626.0,
+  "n_mvt": 6189,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -725.7,
+   "Moisson": 49671.2
+  },
+  "lat": 50.950177,
+  "lng": 2.430234
+ },
+ {
+  "site": "BAROMESNIL",
+  "tonnage": 48749.8,
+  "tonnage_net": 49296.3,
+  "n_mvt": 6747,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -178.6,
+   "Moisson": 48928.4
+  },
+  "lat": 49.979444,
+  "lng": 1.42717
+ },
+ {
+  "site": "GRANDVILLIERS",
+  "tonnage": 48649.0,
+  "tonnage_net": 49976.8,
+  "n_mvt": 6819,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 4835.7,
+   "Moisson": 43813.3
+  },
+  "lat": 49.659054,
+  "lng": 1.938844
+ },
+ {
+  "site": "HANGEST EN SANTERRE",
+  "tonnage": 48527.1,
+  "tonnage_net": 49632.7,
+  "n_mvt": 5228,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 4164.9,
+   "Moisson": 44362.2
+  },
+  "lat": 49.750825,
+  "lng": 2.604475
+ },
+ {
+  "site": "YVETOT AIRPORT",
+  "tonnage": 47763.0,
+  "tonnage_net": 48502.2,
+  "n_mvt": 5975,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 925.5,
+   "Moisson": 46837.5
+  },
+  "lat": 49.629829,
+  "lng": 0.737617
+ },
+ {
+  "site": "NOYELLES EN CHAUSSEE",
+  "tonnage": 46985.4,
+  "tonnage_net": 47622.2,
+  "n_mvt": 5908,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -1396.1,
+   "Moisson": 48381.5
+  },
+  "lat": 50.205428,
+  "lng": 1.97746
+ },
+ {
+  "site": "PETIT CAMON",
+  "tonnage": 46071.5,
+  "tonnage_net": 46626.9,
+  "n_mvt": 5760,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1163.6,
+   "Moisson": 44907.9
+  },
+  "lat": 49.919879,
+  "lng": 2.36816
+ },
+ {
+  "site": "BOIS BLEU",
+  "tonnage": 44197.8,
+  "tonnage_net": 44389.2,
+  "n_mvt": 4704,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 44197.8
+  },
+  "lat": 49.943082,
+  "lng": 1.962131
+ },
+ {
+  "site": "THIOUVILLE",
+  "tonnage": 43029.1,
+  "tonnage_net": 43429.0,
+  "n_mvt": 4996,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 181.4,
+   "Moisson": 42847.6
+  },
+  "lat": 49.693935,
+  "lng": 0.618793
+ },
+ {
+  "site": "DOMART EN PONTHIEU_NOUVEAU",
+  "tonnage": 42323.3,
+  "tonnage_net": 42901.2,
+  "n_mvt": 5152,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1233.4,
+   "Moisson": 41090.0
+  },
+  "lat": 50.101073,
+  "lng": 1.640808
+ },
+ {
+  "site": "N D GRAVENCHON",
+  "tonnage": 42294.7,
+  "tonnage_net": 44570.1,
+  "n_mvt": 5796,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 9148.8,
+   "Moisson": 33146.0
+  },
+  "lat": 49.498691,
+  "lng": 0.666669
+ },
+ {
+  "site": "ST JUST EN CHAUSSEE",
+  "tonnage": 40990.4,
+  "tonnage_net": 43750.1,
+  "n_mvt": 4540,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 11750.7,
+   "Moisson": 29239.7
+  },
+  "lat": 49.4996,
+  "lng": 2.414571
+ },
+ {
+  "site": "BEAUCAMPS LE VIEUX",
+  "tonnage": 40624.9,
+  "tonnage_net": 40802.4,
+  "n_mvt": 5598,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 339.9,
+   "Moisson": 40285.0
+  },
+  "lat": 49.843305,
+  "lng": 1.779191
+ },
+ {
+  "site": "ERCHEU",
+  "tonnage": 39935.7,
+  "tonnage_net": 40300.4,
+  "n_mvt": 4658,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1044.8,
+   "Moisson": 38890.9
+  },
+  "lat": 49.702616,
+  "lng": 2.935008
+ },
+ {
+  "site": "LA FALOISE",
+  "tonnage": 39768.2,
+  "tonnage_net": 40312.2,
+  "n_mvt": 4852,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2710.3,
+   "Moisson": 37057.8
+  },
+  "lat": 49.698045,
+  "lng": 2.351089
+ },
+ {
+  "site": "BEAUVAL",
+  "tonnage": 39578.9,
+  "tonnage_net": 40162.3,
+  "n_mvt": 4777,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 4367.0,
+   "Moisson": 35211.8
+  },
+  "lat": 50.121261,
+  "lng": 2.336954
+ },
+ {
+  "site": "CRIQUETOT L'ESNEVAL",
+  "tonnage": 39565.5,
+  "tonnage_net": 39920.2,
+  "n_mvt": 5426,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 208.3,
+   "Moisson": 39357.3
+  },
+  "lat": 49.644579,
+  "lng": 0.275316
+ },
+ {
+  "site": "HALLENCOURT",
+  "tonnage": 38818.0,
+  "tonnage_net": 39051.0,
+  "n_mvt": 5562,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 40.6,
+   "Moisson": 38777.5
+  },
+  "lat": 49.985408,
+  "lng": 1.873721
+ },
+ {
+  "site": "PIHEM",
+  "tonnage": 38397.7,
+  "tonnage_net": 39041.3,
+  "n_mvt": 5211,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1383.2,
+   "Moisson": 37014.5
+  },
+  "lat": 50.691606,
+  "lng": 2.223215
+ },
+ {
+  "site": "FRETHUN",
+  "tonnage": 38324.7,
+  "tonnage_net": 38673.0,
+  "n_mvt": 4841,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 544.8,
+   "Moisson": 37780.0
+  },
+  "lat": 50.916836,
+  "lng": 1.824028
+ },
+ {
+  "site": "RAMBURES",
+  "tonnage": 37619.6,
+  "tonnage_net": 37903.7,
+  "n_mvt": 5386,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1200.4,
+   "Moisson": 36419.2
+  },
+  "lat": 49.95488,
+  "lng": 1.707487
+ },
+ {
+  "site": "RUBEMPRE",
+  "tonnage": 37227.6,
+  "tonnage_net": 37792.8,
+  "n_mvt": 5332,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1059.6,
+   "Moisson": 36168.0
+  },
+  "lat": 50.022413,
+  "lng": 2.386117
+ },
+ {
+  "site": "ARMENTIERES",
+  "tonnage": 36965.1,
+  "tonnage_net": 37711.7,
+  "n_mvt": 4357,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 3315.6,
+   "Moisson": 33649.5
+  },
+  "lat": 50.658026,
+  "lng": 2.893423
+ },
+ {
+  "site": "BAILLEUL",
+  "tonnage": 36478.3,
+  "tonnage_net": 36989.7,
+  "n_mvt": 5241,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1263.3,
+   "Moisson": 35215.0
+  },
+  "lat": 50.73923,
+  "lng": 2.73402
+ },
+ {
+  "site": "LAMBRES-LEZ-AIRE",
+  "tonnage": 34737.6,
+  "tonnage_net": 35431.0,
+  "n_mvt": 4085,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1870.5,
+   "Moisson": 32867.2
+  },
+  "lat": 50.62612,
+  "lng": 2.420843
+ },
+ {
+  "site": "CANDAS",
+  "tonnage": 34389.8,
+  "tonnage_net": 34845.2,
+  "n_mvt": 4530,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -2329.0,
+   "Moisson": 36718.8
+  },
+  "lat": 50.113383,
+  "lng": 2.252054
+ },
+ {
+  "site": "BEAUDEDUIT PLAINE",
+  "tonnage": 33898.7,
+  "tonnage_net": 34161.8,
+  "n_mvt": 5251,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -579.0,
+   "Moisson": 34477.7
+  },
+  "lat": 49.674403,
+  "lng": 2.048939
+ },
+ {
+  "site": "LUCHY",
+  "tonnage": 33622.4,
+  "tonnage_net": 33961.6,
+  "n_mvt": 4864,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1051.2,
+   "Moisson": 32571.2
+  },
+  "lat": 49.545129,
+  "lng": 2.103182
+ },
+ {
+  "site": "FRIAUCOURT",
+  "tonnage": 32535.1,
+  "tonnage_net": 32678.7,
+  "n_mvt": 4091,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -6.4,
+   "Moisson": 32541.5
+  },
+  "lat": 50.093913,
+  "lng": 1.465778
+ },
+ {
+  "site": "GUINES",
+  "tonnage": 31288.0,
+  "tonnage_net": 31466.6,
+  "n_mvt": 3873,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1079.3,
+   "Moisson": 30208.7
+  },
+  "lat": 50.866725,
+  "lng": 1.864485
+ },
+ {
+  "site": "MOYENNEVILLE",
+  "tonnage": 30834.5,
+  "tonnage_net": 31171.3,
+  "n_mvt": 4049,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -1116.0,
+   "Moisson": 31950.5
+  },
+  "lat": 50.078932,
+  "lng": 1.756172
+ },
+ {
+  "site": "BONNEUIL",
+  "tonnage": 29945.6,
+  "tonnage_net": 30069.2,
+  "n_mvt": 3516,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 340.1,
+   "Moisson": 29605.5
+  },
+  "lat": 49.684008,
+  "lng": 2.229003
+ },
+ {
+  "site": "SAUVILLERS GP 8 rue d'aubvillers",
+  "tonnage": 29692.7,
+  "tonnage_net": 29748.0,
+  "n_mvt": 3149,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 29692.7
+  },
+  "lat": 49.725715,
+  "lng": 2.470315
+ },
+ {
+  "site": "OYE PLAGE",
+  "tonnage": 29503.2,
+  "tonnage_net": 29893.0,
+  "n_mvt": 3942,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -330.0,
+   "Moisson": 29833.2
+  },
+  "lat": 50.964381,
+  "lng": 2.045782
+ },
+ {
+  "site": "CHAULNES",
+  "tonnage": 29374.4,
+  "tonnage_net": 29831.7,
+  "n_mvt": 2897,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2053.0,
+   "Moisson": 27321.3
+  },
+  "lat": 49.809122,
+  "lng": 2.805968
+ },
+ {
+  "site": "NEUFBOSC",
+  "tonnage": 29249.7,
+  "tonnage_net": 30210.2,
+  "n_mvt": 4398,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2593.5,
+   "Moisson": 26656.3
+  },
+  "lat": 49.64581,
+  "lng": 1.362697
+ },
+ {
+  "site": "RUE",
+  "tonnage": 29211.4,
+  "tonnage_net": 29704.7,
+  "n_mvt": 4025,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 446.2,
+   "Moisson": 28765.2
+  },
+  "lat": 50.276087,
+  "lng": 1.675195
+ },
+ {
+  "site": "HORNOY PLAINE",
+  "tonnage": 29087.2,
+  "tonnage_net": 29392.6,
+  "n_mvt": 5651,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1735.3,
+   "Moisson": 27352.0
+  },
+  "lat": 49.799264,
+  "lng": 1.973394
+ },
+ {
+  "site": "FRESNE LE PLAN",
+  "tonnage": 29050.0,
+  "tonnage_net": 29720.6,
+  "n_mvt": 3471,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2031.7,
+   "Moisson": 27018.2
+  },
+  "lat": 49.42263,
+  "lng": 1.29548
+ },
+ {
+  "site": "BLANGY SUR BRESLE",
+  "tonnage": 28966.2,
+  "tonnage_net": 29370.8,
+  "n_mvt": 3996,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 716.0,
+   "Moisson": 28250.2
+  },
+  "lat": 49.92293,
+  "lng": 1.641223
+ },
+ {
+  "site": "SOMMEREUX",
+  "tonnage": 28936.6,
+  "tonnage_net": 29106.6,
+  "n_mvt": 4354,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 451.7,
+   "Moisson": 28484.9
+  },
+  "lat": 49.675094,
+  "lng": 1.987162
+ },
+ {
+  "site": "LOOBERGHE",
+  "tonnage": 28179.2,
+  "tonnage_net": 28595.1,
+  "n_mvt": 3733,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1236.1,
+   "Moisson": 26943.1
+  },
+  "lat": 50.970627,
+  "lng": 2.402586
+ },
+ {
+  "site": "OUTREBOIS",
+  "tonnage": 28107.5,
+  "tonnage_net": 28537.7,
+  "n_mvt": 3803,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 843.2,
+   "Moisson": 27264.3
+  },
+  "lat": 50.176585,
+  "lng": 2.253326
+ },
+ {
+  "site": "CONTEVILLE",
+  "tonnage": 28095.2,
+  "tonnage_net": 28301.1,
+  "n_mvt": 3277,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 208.5,
+   "Moisson": 27886.6
+  },
+  "lat": 50.172902,
+  "lng": 2.063154
+ },
+ {
+  "site": "EPRETOT",
+  "tonnage": 26820.9,
+  "tonnage_net": 27104.5,
+  "n_mvt": 4045,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1049.6,
+   "Moisson": 25771.2
+  },
+  "lat": 49.544989,
+  "lng": 0.339179
+ },
+ {
+  "site": "TOTES",
+  "tonnage": 26506.0,
+  "tonnage_net": 26894.9,
+  "n_mvt": 3382,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 687.7,
+   "Moisson": 25818.3
+  },
+  "lat": 49.672489,
+  "lng": 1.053732
+ },
+ {
+  "site": "OISEMONT",
+  "tonnage": 25963.2,
+  "tonnage_net": 26234.5,
+  "n_mvt": 3597,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 473.0,
+   "Moisson": 25490.2
+  },
+  "lat": 49.957555,
+  "lng": 1.772892
+ },
+ {
+  "site": "ESSERTAUX VILLAGE",
+  "tonnage": 25668.3,
+  "tonnage_net": 25696.2,
+  "n_mvt": 3099,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 54.4,
+   "Moisson": 25613.9
+  },
+  "lat": 49.743504,
+  "lng": 2.247418
+ },
+ {
+  "site": "QUEVAUVILLERS",
+  "tonnage": 23943.6,
+  "tonnage_net": 24094.6,
+  "n_mvt": 3434,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 13.4,
+   "Moisson": 23930.3
+  },
+  "lat": 49.825402,
+  "lng": 2.092637
+ },
+ {
+  "site": "MARCHELEPOT",
+  "tonnage": 23326.2,
+  "tonnage_net": 23412.8,
+  "n_mvt": 2121,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 70.4,
+   "Moisson": 23255.8
+  },
+  "lat": 49.838812,
+  "lng": 2.86745
+ },
+ {
+  "site": "PONT D'ARDRES",
+  "tonnage": 23266.9,
+  "tonnage_net": 23447.9,
+  "n_mvt": 2983,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1139.1,
+   "Moisson": 22127.8
+  },
+  "lat": 50.904871,
+  "lng": 1.947931
+ },
+ {
+  "site": "GRAINVILLE",
+  "tonnage": 22930.1,
+  "tonnage_net": 23079.2,
+  "n_mvt": 2934,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 80.8,
+   "Moisson": 22849.3
+  },
+  "lat": 49.655118,
+  "lng": 0.401406
+ },
+ {
+  "site": "HATTENCOURT",
+  "tonnage": 22755.9,
+  "tonnage_net": 22998.8,
+  "n_mvt": 2547,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 735.6,
+   "Moisson": 22020.3
+  },
+  "lat": 49.768725,
+  "lng": 2.786496
+ },
+ {
+  "site": "ARVILLERS",
+  "tonnage": 22155.5,
+  "tonnage_net": 22400.5,
+  "n_mvt": 2568,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 290.3,
+   "Moisson": 21865.2
+  },
+  "lat": 49.744086,
+  "lng": 2.64208
+ },
+ {
+  "site": "ROLLOT",
+  "tonnage": 22051.9,
+  "tonnage_net": 22816.6,
+  "n_mvt": 2418,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2589.9,
+   "Moisson": 19462.0
+  },
+  "lat": 49.590043,
+  "lng": 2.653253
+ },
+ {
+  "site": "AIRAINES",
+  "tonnage": 21986.8,
+  "tonnage_net": 22145.2,
+  "n_mvt": 2511,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 49.4,
+   "Moisson": 21937.3
+  },
+  "lat": 49.969716,
+  "lng": 1.942462
+ },
+ {
+  "site": "BALLEUX",
+  "tonnage": 21813.4,
+  "tonnage_net": 22310.9,
+  "n_mvt": 2699,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1422.1,
+   "Moisson": 20391.3
+  },
+  "lat": 49.554352,
+  "lng": 1.883353
+ },
+ {
+  "site": "BERNAVILLE",
+  "tonnage": 21558.2,
+  "tonnage_net": 21742.1,
+  "n_mvt": 2637,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -1810.6,
+   "Moisson": 23368.9
+  },
+  "lat": 50.130353,
+  "lng": 2.172362
+ },
+ {
+  "site": "OCQUEVILLE",
+  "tonnage": 21152.7,
+  "tonnage_net": 21339.1,
+  "n_mvt": 2968,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 52.0,
+   "Moisson": 21100.8
+  },
+  "lat": 49.800336,
+  "lng": 0.689734
+ },
+ {
+  "site": "VAUCHELLE LES AUTHIES",
+  "tonnage": 21009.5,
+  "tonnage_net": 21353.1,
+  "n_mvt": 2381,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 585.1,
+   "Moisson": 20424.4
+  },
+  "lat": 50.097159,
+  "lng": 2.473553
+ },
+ {
+  "site": "SENALIA NORIAP",
+  "tonnage": 20924.4,
+  "tonnage_net": 20966.5,
+  "n_mvt": 3254,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 10333.2,
+   "Moisson": 10591.2
+  },
+  "lat": 49.357596,
+  "lng": 0.988405
+ },
+ {
+  "site": "SAINT RIQUIER",
+  "tonnage": 20899.6,
+  "tonnage_net": 21238.0,
+  "n_mvt": 2372,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 530.7,
+   "Moisson": 20369.0
+  },
+  "lat": 50.129275,
+  "lng": 1.944257
+ },
+ {
+  "site": "AILLY LE HAUT CLOCHER",
+  "tonnage": 20895.3,
+  "tonnage_net": 21148.7,
+  "n_mvt": 2713,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -1115.7,
+   "Moisson": 22011.0
+  },
+  "lat": 50.080106,
+  "lng": 2.00098
+ },
+ {
+  "site": "STEENVOORDE",
+  "tonnage": 20618.7,
+  "tonnage_net": 20838.8,
+  "n_mvt": 2636,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 513.0,
+   "Moisson": 20105.7
+  },
+  "lat": 50.825487,
+  "lng": 2.60758
+ },
+ {
+  "site": "MAIGNELAY MONTIGNY",
+  "tonnage": 20611.1,
+  "tonnage_net": 20669.2,
+  "n_mvt": 1882,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 17.3,
+   "Moisson": 20593.8
+  },
+  "lat": 49.547957,
+  "lng": 2.501795
+ },
+ {
+  "site": "LEDERZEELE",
+  "tonnage": 20279.1,
+  "tonnage_net": 20744.8,
+  "n_mvt": 3007,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 1252.4,
+   "Moisson": 19026.8
+  },
+  "lat": 50.819823,
+  "lng": 2.302002
+ },
+ {
+  "site": "PONTS ET MARAIS GROS JACQUES",
+  "tonnage": 18294.2,
+  "tonnage_net": 18394.8,
+  "n_mvt": 2084,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 142.6,
+   "Moisson": 18151.5
+  },
+  "lat": 50.063067,
+  "lng": 1.453896
+ },
+ {
+  "site": "GRANDCOURT",
+  "tonnage": 17277.5,
+  "tonnage_net": 17290.5,
+  "n_mvt": 3392,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 17277.5
+  },
+  "lat": 49.918023,
+  "lng": 1.49293
+ },
+ {
+  "site": "ANDECHY",
+  "tonnage": 16675.9,
+  "tonnage_net": 16704.6,
+  "n_mvt": 1914,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 80.7,
+   "Moisson": 16595.2
+  },
+  "lat": 49.716991,
+  "lng": 2.709615
+ },
+ {
+  "site": "FLAVY LE MELDEUX",
+  "tonnage": 16339.9,
+  "tonnage_net": 16518.8,
+  "n_mvt": 2579,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 748.5,
+   "Moisson": 15591.4
+  },
+  "lat": 49.686111,
+  "lng": 3.044444
+ },
+ {
+  "site": "BOUQUEMAISON",
+  "tonnage": 15969.0,
+  "tonnage_net": 16065.8,
+  "n_mvt": 1894,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 40.5,
+   "Moisson": 15928.5
+  },
+  "lat": 50.210676,
+  "lng": 50.210676
+ },
+ {
+  "site": "CRIQUETOT/LONGUEVILLE",
+  "tonnage": 15667.6,
+  "tonnage_net": 15746.1,
+  "n_mvt": 1932,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -38.7,
+   "Moisson": 15706.3
+  },
+  "lat": 49.78077,
+  "lng": 1.075264
+ },
+ {
+  "site": "ST SAUVEUR ANCIEN",
+  "tonnage": 15613.3,
+  "tonnage_net": 15637.7,
+  "n_mvt": 1565,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 7.4,
+   "Moisson": 15605.9
+  },
+  "lat": 49.938993,
+  "lng": 2.211415
+ },
+ {
+  "site": "TARTIGNY",
+  "tonnage": 15613.1,
+  "tonnage_net": 15654.7,
+  "n_mvt": 2068,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 28.8,
+   "Moisson": 15584.3
+  },
+  "lat": 49.63572,
+  "lng": 2.362534
+ },
+ {
+  "site": "ANNEVILLE/SCIE",
+  "tonnage": 15466.4,
+  "tonnage_net": 15825.5,
+  "n_mvt": 2338,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 954.5,
+   "Moisson": 14511.9
+  },
+  "lat": 49.828573,
+  "lng": 1.085638
+ },
+ {
+  "site": "BOLLEZEELE",
+  "tonnage": 14882.4,
+  "tonnage_net": 15193.0,
+  "n_mvt": 2289,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 956.1,
+   "Moisson": 13926.3
+  },
+  "lat": 50.866489,
+  "lng": 2.323761
+ },
+ {
+  "site": "LINDEBEUF",
+  "tonnage": 14648.7,
+  "tonnage_net": 14746.6,
+  "n_mvt": 2012,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 31.4,
+   "Moisson": 14617.3
+  },
+  "lat": 49.708408,
+  "lng": 0.902296
+ },
+ {
+  "site": "GONNEHEM",
+  "tonnage": 13549.5,
+  "tonnage_net": 13649.1,
+  "n_mvt": 1443,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 266.3,
+   "Moisson": 13283.2
+  },
+  "lat": 50.569973,
+  "lng": 2.599668
+ },
+ {
+  "site": "LE QUESNEL",
+  "tonnage": 13447.9,
+  "tonnage_net": 13476.0,
+  "n_mvt": 1451,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 637.4,
+   "Moisson": 12810.5
+  },
+  "lat": 49.774635,
+  "lng": 2.628536
+ },
+ {
+  "site": "NOYELLES SUR MER",
+  "tonnage": 13189.5,
+  "tonnage_net": 13228.8,
+  "n_mvt": 1485,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 12.0,
+   "Moisson": 13177.5
+  },
+  "lat": 50.190041,
+  "lng": 1.703361
+ },
+ {
+  "site": "ESCALLES",
+  "tonnage": 13044.7,
+  "tonnage_net": 13161.7,
+  "n_mvt": 1479,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 164.4,
+   "Moisson": 12880.4
+  },
+  "lat": 50.916025,
+  "lng": 1.719774
+ },
+ {
+  "site": "REXPOEDE",
+  "tonnage": 13028.4,
+  "tonnage_net": 13081.3,
+  "n_mvt": 1767,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 162.0,
+   "Moisson": 12866.3
+  },
+  "lat": 50.93126,
+  "lng": 2.544207
+ },
+ {
+  "site": "LEULINGHEM",
+  "tonnage": 11952.4,
+  "tonnage_net": 12011.6,
+  "n_mvt": 1643,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 52.9,
+   "Moisson": 11899.6
+  },
+  "lat": 50.739981,
+  "lng": 2.173519
+ },
+ {
+  "site": "FAUVILLE - TERRES DE CAUX",
+  "tonnage": 11684.6,
+  "tonnage_net": 11747.9,
+  "n_mvt": 1707,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2840.1,
+   "Moisson": 8844.4
+  },
+  "lat": 49.650722,
+  "lng": 0.575128
+ },
+ {
+  "site": "FLEURBAIX",
+  "tonnage": 11626.9,
+  "tonnage_net": 11746.9,
+  "n_mvt": 1570,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 307.3,
+   "Moisson": 11319.6
+  },
+  "lat": 50.644168,
+  "lng": 2.821941
+ },
+ {
+  "site": "BEAUCHAMPS",
+  "tonnage": 11210.8,
+  "tonnage_net": 11242.6,
+  "n_mvt": 1216,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -0.0,
+   "Moisson": 11210.8
+  },
+  "lat": 50.017063,
+  "lng": 1.508874
+ },
+ {
+  "site": "MANNEVILLE LA GOUPIL",
+  "tonnage": 10340.3,
+  "tonnage_net": 10393.8,
+  "n_mvt": 1303,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 88.1,
+   "Moisson": 10252.2
+  },
+  "lat": 49.611074,
+  "lng": 0.357237
+ },
+ {
+  "site": "VIGNACOURT",
+  "tonnage": 9797.6,
+  "tonnage_net": 9817.0,
+  "n_mvt": 834,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -93.6,
+   "Moisson": 9891.2
+  },
+  "lat": 50.011701,
+  "lng": 2.201791
+ },
+ {
+  "site": "WAVIGNIES",
+  "tonnage": 9604.6,
+  "tonnage_net": 9614.7,
+  "n_mvt": 885,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 36.7,
+   "Moisson": 9567.9
+  },
+  "lat": 49.544762,
+  "lng": 2.354832
+ },
+ {
+  "site": "NAOURS",
+  "tonnage": 9598.5,
+  "tonnage_net": 9674.6,
+  "n_mvt": 1062,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 9598.5
+  },
+  "lat": 50.041527,
+  "lng": 2.280587
+ },
+ {
+  "site": "LAFRESGUIMONT",
+  "tonnage": 8626.2,
+  "tonnage_net": 8779.9,
+  "n_mvt": 865,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 524.3,
+   "Moisson": 8101.9
+  },
+  "lat": 49.813688,
+  "lng": 1.799348
+ },
+ {
+  "site": "N D GRAVENCHON - PORT JEROME",
+  "tonnage": 7526.2,
+  "tonnage_net": 8142.8,
+  "n_mvt": 1735,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2181.2,
+   "Moisson": 5345.0
+  },
+  "lat": 49.498691,
+  "lng": 0.666669
+ },
+ {
+  "site": "BOIS BLEU - AIRAINES",
+  "tonnage": 7177.7,
+  "tonnage_net": 7205.7,
+  "n_mvt": 1478,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 19.4,
+   "Moisson": 7158.2
+  },
+  "lat": 49.943082,
+  "lng": 1.962131
+ },
+ {
+  "site": "ESTREES-DENIECOURT",
+  "tonnage": 5094.3,
+  "tonnage_net": 5100.7,
+  "n_mvt": 514,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 5094.3
+  },
+  "lat": 49.872211,
+  "lng": 2.815892
+ },
+ {
+  "site": "BAVINCHOVE",
+  "tonnage": 3792.8,
+  "tonnage_net": 3807.7,
+  "n_mvt": 450,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 317.7,
+   "Moisson": 3475.1
+  },
+  "lat": 50.7873,
+  "lng": 2.4607
+ },
+ {
+  "site": "SOCOMAC ROUEN NORIAP",
+  "tonnage": 3319.2,
+  "tonnage_net": 3325.1,
+  "n_mvt": 360,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2302.9,
+   "Moisson": 1016.3
+  },
+  "lat": 49.411913,
+  "lng": 1.013265
+ },
+ {
+  "site": "BOURBOURG",
+  "tonnage": 2617.8,
+  "tonnage_net": 2632.6,
+  "n_mvt": 248,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 2617.8
+  },
+  "lat": 50.949746,
+  "lng": 2.194574
+ },
+ {
+  "site": "COYECQUES",
+  "tonnage": 2544.6,
+  "tonnage_net": 2562.4,
+  "n_mvt": 308,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 2544.6
+  },
+  "lat": 50.593271,
+  "lng": 2.172213
+ },
+ {
+  "site": "FRANLEU CALIPSO",
+  "tonnage": 2387.6,
+  "tonnage_net": 2395.9,
+  "n_mvt": 219,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 20.6,
+   "Moisson": 2367.0
+  },
+  "lat": 50.101073,
+  "lng": 1.640808
+ },
+ {
+  "site": "NESLE",
+  "tonnage": 2311.4,
+  "tonnage_net": 2318.0,
+  "n_mvt": 390,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 2771.0,
+   "Moisson": -459.6
+  },
+  "lat": 49.764102,
+  "lng": 2.913813
+ },
+ {
+  "site": "ENGLEBELMER",
+  "tonnage": 2186.5,
+  "tonnage_net": 2190.1,
+  "n_mvt": 364,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -0.0,
+   "Moisson": 2186.5
+  },
+  "lat": 50.059902,
+  "lng": 2.60858
+ },
+ {
+  "site": "MERCK-ST-LIEVIN",
+  "tonnage": 1778.5,
+  "tonnage_net": 1790.8,
+  "n_mvt": 225,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -0.0,
+   "Moisson": 1778.5
+  },
+  "lat": 50.628176,
+  "lng": 2.115609
+ },
+ {
+  "site": "AUDRUICQ",
+  "tonnage": 1598.6,
+  "tonnage_net": 1746.6,
+  "n_mvt": 197,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 469.5,
+   "Moisson": 1129.1
+  },
+  "lat": 50.874808,
+  "lng": 2.07728
+ },
+ {
+  "site": "SANTES NORIAP",
+  "tonnage": 1357.1,
+  "tonnage_net": 1410.0,
+  "n_mvt": 112,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 701.9,
+   "Moisson": 655.2
+  },
+  "lat": 50.593386,
+  "lng": 2.975559
+ },
+ {
+  "site": "UCAC CLERMONT DPT 60 (LIVRE CHEZ)",
+  "tonnage": 1302.6,
+  "tonnage_net": 1306.4,
+  "n_mvt": 423,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 1302.6
+  },
+  "lat": 49.386053,
+  "lng": 2.415101
+ },
+ {
+  "site": "CAMPIGNEULLE LES PETITES",
+  "tonnage": 1248.0,
+  "tonnage_net": 1258.2,
+  "n_mvt": 165,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 1248.0
+  },
+  "lat": 50.44495,
+  "lng": 1.733302
+ },
+ {
+  "site": "HERBECOURT",
+  "tonnage": 1155.0,
+  "tonnage_net": 1155.7,
+  "n_mvt": 209,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -0.0,
+   "Moisson": 1155.0
+  },
+  "lat": 49.902617,
+  "lng": 2.455819
+ },
+ {
+  "site": "MARICOURT",
+  "tonnage": 1111.2,
+  "tonnage_net": 1148.5,
+  "n_mvt": 230,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 177.5,
+   "Moisson": 933.8
+  },
+  "lat": 49.977525,
+  "lng": 2.788671
+ },
+ {
+  "site": "NOYELLES SUR ESCAUT",
+  "tonnage": 984.5,
+  "tonnage_net": 985.4,
+  "n_mvt": 100,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 788.3,
+   "Moisson": 196.2
+  },
+  "lat": 50.141341,
+  "lng": 3.191429
+ },
+ {
+  "site": "MORTEMER",
+  "tonnage": 956.5,
+  "tonnage_net": 959.1,
+  "n_mvt": 184,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": -0.0,
+   "Moisson": 956.5
+  },
+  "lat": 50.101073,
+  "lng": 1.640808
+ },
+ {
+  "site": "AZINCOURT",
+  "tonnage": 950.6,
+  "tonnage_net": 968.1,
+  "n_mvt": 107,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 309.7,
+   "Moisson": 640.9
+  },
+  "lat": 50.468767,
+  "lng": 2.117381
+ },
+ {
+  "site": "WAIL",
+  "tonnage": 373.3,
+  "tonnage_net": 373.7,
+  "n_mvt": 39,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 124.7,
+   "Moisson": 248.6
+  },
+  "lat": 50.342831,
+  "lng": 2.125927
+ },
+ {
+  "site": "BONNINGUES-LES-ARDRES MACHU",
+  "tonnage": 260.6,
+  "tonnage_net": 264.0,
+  "n_mvt": 46,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 6.3,
+   "Moisson": 254.3
+  },
+  "lat": 50.79033,
+  "lng": 2.01444
+ },
+ {
+  "site": "BONNINGUES-LES-ARDRES",
+  "tonnage": 121.1,
+  "tonnage_net": 121.9,
+  "n_mvt": 11,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 121.1
+  },
+  "lat": 50.789005,
+  "lng": 2.00275
+ },
+ {
+  "site": "FORMERIE NEO",
+  "tonnage": 67.5,
+  "tonnage_net": 67.5,
+  "n_mvt": 9,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 67.5
+  },
+  "lat": 49.65005,
+  "lng": 1.73089
+ },
+ {
+  "site": "ALQUINES - NEO NEGOCE - DEPOT ROZE",
+  "tonnage": 42.7,
+  "tonnage_net": 43.6,
+  "n_mvt": 2,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Moisson": 42.7
+  },
+  "lat": 50.097173,
+  "lng": 2.825411
+ },
+ {
+  "site": "FRENCQ",
+  "tonnage": 17.9,
+  "tonnage_net": 17.9,
+  "n_mvt": 3,
+  "societes": [
+   "NRP"
+  ],
+  "recoltes": {
+   "Hors Moisson": 0.0,
+   "Moisson": 17.9
+  },
+  "lat": 50.556698,
+  "lng": 1.696036
  }
 ];
 
@@ -4451,7 +2513,8 @@ const noriapData = [
   <div style="font-size:11px;">Source : annuaire-entreprises.data.gouv.fr<br>Unéal 385110234 — Noriap 330189028</div>
   <div class="legend">
     <div><span class="dot" style="background:#2ca02c"></span>Unéal (tous types)</div>
-    <div><span class="dot" style="background:#e60026"></span>Noriap (tous types)</div>
+    <div><span class="dot" style="background:#e60026"></span>Noriap (silos actifs sur collecte)</div>
+    <div style="font-size:11px;color:#555;margin-left:18px;">Taille ∝ tonnage</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
@@ -4723,25 +2786,27 @@ const noriap = [
 
 uneal.forEach(s => s.coop = "Unéal");
 
-// Remplacer la liste Noriap par les données pré-géocodées si disponibles
+// Remplacer la liste Noriap par les sites avec collecte (source interne)
 let noriapFinal = noriap;
-if (typeof noriapData !== "undefined" && Array.isArray(noriapData)) {
-  noriapFinal = noriapData.map(d => ({
-    commune: d.commune,
-    cp: d.cp,
-    dep: d.dep,
+if (typeof collecteData !== "undefined" && Array.isArray(collecteData)) {
+  noriapFinal = collecteData.map(d => ({
+    commune: d.site,
+    cp: "",
+    dep: "",
     naf: "46.21Z",
     type: "silo",
-    notes: (d.nom ? d.nom : "") + (d.rs_liees && d.rs_liees.length > 1 ? ` [${d.rs_liees.join(", ")}]` : ""),
-    adresse: d.adresse,
-    nom: d.nom,
-    tel: d.tel,
-    rs: d.rs,
+    notes: "",
+    nom: d.site,
+    tonnage: d.tonnage,
+    tonnage_net: d.tonnage_net,
+    n_mvt: d.n_mvt,
+    recoltes: d.recoltes,
+    societes: d.societes,
     coop: "Noriap",
     _coords: [d.lng, d.lat],
-    _score: d.score
+    _score: 1.0
   }));
-  console.log(`Noriap: ${noriapFinal.length} sites pré-géocodés (source xlsx utilisateur)`);
+  console.log(`Noriap: ${noriapFinal.length} silos actifs (collecte > 0, source interne)`);
 } else {
   noriapFinal.forEach(s => s.coop = "Noriap");
 }
@@ -4781,13 +2846,26 @@ const statusEl = document.getElementById('status');
 let done = 0, failed = 0;
 const total = uneal.length + noriap.length;
 
-function makeIcon(color) {
+function makeIcon(color, size) {
+  const s = size || 14;
   return L.divIcon({
     className: '',
-    html: `<div style="background:${color};width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px rgba(0,0,0,0.6);"></div>`,
-    iconSize: [14,14],
-    iconAnchor: [7,7]
+    html: `<div style="background:${color};width:${s}px;height:${s}px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px rgba(0,0,0,0.6);opacity:0.85"></div>`,
+    iconSize: [s, s],
+    iconAnchor: [s/2, s/2]
   });
+}
+
+function sizeFromTonnage(t) {
+  if (!t || t <= 0) return 12;
+  // échelle log : 1 kt → 14px, 10 kt → 20px, 100 kt → 28px, 300 kt → 32px
+  const v = 6 + Math.log10(t + 1) * 4.5;
+  return Math.max(10, Math.min(38, v));
+}
+
+function fmtT(t) {
+  if (t >= 1000) return (t/1000).toFixed(1) + " kt";
+  return Math.round(t) + " t";
 }
 
 async function geocode(site) {
@@ -4844,13 +2922,22 @@ async function processList(sites, cluster) {
       if (coords) {
         const [lng, lat] = coords;
         const color = colorByCoopType[`${site.coop}-${site.type}`] || '#888';
-        const m = L.marker([lat, lng], { icon: makeIcon(color) });
-        const lines = [`<div class="popup-title">${site.coop} — ${site.commune} (${site.cp})</div>`];
+        const size = (site.tonnage !== undefined) ? sizeFromTonnage(site.tonnage) : 14;
+        const m = L.marker([lat, lng], { icon: makeIcon(color, size) });
+        const headerCp = site.cp ? ` (${site.cp})` : '';
+        const lines = [`<div class="popup-title">${site.coop} — ${site.commune || site.nom}${headerCp}</div>`];
+        if (site.tonnage !== undefined) {
+          lines.push(`<div class="popup-meta"><b>Collecte totale : ${fmtT(site.tonnage)}</b> (norme) — ${site.n_mvt.toLocaleString('fr-FR')} mvts</div>`);
+          if (site.recoltes) {
+            const parts = Object.entries(site.recoltes).sort().map(([r,v]) => `R${String(r).slice(-2)}: ${fmtT(v)}`);
+            lines.push(`<div class="popup-meta">${parts.join(' • ')}</div>`);
+          }
+        }
         if (site.adresse) lines.push(`<div class="popup-meta">${site.adresse}</div>`);
-        if (site.nom) lines.push(`<div class="popup-meta"><i>${site.nom}</i></div>`);
+        if (site.nom && site.nom !== site.commune) lines.push(`<div class="popup-meta"><i>${site.nom}</i></div>`);
         if (site.tel) lines.push(`<div class="popup-meta">📞 ${site.tel}</div>`);
         if (site.rs && site.rs !== "Noriap") lines.push(`<div class="popup-meta">RS : ${site.rs}</div>`);
-        lines.push(`<div class="popup-meta">Dép. ${site.dep} — NAF ${site.naf} — ${site.type}</div>`);
+        if (site.dep) lines.push(`<div class="popup-meta">Dép. ${site.dep} — NAF ${site.naf} — ${site.type}</div>`);
         if (site.notes) lines.push(`<div class="popup-notes">${site.notes}</div>`);
         if (site._score !== undefined && site._score < 0.5) lines.push(`<div class="popup-notes" style="color:#c60">⚠ position approx. (centroïde commune)</div>`);
         m.bindPopup(lines.join(""));
