@@ -9310,9 +9310,8 @@ for (const a of ACTORS) {
   iso10Layers[a.key] = L.layerGroup();
 }
 
-function populateGroupLayers(srcVar, targetLayers, fillOpacity=0.15) {
-  if (typeof window[srcVar] === "undefined") return;
-  const src = window[srcVar];
+function populateGroupLayers(src, targetLayers, fillOpacity=0.15) {
+  if (typeof src === "undefined" || !src) return;
   for (const a of ACTORS) {
     targetLayers[a.key].clearLayers();
     const dict = src[a.key] || {};
@@ -9324,8 +9323,8 @@ function populateGroupLayers(srcVar, targetLayers, fillOpacity=0.15) {
     }
   }
 }
-populateGroupLayers("isochrones", isoLayers, 0.15);
-populateGroupLayers("isochrones10min", iso10Layers, 0.20);
+if (typeof isochrones !== "undefined")       populateGroupLayers(isochrones, isoLayers, 0.15);
+if (typeof isochrones10min !== "undefined")  populateGroupLayers(isochrones10min, iso10Layers, 0.20);
 
 function refreshLayers() {
   for (const a of ACTORS) {
