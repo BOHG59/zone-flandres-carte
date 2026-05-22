@@ -6339,6 +6339,7 @@ const potentielBle = {
 };
 
 </script>
+<script src="_ternoveo_data.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 <style>
@@ -6368,6 +6369,7 @@ const potentielBle = {
     <div><span class="dot" style="background:#2ca02c"></span>Unéal (tous types)</div>
     <div><span class="dot" style="background:#e60026"></span>Noriap — silos actifs sur R25</div>
     <div style="font-size:11px;color:#555;margin-left:18px;">Taille ∝ tonnage R25</div>
+    <div><span class="dot" style="background:#1f77b4"></span>Ternoveo — silos actifs</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
@@ -6639,6 +6641,24 @@ const noriap = [
 
 uneal.forEach(s => s.coop = "Unéal");
 
+let ternoveoFinal = [];
+if (typeof ternoveoData !== "undefined" && Array.isArray(ternoveoData)) {
+  ternoveoFinal = ternoveoData.map(d => ({
+    commune: d.commune,
+    cp: d.cp,
+    dep: (d.cp || "").substring(0, 2),
+    naf: "46.21Z",
+    type: d.siege ? "siege" : "silo",
+    notes: d.siege ? "Siège social" : "",
+    nom: d.commune,
+    adresse: d.adresse,
+    coop: "Ternoveo",
+    _coords: [d.lng, d.lat],
+    _score: 1.0
+  }));
+  console.log(`Ternoveo: ${ternoveoFinal.length} sites`);
+}
+
 // Remplacer la liste Noriap par les sites avec collecte (source interne)
 let noriapFinal = noriap;
 if (typeof collecteData !== "undefined" && Array.isArray(collecteData)) {
@@ -6683,7 +6703,9 @@ const colorByCoopType = {
   "Noriap-silo": "#e60026",
   "Noriap-entrepot": "#e60026",
   "Noriap-plateforme": "#e60026",
-  "Noriap-siege": "#e60026"
+  "Noriap-siege": "#e60026",
+  "Ternoveo-silo": "#1f77b4",
+  "Ternoveo-siege": "#1f77b4"
 };
 
 const map = L.map('map').setView([50.0, 2.5], 8);
@@ -6694,15 +6716,19 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const clusterUneal = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterNoriap = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const clusterTernoveo = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const buffersUneal = L.layerGroup();
 const buffersNoriap = L.layerGroup();
+const buffersTernoveo = L.layerGroup();
 const overlapLayer = L.layerGroup();
 
 L.control.layers(null, {
   "Marqueurs Unéal": clusterUneal,
   "Marqueurs Noriap": clusterNoriap,
+  "Marqueurs Ternoveo": clusterTernoveo,
   "Buffers 7 km Unéal": buffersUneal,
   "Buffers 7 km Noriap": buffersNoriap,
+  "Buffers 7 km Ternoveo": buffersTernoveo,
   "Zone de chevauchement": overlapLayer
 }, { collapsed: false }).addTo(map);
 
@@ -6859,14 +6885,16 @@ function computeUnion(markers) {
 }
 
 async function run() {
-  const [unealMarkers, noriapMarkers] = await Promise.all([
+  const [unealMarkers, noriapMarkers, ternoveoMarkers] = await Promise.all([
     processList(uneal, clusterUneal),
-    processList(noriapFinal, clusterNoriap)
+    processList(noriapFinal, clusterNoriap),
+    processList(ternoveoFinal, clusterTernoveo)
   ]);
   map.addLayer(clusterUneal);
   map.addLayer(clusterNoriap);
+  map.addLayer(clusterTernoveo);
 
-  const all = [...unealMarkers, ...noriapMarkers];
+  const all = [...unealMarkers, ...noriapMarkers, ...ternoveoMarkers];
   if (all.length > 0) {
     const group = L.featureGroup(all);
     map.fitBounds(group.getBounds().pad(0.05));
@@ -6877,6 +6905,7 @@ async function run() {
   // Cercles individuels (rapide)
   drawBuffers(unealMarkers, '#2ca02c', buffersUneal);
   drawBuffers(noriapMarkers, '#e60026', buffersNoriap);
+  drawBuffers(ternoveoMarkers, '#1f77b4', buffersTernoveo);
 
   // Union + intersection (turf.js) — plus lourd, lancé en différé
   setTimeout(() => {
