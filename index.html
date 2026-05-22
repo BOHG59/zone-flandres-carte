@@ -6424,6 +6424,48 @@ const lepicardData = [
 ];
 
 </script>
+<script>
+const vaeskenData = [
+ {"commune":"ARNEKE","cp":"59285","adresse":"38 RUE DE SAINT-OMER","lat":50.830950,"lng":2.407502,"siret":"30378213000015","siege":true},
+ {"commune":"AUDRUICQ","cp":"62370","adresse":"562 AVENUE DES ALLIES","lat":50.871501,"lng":2.070844,"siret":"30378213000023"},
+ {"commune":"LOON-PLAGE","cp":"59279","adresse":"5280 RUE DE LA GARE","lat":50.991241,"lng":2.233262,"siret":"30378213000031"},
+ {"commune":"GRAVELINES","cp":"59820","adresse":"4 RUE DU CAPITAINE LARIDANT","lat":50.979174,"lng":2.122438,"siret":"30378213000049"},
+ {"commune":"BOURBOURG","cp":"59630","adresse":"81 AVENUE ANTHONY CARO","lat":50.951409,"lng":2.191666,"siret":"30378213000056"},
+ {"commune":"BOLLEZEELE","cp":"59470","adresse":"4 ROUTE DE GRAVELINES","lat":50.868426,"lng":2.346364,"siret":"30378213000064"},
+ {"commune":"ROQUETOIRE","cp":"62120","adresse":"RUE D'AIRE","lat":50.669145,"lng":2.347961,"siret":"30378213000080"},
+ {"commune":"WIERRE-EFFROY","cp":"62720","adresse":"RTE DE WIMILLE","lat":50.779245,"lng":1.733324,"siret":"30378213000098"},
+ {"commune":"SAMER","cp":"62830","adresse":"143 RUE ROGER SALENGRO","lat":50.635673,"lng":1.739443,"siret":"30378213000106"}
+];
+
+</script>
+<script>
+const ducroquetData = [
+ {"commune":"LA GORGUE","cp":"59253","adresse":"123 RUE DE BETHUNE","lat":50.629105,"lng":2.697151,"siret":"42472678400020","siege":true},
+ {"commune":"BLARINGHEM","cp":"59173","adresse":"35 RUE COTE BART","lat":50.688236,"lng":2.395322,"siret":"42472678400046"},
+ {"commune":"BERSEE","cp":"59235","adresse":"800 RUE DE LA CARDONNERIE","lat":50.476103,"lng":3.163558,"siret":"42472678400053"},
+ {"commune":"DOUVRIN","cp":"62138","adresse":"101 RUE JEAN JAURES","lat":50.509495,"lng":2.820714,"siret":"42472678400079"},
+ {"commune":"HAZEBROUCK","cp":"59190","adresse":"RUE DE LA MOTTE AU BOIS","lat":50.711678,"lng":2.533267,"siret":"42472678400087"},
+ {"commune":"NIELLES-LES-ARDRES","cp":"62610","adresse":"RTE DE LOUCHES","lat":50.837422,"lng":2.016422,"siret":"42472678400095"},
+ {"commune":"GUARBECQUE","cp":"62330","adresse":"ZA RUE DE SAINT HUBERT","lat":50.616654,"lng":2.498536,"siret":"42472678400103"},
+ {"commune":"AMETTES","cp":"62260","adresse":"CHAUSSEE BRUNEHAUT","lat":50.534131,"lng":2.402535,"siret":"42472678400111"},
+ {"commune":"FOUQUEREUIL","cp":"62232","adresse":"14 RUE DE L'EGLISE","lat":50.516579,"lng":2.599997,"siret":"42472678400129"},
+ {"commune":"FRESNOY-EN-GOHELLE","cp":"62580","adresse":"3 ROUTE D'ACHEVILLE","lat":50.370431,"lng":2.886834,"siret":"42472678400137"}
+];
+
+</script>
+<script>
+const charpentierData = [
+ {"commune":"BEAUQUESNE","cp":"80600","adresse":"ROUTE DE PUCHEVILLERS","lat":50.075602,"lng":2.398258,"siret":"72172080300031","siege":true},
+ {"commune":"ONEUX","cp":"80135","adresse":"CHAUSSEE D'AMIENS HAM DE NEUVILLE","lat":50.141152,"lng":1.972214,"siret":"72172080300023"},
+ {"commune":"WARLOY-BAILLON","cp":"80300","adresse":"","lat":50.0149,"lng":2.5089,"_approx":true,"note":"d'après site officiel"},
+ {"commune":"HEBUTERNE","cp":"62111","adresse":"","lat":50.1255,"lng":2.6402,"_approx":true,"note":"d'après site officiel"},
+ {"commune":"QUEND","cp":"80120","adresse":"","lat":50.3232,"lng":1.6535,"_approx":true,"note":"d'après site officiel"},
+ {"commune":"FIEFFES-MONTRELET","cp":"80670","adresse":"","lat":50.0386,"lng":2.0825,"_approx":true,"note":"d'après site officiel"},
+ {"commune":"FLIXECOURT","cp":"80420","adresse":"","lat":50.0078,"lng":2.0871,"_approx":true,"note":"d'après site officiel"},
+ {"commune":"CANAPLES","cp":"80670","adresse":"","lat":50.0598,"lng":2.2173,"_approx":true,"note":"nouveau silo, d'après site officiel"}
+];
+
+</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 <style>
@@ -6509,6 +6551,9 @@ const lepicardData = [
     <div><span class="dot" style="background:#9c27b0"></span>Natup — silos actifs</div>
     <div><span class="dot" style="background:#795548"></span>Groupe Carré — silos actifs</div>
     <div><span class="dot" style="background:#F06292"></span>Lepicard — silos actifs</div>
+    <div><span class="dot" style="background:#FF1493"></span>Vaesken — silos actifs</div>
+    <div><span class="dot" style="background:#FFC107"></span>Ducroquet — silos actifs</div>
+    <div><span class="dot" style="background:#212121"></span>Charpentier — silos actifs</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Chevauchement Unéal ∩ Noriap</div>
@@ -6853,6 +6898,25 @@ if (typeof lepicardData !== "undefined" && Array.isArray(lepicardData)) {
   console.log(`Lepicard: ${lepicardFinal.length} sites`);
 }
 
+function buildList(arr, coopName) {
+  if (typeof arr === "undefined" || !Array.isArray(arr)) return [];
+  return arr.map(d => ({
+    commune: d.commune, cp: d.cp,
+    dep: (d.cp || "").substring(0, 2),
+    naf: "46.21Z",
+    type: d.siege ? "siege" : "silo",
+    notes: d.siege ? "Siège social" : (d.note || ""),
+    nom: d.commune, adresse: d.adresse,
+    coop: coopName,
+    _coords: [d.lng, d.lat],
+    _score: 1.0
+  }));
+}
+const vaeskenFinal = buildList(typeof vaeskenData !== 'undefined' ? vaeskenData : [], "Vaesken");
+const ducroquetFinal = buildList(typeof ducroquetData !== 'undefined' ? ducroquetData : [], "Ducroquet");
+const charpentierFinal = buildList(typeof charpentierData !== 'undefined' ? charpentierData : [], "Charpentier");
+console.log(`Vaesken: ${vaeskenFinal.length} • Ducroquet: ${ducroquetFinal.length} • Charpentier: ${charpentierFinal.length}`);
+
 // Remplacer la liste Noriap par les sites avec collecte (source interne)
 let noriapFinal = noriap;
 if (typeof collecteData !== "undefined" && Array.isArray(collecteData)) {
@@ -6905,7 +6969,13 @@ const colorByCoopType = {
   "Carré-silo": "#795548",
   "Carré-siege": "#795548",
   "Lepicard-silo": "#F06292",
-  "Lepicard-siege": "#F06292"
+  "Lepicard-siege": "#F06292",
+  "Vaesken-silo": "#FF1493",
+  "Vaesken-siege": "#FF1493",
+  "Ducroquet-silo": "#FFC107",
+  "Ducroquet-siege": "#FFC107",
+  "Charpentier-silo": "#212121",
+  "Charpentier-siege": "#212121"
 };
 
 const map = L.map('map').setView([50.0, 2.5], 8);
@@ -6920,6 +6990,12 @@ const clusterTernoveo = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterNatup = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterCarre = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterLepicard = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const clusterVaesken = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const clusterDucroquet = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const clusterCharpentier = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const buffersVaesken = L.layerGroup();
+const buffersDucroquet = L.layerGroup();
+const buffersCharpentier = L.layerGroup();
 const buffersUneal = L.layerGroup();
 const buffersNoriap = L.layerGroup();
 const buffersTernoveo = L.layerGroup();
@@ -6936,12 +7012,18 @@ L.control.layers(null, {
   "Marqueurs Natup": clusterNatup,
   "Marqueurs Groupe Carré": clusterCarre,
   "Marqueurs Lepicard": clusterLepicard,
+  "Marqueurs Vaesken": clusterVaesken,
+  "Marqueurs Ducroquet": clusterDucroquet,
+  "Marqueurs Charpentier": clusterCharpentier,
   "Buffers 7 km Unéal": buffersUneal,
   "Buffers 7 km Noriap": buffersNoriap,
   "Buffers 7 km Ternoveo": buffersTernoveo,
   "Buffers 7 km Natup": buffersNatup,
   "Buffers 7 km Carré": buffersCarre,
   "Buffers 7 km Lepicard": buffersLepicard,
+  "Buffers 7 km Vaesken": buffersVaesken,
+  "Buffers 7 km Ducroquet": buffersDucroquet,
+  "Buffers 7 km Charpentier": buffersCharpentier,
   "Chevauchement Unéal ∩ Noriap": overlapLayer,
   "Chevauchement Noriap ∩ Ternoveo": overlapNT
 }, { collapsed: false }).addTo(map);
@@ -7099,13 +7181,17 @@ function computeUnion(markers) {
 }
 
 async function run() {
-  const [unealMarkers, noriapMarkers, ternoveoMarkers, natupMarkers, carreMarkers, lepicardMarkers] = await Promise.all([
+  const [unealMarkers, noriapMarkers, ternoveoMarkers, natupMarkers, carreMarkers, lepicardMarkers,
+         vaeskenMarkers, ducroquetMarkers, charpentierMarkers] = await Promise.all([
     processList(uneal, clusterUneal),
     processList(noriapFinal, clusterNoriap),
     processList(ternoveoFinal, clusterTernoveo),
     processList(natupFinal, clusterNatup),
     processList(carreFinal, clusterCarre),
-    processList(lepicardFinal, clusterLepicard)
+    processList(lepicardFinal, clusterLepicard),
+    processList(vaeskenFinal, clusterVaesken),
+    processList(ducroquetFinal, clusterDucroquet),
+    processList(charpentierFinal, clusterCharpentier)
   ]);
   map.addLayer(clusterUneal);
   map.addLayer(clusterNoriap);
@@ -7113,8 +7199,12 @@ async function run() {
   map.addLayer(clusterNatup);
   map.addLayer(clusterCarre);
   map.addLayer(clusterLepicard);
+  map.addLayer(clusterVaesken);
+  map.addLayer(clusterDucroquet);
+  map.addLayer(clusterCharpentier);
 
-  const all = [...unealMarkers, ...noriapMarkers, ...ternoveoMarkers, ...natupMarkers, ...carreMarkers, ...lepicardMarkers];
+  const all = [...unealMarkers, ...noriapMarkers, ...ternoveoMarkers, ...natupMarkers, ...carreMarkers, ...lepicardMarkers,
+               ...vaeskenMarkers, ...ducroquetMarkers, ...charpentierMarkers];
   if (all.length > 0) {
     const group = L.featureGroup(all);
     map.fitBounds(group.getBounds().pad(0.05));
@@ -7129,6 +7219,9 @@ async function run() {
   drawBuffers(natupMarkers, '#9c27b0', buffersNatup);
   drawBuffers(carreMarkers, '#795548', buffersCarre);
   drawBuffers(lepicardMarkers, '#F06292', buffersLepicard);
+  drawBuffers(vaeskenMarkers, '#FF1493', buffersVaesken);
+  drawBuffers(ducroquetMarkers, '#FFC107', buffersDucroquet);
+  drawBuffers(charpentierMarkers, '#212121', buffersCharpentier);
 
   // Union + intersection (turf.js) — plus lourd, lancé en différé
   setTimeout(() => {
@@ -7184,11 +7277,14 @@ function applyView(view) {
     natup:    [clusterNatup, buffersNatup],
     carre:    [clusterCarre, buffersCarre],
     lepicard: [clusterLepicard, buffersLepicard],
+    vaesken:  [clusterVaesken, buffersVaesken],
+    ducroquet:[clusterDucroquet, buffersDucroquet],
+    charpentier:[clusterCharpentier, buffersCharpentier],
   };
   // Quels groupes garder ?
   const keep = view === "nut"
     ? new Set(["noriap", "uneal", "ternoveo"])
-    : new Set(["noriap", "uneal", "ternoveo", "natup", "carre", "lepicard"]);
+    : new Set(Object.keys(groups));
 
   for (const [name, [cluster, buffer]] of Object.entries(groups)) {
     if (keep.has(name)) {
