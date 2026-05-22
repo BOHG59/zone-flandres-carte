@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fusion Flandre — Scénarios de regroupement (avant/après)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const scenarioFermetures = {"noriap_all": [{"site": "HOLQUE", "lat": 50.841862, "lng": 2.204773, "tonnage_r25": 6869.6}, {"site": "SOCX", "lat": 50.950177, "lng": 2.430234, "tonnage_r25": 6074.1}, {"site": "PIHEM", "lat": 50.691606, "lng": 2.223215, "tonnage_r25": 6610.6}, {"site": "ARMENTIERES", "lat": 50.658026, "lng": 2.893423, "tonnage_r25": 4520.4}, {"site": "BAILLEUL", "lat": 50.73923, "lng": 2.73402, "tonnage_r25": 7076.8}, {"site": "LAMBRES-LEZ-AIRE", "lat": 50.62612, "lng": 2.420843, "tonnage_r25": 5195.8}, {"site": "OYE PLAGE", "lat": 50.964381, "lng": 2.045782, "tonnage_r25": 3669.6}, {"site": "LOOBERGHE", "lat": 50.970627, "lng": 2.402586, "tonnage_r25": 3913.5}, {"site": "PONT D'ARDRES", "lat": 50.904871, "lng": 1.947931, "tonnage_r25": 4955.0}, {"site": "STEENVOORDE", "lat": 50.825487, "lng": 2.60758, "tonnage_r25": 1973.5}, {"site": "LEDERZEELE", "lat": 50.819823, "lng": 2.302002, "tonnage_r25": 3156.2}, {"site": "BOLLEZEELE", "lat": 50.866489, "lng": 2.323761, "tonnage_r25": 4437.2}, {"site": "GONNEHEM", "lat": 50.569973, "lng": 2.599668, "tonnage_r25": 1875.0}, {"site": "REXPOEDE", "lat": 50.93126, "lng": 2.544207, "tonnage_r25": 2192.9}, {"site": "LEULINGHEM", "lat": 50.739981, "lng": 2.173519, "tonnage_r25": 2236.7}, {"site": "FLEURBAIX", "lat": 50.644168, "lng": 2.821941, "tonnage_r25": 1772.6}, {"site": "BAVINCHOVE", "lat": 50.7873, "lng": 2.4607, "tonnage_r25": 419.3}, {"site": "BOURBOURG", "lat": 50.949746, "lng": 2.194574, "tonnage_r25": 181.1}, {"site": "COYECQUES", "lat": 50.593271, "lng": 2.172213, "tonnage_r25": 462.3}, {"site": "MERCK-ST-LIEVIN", "lat": 50.628176, "lng": 2.115609, "tonnage_r25": 445.5}, {"site": "AUDRUICQ", "lat": 50.874808, "lng": 2.07728, "tonnage_r25": 471.3}, {"site": "SANTES NORIAP", "lat": 50.593386, "lng": 2.975559, "tonnage_r25": 302.5}, {"site": "BONNINGUES-LES-ARDRES MACHU", "lat": 50.79033, "lng": 2.01444, "tonnage_r25": 51.2}], "uneal_in": [{"site": "AIRE SUR LA LYS", "lat": 50.639636, "lng": 2.417864}, {"site": "AIRE SUR LA LYS", "lat": 50.641642, "lng": 2.405957}, {"site": "DELETTES", "lat": 50.646766, "lng": 2.219554}, {"site": "LAVENTIE", "lat": 50.601282, "lng": 2.76098}, {"site": "LICQUES", "lat": 50.777585, "lng": 1.939081}, {"site": "LILLERS", "lat": 50.566531, "lng": 2.472223}, {"site": "AFFRINGUES", "lat": 50.6901, "lng": 2.0692}, {"site": "AUDINCTHUN", "lat": 50.5818, "lng": 2.1235}, {"site": "CAMPAGNE-LES-BOULONNAIS", "lat": 50.5836, "lng": 2.0011}, {"site": "HEURINGHEM", "lat": 50.6941, "lng": 2.2984}, {"site": "SAINT-MARTIN-D-HARDINGHEM", "lat": 50.6129, "lng": 2.1015}, {"site": "ZUDAUSQUES", "lat": 50.7555, "lng": 2.1571}, {"site": "CAPPELLE-BROUCK", "lat": 50.8899, "lng": 2.2242}, {"site": "COMINES", "lat": 50.7496, "lng": 3.0136}, {"site": "DUNKERQUE", "lat": 51.0183, "lng": 2.3431}, {"site": "EECKE", "lat": 50.7817, "lng": 2.5948}, {"site": "ESQUELBECQ", "lat": 50.89, "lng": 2.4276}, {"site": "FOURNES-EN-WEPPES", "lat": 50.5934, "lng": 2.8968}, {"site": "GRANDE-SYNTHE", "lat": 51.0157, "lng": 2.2938}, {"site": "HONDSCHOOTE", "lat": 50.972, "lng": 2.585}, {"site": "LEDERZEELE", "lat": 50.8157, "lng": 2.2896}, {"site": "LYNDE", "lat": 50.7198, "lng": 2.4335}, {"site": "NEUF-BERQUIN", "lat": 50.6646, "lng": 2.6643}, {"site": "QUESNOY-SUR-DEULE", "lat": 50.7275, "lng": 2.9723}, {"site": "SANTES", "lat": 50.588, "lng": 2.9561}, {"site": "WORMHOUT", "lat": 50.8749, "lng": 2.4813}], "ternoveo_in": [{"site": "BUSNES", "lat": 50.576741, "lng": 2.526913}, {"site": "VIEILLE-EGLISE", "lat": 50.906676, "lng": 2.065717}, {"site": "RENESCURE", "lat": 50.745435, "lng": 2.38939}, {"site": "THEROUANNE", "lat": 50.63694, "lng": 2.249963}, {"site": "BIERNE", "lat": 50.965303, "lng": 2.412643}], "scenarios": {"PRUDENT": {"n_fermetures": 3, "tonnage_total_closed_t": 16598, "tonnage_conserve_t": 3305, "tonnage_perdu_t": 13293, "pct_perdu": 80.1, "detail": [{"site": "SOCX", "tonnage_r25": 6074, "nearest_noriap_restant": "REXPOEDE", "dist_noriap_restant_km": 8.26, "dist_concurrent_km": 2.08, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6074}, {"site": "PIHEM", "tonnage_r25": 6611, "nearest_noriap_restant": "LEULINGHEM", "dist_noriap_restant_km": 6.42, "dist_concurrent_km": 4.99, "ratio_conserve": 0.5, "tonnage_conserve": 3305, "tonnage_perdu": 3305}, {"site": "LOOBERGHE", "tonnage_r25": 3914, "nearest_noriap_restant": "REXPOEDE", "dist_noriap_restant_km": 10.84, "dist_concurrent_km": 0.92, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3914}], "remaining_sites": ["HOLQUE", "ARMENTIERES", "BAILLEUL", "LAMBRES-LEZ-AIRE", "OYE PLAGE", "PONT D'ARDRES", "STEENVOORDE", "LEDERZEELE", "BOLLEZEELE", "GONNEHEM", "REXPOEDE", "LEULINGHEM", "FLEURBAIX", "BAVINCHOVE", "BOURBOURG", "COYECQUES", "MERCK-ST-LIEVIN", "AUDRUICQ", "SANTES NORIAP", "BONNINGUES-LES-ARDRES MACHU"], "label": "Triple recouvrement (N+U+T) uniquement", "closed_sites": ["SOCX", "PIHEM", "LOOBERGHE"], "economies_brutes_k_eur": 1050, "perte_marge_brute_k_eur": 199, "economies_nettes_k_eur": 851}, "MÉDIAN": {"n_fermetures": 11, "tonnage_total_closed_t": 30842, "tonnage_conserve_t": 0, "tonnage_perdu_t": 30842, "pct_perdu": 100.0, "detail": [{"site": "PIHEM", "tonnage_r25": 6611, "nearest_noriap_restant": "HOLQUE", "dist_noriap_restant_km": 16.76, "dist_concurrent_km": 4.99, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6611}, {"site": "LAMBRES-LEZ-AIRE", "tonnage_r25": 5196, "nearest_noriap_restant": "GONNEHEM", "dist_noriap_restant_km": 14.08, "dist_concurrent_km": 1.52, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 5196}, {"site": "STEENVOORDE", "tonnage_r25": 1974, "nearest_noriap_restant": "BAVINCHOVE", "dist_noriap_restant_km": 11.16, "dist_concurrent_km": 4.95, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 1974}, {"site": "LEDERZEELE", "tonnage_r25": 3156, "nearest_noriap_restant": "BOLLEZEELE", "dist_noriap_restant_km": 5.41, "dist_concurrent_km": 0.98, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3156}, {"site": "LEULINGHEM", "tonnage_r25": 2237, "nearest_noriap_restant": "HOLQUE", "dist_noriap_restant_km": 11.54, "dist_concurrent_km": 2.08, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 2237}, {"site": "COYECQUES", "tonnage_r25": 462, "nearest_noriap_restant": "BONNINGUES-LES-ARDRES MACHU", "dist_noriap_restant_km": 24.57, "dist_concurrent_km": 3.67, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 462}, {"site": "MERCK-ST-LIEVIN", "tonnage_r25": 446, "nearest_noriap_restant": "BONNINGUES-LES-ARDRES MACHU", "dist_noriap_restant_km": 19.39, "dist_concurrent_km": 1.97, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 446}, {"site": "SANTES NORIAP", "tonnage_r25": 302, "nearest_noriap_restant": "ARMENTIERES", "dist_noriap_restant_km": 9.23, "dist_concurrent_km": 1.5, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 302}, {"site": "SOCX", "tonnage_r25": 6074, "nearest_noriap_restant": "REXPOEDE", "dist_noriap_restant_km": 8.26, "dist_concurrent_km": 2.08, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6074}, {"site": "LOOBERGHE", "tonnage_r25": 3914, "nearest_noriap_restant": "REXPOEDE", "dist_noriap_restant_km": 10.84, "dist_concurrent_km": 0.92, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3914}, {"site": "AUDRUICQ", "tonnage_r25": 471, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 9.67, "dist_concurrent_km": 3.64, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 471}], "remaining_sites": ["HOLQUE", "ARMENTIERES", "BAILLEUL", "OYE PLAGE", "PONT D'ARDRES", "BOLLEZEELE", "GONNEHEM", "REXPOEDE", "FLEURBAIX", "BAVINCHOVE", "BOURBOURG", "BONNINGUES-LES-ARDRES MACHU"], "label": "Doublons stricts <5 km + triples", "closed_sites": ["PIHEM", "LAMBRES-LEZ-AIRE", "STEENVOORDE", "LEDERZEELE", "LEULINGHEM", "COYECQUES", "MERCK-ST-LIEVIN", "SANTES NORIAP", "SOCX", "LOOBERGHE", "AUDRUICQ"], "economies_brutes_k_eur": 3850, "perte_marge_brute_k_eur": 463, "economies_nettes_k_eur": 3387}, "AGRESSIF": {"n_fermetures": 20, "tonnage_total_closed_t": 52310, "tonnage_conserve_t": 886, "tonnage_perdu_t": 51424, "pct_perdu": 98.3, "detail": [{"site": "HOLQUE", "tonnage_r25": 6870, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 19.34, "dist_concurrent_km": 5.51, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6870}, {"site": "SOCX", "tonnage_r25": 6074, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 31.7, "dist_concurrent_km": 2.08, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6074}, {"site": "PIHEM", "tonnage_r25": 6611, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 30.61, "dist_concurrent_km": 4.99, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 6611}, {"site": "LAMBRES-LEZ-AIRE", "tonnage_r25": 5196, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 25.4, "dist_concurrent_km": 1.52, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 5196}, {"site": "OYE PLAGE", "tonnage_r25": 3670, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 9.53, "dist_concurrent_km": 6.57, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3670}, {"site": "LOOBERGHE", "tonnage_r25": 3914, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 32.69, "dist_concurrent_km": 0.92, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3914}, {"site": "STEENVOORDE", "tonnage_r25": 1974, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 13.08, "dist_concurrent_km": 4.95, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 1974}, {"site": "LEDERZEELE", "tonnage_r25": 3156, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 26.59, "dist_concurrent_km": 0.98, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 3156}, {"site": "BOLLEZEELE", "tonnage_r25": 4437, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 26.71, "dist_concurrent_km": 6.14, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 4437}, {"site": "GONNEHEM", "tonnage_r25": 1875, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 21.07, "dist_concurrent_km": 5.19, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 1875}, {"site": "REXPOEDE", "tonnage_r25": 2193, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 25.17, "dist_concurrent_km": 5.36, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 2193}, {"site": "LEULINGHEM", "tonnage_r25": 2237, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 24.23, "dist_concurrent_km": 2.08, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 2237}, {"site": "FLEURBAIX", "tonnage_r25": 1773, "nearest_noriap_restant": "ARMENTIERES", "dist_noriap_restant_km": 5.27, "dist_concurrent_km": 6.42, "ratio_conserve": 0.5, "tonnage_conserve": 886, "tonnage_perdu": 886}, {"site": "BAVINCHOVE", "tonnage_r25": 419, "nearest_noriap_restant": "BAILLEUL", "dist_noriap_restant_km": 19.95, "dist_concurrent_km": 6.84, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 419}, {"site": "BOURBOURG", "tonnage_r25": 181, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 17.99, "dist_concurrent_km": 6.97, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 181}, {"site": "COYECQUES", "tonnage_r25": 462, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 38.07, "dist_concurrent_km": 3.67, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 462}, {"site": "MERCK-ST-LIEVIN", "tonnage_r25": 446, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 32.95, "dist_concurrent_km": 1.97, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 446}, {"site": "AUDRUICQ", "tonnage_r25": 471, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 9.67, "dist_concurrent_km": 3.64, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 471}, {"site": "SANTES NORIAP", "tonnage_r25": 302, "nearest_noriap_restant": "ARMENTIERES", "dist_noriap_restant_km": 9.23, "dist_concurrent_km": 1.5, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 302}, {"site": "BONNINGUES-LES-ARDRES MACHU", "tonnage_r25": 51, "nearest_noriap_restant": "PONT D'ARDRES", "dist_noriap_restant_km": 13.57, "dist_concurrent_km": 5.48, "ratio_conserve": 0.0, "tonnage_conserve": 0, "tonnage_perdu": 51}], "remaining_sites": ["ARMENTIERES", "BAILLEUL", "PONT D'ARDRES"], "label": "Tous les doublons <7 km", "closed_sites": ["HOLQUE", "SOCX", "PIHEM", "LAMBRES-LEZ-AIRE", "OYE PLAGE", "LOOBERGHE", "STEENVOORDE", "LEDERZEELE", "BOLLEZEELE", "GONNEHEM", "REXPOEDE", "LEULINGHEM", "FLEURBAIX", "BAVINCHOVE", "BOURBOURG", "COYECQUES", "MERCK-ST-LIEVIN", "AUDRUICQ", "SANTES NORIAP", "BONNINGUES-LES-ARDRES MACHU"], "economies_brutes_k_eur": 7000, "perte_marge_brute_k_eur": 771, "economies_nettes_k_eur": 6229}}, "marge_brute_par_t_eur": 15, "cout_fixe_par_site_k_eur": 350};
+
+</script>
+<script>
+const fusionFlandreAnalyse = [{"noriap_site": "BAILLEUL", "noriap_lat": 50.73923, "noriap_lng": 2.73402, "tonnage_r25": 7076.8, "tonnage_ble_r25": 6326.7, "uneal_proche": "NEUF-BERQUIN", "uneal_distance_km": 9.64, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 23.23, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "HOLQUE", "noriap_lat": 50.841862, "noriap_lng": 2.204773, "tonnage_r25": 6869.6, "tonnage_ble_r25": 6269.2, "uneal_proche": "CAPPELLE-BROUCK", "uneal_distance_km": 5.51, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "CAPPELLE-BROUCK", "distance_km": 5.51}, {"commune": "LEDERZEELE", "distance_km": 6.63}], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 12.13, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "PIHEM", "noriap_lat": 50.691606, "noriap_lng": 2.223215, "tonnage_r25": 6610.6, "tonnage_ble_r25": 5496.2, "uneal_proche": "DELETTES", "uneal_distance_km": 4.99, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "DELETTES", "distance_km": 4.99}, {"commune": "HEURINGHEM", "distance_km": 5.3}], "ternoveo_proche": "THEROUANNE", "ternoveo_distance_km": 6.36, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "THEROUANNE", "distance_km": 6.36}], "doublon_multiple": true}, {"noriap_site": "SOCX", "noriap_lat": 50.950177, "noriap_lng": 2.430234, "tonnage_r25": 6074.1, "tonnage_ble_r25": 5708.1, "uneal_proche": "ESQUELBECQ", "uneal_distance_km": 6.69, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "ESQUELBECQ", "distance_km": 6.69}], "ternoveo_proche": "BIERNE", "ternoveo_distance_km": 2.08, "ternoveo_doublon_strict": true, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "BIERNE", "distance_km": 2.08}], "doublon_multiple": true}, {"noriap_site": "LAMBRES-LEZ-AIRE", "noriap_lat": 50.62612, "noriap_lng": 2.420843, "tonnage_r25": 5195.8, "tonnage_ble_r25": 4490.2, "uneal_proche": "AIRE SUR LA LYS", "uneal_distance_km": 1.52, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "AIRE SUR LA LYS", "distance_km": 1.52}, {"commune": "AIRE SUR LA LYS", "distance_km": 2.02}], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 9.28, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "PONT D'ARDRES", "noriap_lat": 50.904871, "noriap_lng": 1.947931, "tonnage_r25": 4955.0, "tonnage_ble_r25": 4415.3, "uneal_proche": "LICQUES", "uneal_distance_km": 14.17, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 8.26, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "ARMENTIERES", "noriap_lat": 50.658026, "noriap_lng": 2.893423, "tonnage_r25": 4520.4, "tonnage_ble_r25": 3896.5, "uneal_proche": "FOURNES-EN-WEPPES", "uneal_distance_km": 7.19, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 27.39, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "BOLLEZEELE", "noriap_lat": 50.866489, "noriap_lng": 2.323761, "tonnage_r25": 4437.2, "tonnage_ble_r25": 4238.4, "uneal_proche": "LEDERZEELE", "uneal_distance_km": 6.14, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "LEDERZEELE", "distance_km": 6.14}], "ternoveo_proche": "BIERNE", "ternoveo_distance_km": 12.63, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "LOOBERGHE", "noriap_lat": 50.970627, "noriap_lng": 2.402586, "tonnage_r25": 3913.5, "tonnage_ble_r25": 3307.3, "uneal_proche": "DUNKERQUE", "uneal_distance_km": 6.74, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "DUNKERQUE", "distance_km": 6.74}], "ternoveo_proche": "BIERNE", "ternoveo_distance_km": 0.92, "ternoveo_doublon_strict": true, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "BIERNE", "distance_km": 0.92}], "doublon_multiple": true}, {"noriap_site": "OYE PLAGE", "noriap_lat": 50.964381, "noriap_lng": 2.045782, "tonnage_r25": 3669.6, "tonnage_ble_r25": 2769.0, "uneal_proche": "CAPPELLE-BROUCK", "uneal_distance_km": 15.0, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 6.57, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "VIEILLE-EGLISE", "distance_km": 6.57}], "doublon_multiple": false}, {"noriap_site": "LEDERZEELE", "noriap_lat": 50.819823, "noriap_lng": 2.302002, "tonnage_r25": 3156.2, "tonnage_ble_r25": 2682.6, "uneal_proche": "LEDERZEELE", "uneal_distance_km": 0.98, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "LEDERZEELE", "distance_km": 0.98}], "ternoveo_proche": "RENESCURE", "ternoveo_distance_km": 10.3, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "LEULINGHEM", "noriap_lat": 50.739981, "noriap_lng": 2.173519, "tonnage_r25": 2236.7, "tonnage_ble_r25": 1867.8, "uneal_proche": "ZUDAUSQUES", "uneal_distance_km": 2.08, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "ZUDAUSQUES", "distance_km": 2.08}], "ternoveo_proche": "THEROUANNE", "ternoveo_distance_km": 12.66, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "REXPOEDE", "noriap_lat": 50.93126, "noriap_lng": 2.544207, "tonnage_r25": 2192.9, "tonnage_ble_r25": 2173.9, "uneal_proche": "HONDSCHOOTE", "uneal_distance_km": 5.36, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "HONDSCHOOTE", "distance_km": 5.36}], "ternoveo_proche": "BIERNE", "ternoveo_distance_km": 9.96, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "STEENVOORDE", "noriap_lat": 50.825487, "noriap_lng": 2.60758, "tonnage_r25": 1973.5, "tonnage_ble_r25": 1852.5, "uneal_proche": "EECKE", "uneal_distance_km": 4.95, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "EECKE", "distance_km": 4.95}], "ternoveo_proche": "RENESCURE", "ternoveo_distance_km": 17.73, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "GONNEHEM", "noriap_lat": 50.569973, "noriap_lng": 2.599668, "tonnage_r25": 1875.0, "tonnage_ble_r25": 1875.0, "uneal_proche": "LILLERS", "uneal_distance_km": 9.01, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 5.19, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "BUSNES", "distance_km": 5.19}], "doublon_multiple": false}, {"noriap_site": "FLEURBAIX", "noriap_lat": 50.644168, "noriap_lng": 2.821941, "tonnage_r25": 1772.6, "tonnage_ble_r25": 1692.8, "uneal_proche": "LAVENTIE", "uneal_distance_km": 6.42, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "LAVENTIE", "distance_km": 6.42}], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 22.13, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "AUDRUICQ", "noriap_lat": 50.874808, "noriap_lng": 2.07728, "tonnage_r25": 471.3, "tonnage_ble_r25": 424.8, "uneal_proche": "CAPPELLE-BROUCK", "uneal_distance_km": 10.44, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 3.64, "ternoveo_doublon_strict": true, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "VIEILLE-EGLISE", "distance_km": 3.64}], "doublon_multiple": false}, {"noriap_site": "COYECQUES", "noriap_lat": 50.593271, "noriap_lng": 2.172213, "tonnage_r25": 462.3, "tonnage_ble_r25": 462.3, "uneal_proche": "AUDINCTHUN", "uneal_distance_km": 3.67, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "AUDINCTHUN", "distance_km": 3.67}, {"commune": "SAINT-MARTIN-D-HARDINGHEM", "distance_km": 5.45}, {"commune": "DELETTES", "distance_km": 6.82}], "ternoveo_proche": "THEROUANNE", "ternoveo_distance_km": 7.33, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "MERCK-ST-LIEVIN", "noriap_lat": 50.628176, "noriap_lng": 2.115609, "tonnage_r25": 445.5, "tonnage_ble_r25": 405.9, "uneal_proche": "SAINT-MARTIN-D-HARDINGHEM", "uneal_distance_km": 1.97, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "SAINT-MARTIN-D-HARDINGHEM", "distance_km": 1.97}, {"commune": "AUDINCTHUN", "distance_km": 5.19}], "ternoveo_proche": "THEROUANNE", "ternoveo_distance_km": 9.53, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "BAVINCHOVE", "noriap_lat": 50.7873, "noriap_lng": 2.4607, "tonnage_r25": 419.3, "tonnage_ble_r25": 419.3, "uneal_proche": "LYNDE", "uneal_distance_km": 7.75, "uneal_doublon_strict": false, "uneal_doublon_7km": false, "uneal_all_within": [], "ternoveo_proche": "RENESCURE", "ternoveo_distance_km": 6.84, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": true, "ternoveo_all_within": [{"commune": "RENESCURE", "distance_km": 6.84}], "doublon_multiple": false}, {"noriap_site": "SANTES NORIAP", "noriap_lat": 50.593386, "noriap_lng": 2.975559, "tonnage_r25": 302.5, "tonnage_ble_r25": 272.0, "uneal_proche": "SANTES", "uneal_distance_km": 1.5, "uneal_doublon_strict": true, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "SANTES", "distance_km": 1.5}, {"commune": "FOURNES-EN-WEPPES", "distance_km": 5.56}], "ternoveo_proche": "BUSNES", "ternoveo_distance_km": 31.73, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "BOURBOURG", "noriap_lat": 50.949746, "noriap_lng": 2.194574, "tonnage_r25": 181.1, "tonnage_ble_r25": 110.2, "uneal_proche": "CAPPELLE-BROUCK", "uneal_distance_km": 6.97, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "CAPPELLE-BROUCK", "distance_km": 6.97}], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 10.22, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}, {"noriap_site": "BONNINGUES-LES-ARDRES MACHU", "noriap_lat": 50.79033, "noriap_lng": 2.01444, "tonnage_r25": 51.2, "tonnage_ble_r25": 51.2, "uneal_proche": "LICQUES", "uneal_distance_km": 5.48, "uneal_doublon_strict": false, "uneal_doublon_7km": true, "uneal_all_within": [{"commune": "LICQUES", "distance_km": 5.48}], "ternoveo_proche": "VIEILLE-EGLISE", "ternoveo_distance_km": 13.43, "ternoveo_doublon_strict": false, "ternoveo_doublon_7km": false, "ternoveo_all_within": [], "doublon_multiple": false}];
+const fusionFlandreKpis = {"perimetre": "Flandre française (Flandre maritime + intérieure + Audomarois)", "bbox": "lat 50.55-51.1 / lng 1.9-3.05", "sites_total_fusion": 54, "noriap_actifs_r25": 23, "uneal_silos_gps": 26, "ternoveo_silos": 5, "tonnage_r25_total_noriap_t": 68863, "doublons_uneal_7km": 16, "doublons_uneal_5km": 8, "doublons_ternoveo_7km": 7, "doublons_ternoveo_5km": 3, "doublons_uniques_au_moins_un": 20, "doublons_multiples_les_deux": 3, "tonnage_r25_doublons_uneal_t": 45875, "tonnage_r25_doublons_ternoveo_t": 23033, "tonnage_r25_doublons_uniques_t": 52310, "pct_tonnage_en_doublon": 76.0, "economies_potentielles_k_eur": 7000, "hypothese_cout_site_k_eur": 350, "seuil_km": 7.0, "seuil_strict_km": 5.0, "scenarios_economiques": {"prudent": {"n_fermetures": 20, "tonnage_redeploye_t": 52310, "charges_fixes_k_eur": 4000, "personnel_saisonnier_k_eur": 400, "capex_evite_k_eur_an": 200, "optimisation_logistique_k_eur": 105, "total_k_eur": 4705}, "median": {"n_fermetures": 20, "tonnage_redeploye_t": 52310, "charges_fixes_k_eur": 7000, "personnel_saisonnier_k_eur": 600, "capex_evite_k_eur_an": 400, "optimisation_logistique_k_eur": 209, "total_k_eur": 8209}, "optimiste": {"n_fermetures": 20, "tonnage_redeploye_t": 52310, "charges_fixes_k_eur": 10000, "personnel_saisonnier_k_eur": 800, "capex_evite_k_eur_an": 600, "optimisation_logistique_k_eur": 314, "total_k_eur": 11714}}, "couts_one_shot_transition": {"indemnites_sociales_k_eur": 1600, "deconstruction_demantelement_k_eur_min": 2000, "deconstruction_demantelement_k_eur_max": 6000, "communication_transition_adherents_k_eur": 300}, "payback_median_annees": 0.7};
+const fusionFlandreSites = {"noriap": [{"site": "HOLQUE", "lat": 50.841862, "lng": 2.204773, "tonnage_r25": 6869.6}, {"site": "SOCX", "lat": 50.950177, "lng": 2.430234, "tonnage_r25": 6074.1}, {"site": "PIHEM", "lat": 50.691606, "lng": 2.223215, "tonnage_r25": 6610.6}, {"site": "ARMENTIERES", "lat": 50.658026, "lng": 2.893423, "tonnage_r25": 4520.4}, {"site": "BAILLEUL", "lat": 50.73923, "lng": 2.73402, "tonnage_r25": 7076.8}, {"site": "LAMBRES-LEZ-AIRE", "lat": 50.62612, "lng": 2.420843, "tonnage_r25": 5195.8}, {"site": "OYE PLAGE", "lat": 50.964381, "lng": 2.045782, "tonnage_r25": 3669.6}, {"site": "LOOBERGHE", "lat": 50.970627, "lng": 2.402586, "tonnage_r25": 3913.5}, {"site": "PONT D'ARDRES", "lat": 50.904871, "lng": 1.947931, "tonnage_r25": 4955.0}, {"site": "STEENVOORDE", "lat": 50.825487, "lng": 2.60758, "tonnage_r25": 1973.5}, {"site": "LEDERZEELE", "lat": 50.819823, "lng": 2.302002, "tonnage_r25": 3156.2}, {"site": "BOLLEZEELE", "lat": 50.866489, "lng": 2.323761, "tonnage_r25": 4437.2}, {"site": "GONNEHEM", "lat": 50.569973, "lng": 2.599668, "tonnage_r25": 1875.0}, {"site": "REXPOEDE", "lat": 50.93126, "lng": 2.544207, "tonnage_r25": 2192.9}, {"site": "LEULINGHEM", "lat": 50.739981, "lng": 2.173519, "tonnage_r25": 2236.7}, {"site": "FLEURBAIX", "lat": 50.644168, "lng": 2.821941, "tonnage_r25": 1772.6}, {"site": "BAVINCHOVE", "lat": 50.7873, "lng": 2.4607, "tonnage_r25": 419.3}, {"site": "BOURBOURG", "lat": 50.949746, "lng": 2.194574, "tonnage_r25": 181.1}, {"site": "COYECQUES", "lat": 50.593271, "lng": 2.172213, "tonnage_r25": 462.3}, {"site": "MERCK-ST-LIEVIN", "lat": 50.628176, "lng": 2.115609, "tonnage_r25": 445.5}, {"site": "AUDRUICQ", "lat": 50.874808, "lng": 2.07728, "tonnage_r25": 471.3}, {"site": "SANTES NORIAP", "lat": 50.593386, "lng": 2.975559, "tonnage_r25": 302.5}, {"site": "BONNINGUES-LES-ARDRES MACHU", "lat": 50.79033, "lng": 2.01444, "tonnage_r25": 51.2}, {"site": "BONNINGUES-LES-ARDRES", "lat": 50.789005, "lng": 2.00275, "tonnage_r25": 0}], "uneal": [{"site": "AIRE SUR LA LYS", "lat": 50.639636, "lng": 2.417864, "approx": false}, {"site": "AIRE SUR LA LYS", "lat": 50.641642, "lng": 2.405957, "approx": false}, {"site": "DELETTES", "lat": 50.646766, "lng": 2.219554, "approx": false}, {"site": "LAVENTIE", "lat": 50.601282, "lng": 2.76098, "approx": false}, {"site": "LICQUES", "lat": 50.777585, "lng": 1.939081, "approx": false}, {"site": "LILLERS", "lat": 50.566531, "lng": 2.472223, "approx": false}, {"site": "AFFRINGUES", "lat": 50.6901, "lng": 2.0692, "approx": true}, {"site": "AUDINCTHUN", "lat": 50.5818, "lng": 2.1235, "approx": true}, {"site": "CAMPAGNE-LES-BOULONNAIS", "lat": 50.5836, "lng": 2.0011, "approx": true}, {"site": "HEURINGHEM", "lat": 50.6941, "lng": 2.2984, "approx": true}, {"site": "SAINT-MARTIN-D-HARDINGHEM", "lat": 50.6129, "lng": 2.1015, "approx": true}, {"site": "ZUDAUSQUES", "lat": 50.7555, "lng": 2.1571, "approx": true}, {"site": "CAPPELLE-BROUCK", "lat": 50.8899, "lng": 2.2242, "approx": true}, {"site": "COMINES", "lat": 50.7496, "lng": 3.0136, "approx": true}, {"site": "DUNKERQUE", "lat": 51.0183, "lng": 2.3431, "approx": true}, {"site": "EECKE", "lat": 50.7817, "lng": 2.5948, "approx": true}, {"site": "ESQUELBECQ", "lat": 50.89, "lng": 2.4276, "approx": true}, {"site": "FOURNES-EN-WEPPES", "lat": 50.5934, "lng": 2.8968, "approx": true}, {"site": "GRANDE-SYNTHE", "lat": 51.0157, "lng": 2.2938, "approx": true}, {"site": "HONDSCHOOTE", "lat": 50.972, "lng": 2.585, "approx": true}, {"site": "LEDERZEELE", "lat": 50.8157, "lng": 2.2896, "approx": true}, {"site": "LYNDE", "lat": 50.7198, "lng": 2.4335, "approx": true}, {"site": "NEUF-BERQUIN", "lat": 50.6646, "lng": 2.6643, "approx": true}, {"site": "QUESNOY-SUR-DEULE", "lat": 50.7275, "lng": 2.9723, "approx": true}, {"site": "SANTES", "lat": 50.588, "lng": 2.9561, "approx": true}, {"site": "WORMHOUT", "lat": 50.8749, "lng": 2.4813, "approx": true}], "ternoveo": [{"site": "BUSNES", "lat": 50.576741, "lng": 2.526913}, {"site": "VIEILLE-EGLISE", "lat": 50.906676, "lng": 2.065717}, {"site": "RENESCURE", "lat": 50.745435, "lng": 2.38939}, {"site": "THEROUANNE", "lat": 50.63694, "lng": 2.249963}, {"site": "BIERNE", "lat": 50.965303, "lng": 2.412643}]};
+
+</script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, "Segoe UI", sans-serif; background: #f4f4f6; color: #1a1a2e; }
+  .hero { background: linear-gradient(135deg, #1a1a2e, #0f3460); color: white; padding: 22px 36px 18px; }
+  .hero .tag { font-size: 11px; letter-spacing: 2px; opacity: 0.7; }
+  .hero h1 { font-size: 26px; margin: 4px 0 0; font-weight: 700; }
+  .hero h1 span.acc { color: #ffd166; }
+
+  .toolbar { background: white; padding: 14px 36px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+  .scenarios { display: flex; gap: 8px; }
+  .sc-btn {
+    padding: 10px 18px; border-radius: 8px; border: 2px solid #ddd; background: white; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: #555; transition: all 0.15s;
+  }
+  .sc-btn:hover { border-color: #ffd166; }
+  .sc-btn.active { background: #1a1a2e; color: white; border-color: #1a1a2e; }
+  .sc-btn .em { font-size: 11px; opacity: 0.8; font-weight: 400; margin-left: 6px; }
+
+  .kpis { display: flex; gap: 18px; font-size: 12px; }
+  .kpi-mini { background: white; padding: 8px 14px; border-radius: 6px; border-left: 3px solid; min-width: 120px; }
+  .kpi-mini .lbl { font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-mini .val { font-size: 22px; font-weight: 700; line-height: 1.1; margin-top: 2px; }
+
+  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px 36px; height: calc(100vh - 200px); }
+  .map-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+  .map-card h3 { margin: 0; padding: 10px 14px; font-size: 13px; font-weight: 700; background: #1a1a2e; color: white; }
+  .map-card h3.after { background: #0a8754; }
+  .map { flex: 1; min-height: 400px; }
+
+  .footer { padding: 14px 36px 22px; font-size: 11px; color: #777; }
+  .legend { font-size: 11px; padding: 8px 14px; background: rgba(255,255,255,0.95); border-radius: 5px; }
+  .legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 4px; }
+  .closed-marker { background: #666; opacity: 0.5; border: 2px solid #fff; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">SIMULATION DE REGROUPEMENT — FLANDRE</div>
+  <h1>Fusion <span class="acc">Noriap × Unéal × Ternoveo</span> — Cartes avant / après</h1>
+</div>
+
+<div class="toolbar">
+  <div class="scenarios">
+    <button class="sc-btn" data-scenario="PRUDENT">PRUDENT<span class="em">3 fermetures</span></button>
+    <button class="sc-btn active" data-scenario="MÉDIAN">MÉDIAN<span class="em">11 fermetures</span></button>
+    <button class="sc-btn" data-scenario="AGRESSIF">AGRESSIF<span class="em">20 fermetures</span></button>
+  </div>
+  <div class="kpis" id="kpis"></div>
+</div>
+
+<div class="layout">
+  <div class="map-card">
+    <h3>AVANT — Sites actuels (Noriap actifs R25 en Flandre)</h3>
+    <div id="map-before" class="map"></div>
+  </div>
+  <div class="map-card">
+    <h3 class="after">APRÈS — Scénario sélectionné</h3>
+    <div id="map-after" class="map"></div>
+  </div>
+</div>
+
+<div class="footer">
+  Source : Collecte BASE Noriap (R25) + SIRENE Unéal/Ternoveo. Hypothèses : 350 k€/site/an de charges fixes, 15 €/t de marge brute perdue par tonnage récupéré par un concurrent. Carte avant = état initial, carte après = après fermeture des silos selon scénario.
+  <br>Une parcelle d'adhérent va vers le silo le plus proche : si un Noriap restant est plus proche → tonnage conservé. Si un concurrent (U/T) est plus proche → tonnage perdu. Équidistant (<2 km de diff) → 50/50.
+</div>
+
+<script>
+const data = scenarioFermetures;
+let currentScenario = "MÉDIAN";
+
+// Données
+const noriapAll = data.noriap_all;
+const unealIn = data.uneal_in;
+const ternoveoIn = data.ternoveo_in;
+const scenarios = data.scenarios;
+
+// Bounds Flandre
+const bounds = [[50.55, 1.90], [51.10, 3.05]];
+
+// ===== Cartes =====
+const mapBefore = L.map('map-before').fitBounds(bounds);
+const mapAfter = L.map('map-after').fitBounds(bounds);
+[mapBefore, mapAfter].forEach(m => {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 16, attribution: '© OpenStreetMap' }).addTo(m);
+});
+
+function makeIcon(color, size, opacity=0.9, hatched=false) {
+  const s = size || 14;
+  const cross = hatched ? '<div style="position:absolute;top:0;left:0;width:100%;height:100%;color:#fff;font-weight:900;font-size:'+s+'px;line-height:'+s+'px;text-align:center">✕</div>' : '';
+  return L.divIcon({
+    className: '',
+    html: `<div style="position:relative;background:${color};width:${s}px;height:${s}px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px rgba(0,0,0,0.6);opacity:${opacity}">${cross}</div>`,
+    iconSize: [s, s], iconAnchor: [s/2, s/2]
+  });
+}
+function sizeFromTonnage(t) { return Math.max(10, Math.min(36, 6 + Math.log10((t||0)+1) * 4.5)); }
+function fmtT(t) { return t >= 1000 ? (t/1000).toFixed(1)+" kt" : Math.round(t)+" t"; }
+function fmtEUR(k) { return k >= 1000 ? (k/1000).toFixed(2)+" M€" : k.toLocaleString('fr-FR')+" k€"; }
+
+// Couches statiques (U/T)
+function drawBackground(map) {
+  unealIn.forEach(u => L.marker([u.lat, u.lng], { icon: makeIcon('#2ca02c', 10, 0.7) }).bindPopup(`<b>Unéal</b><br>${u.site}`).addTo(map));
+  ternoveoIn.forEach(t => L.marker([t.lat, t.lng], { icon: makeIcon('#1f77b4', 10, 0.7) }).bindPopup(`<b>Ternoveo</b><br>${t.site}`).addTo(map));
+}
+drawBackground(mapBefore);
+drawBackground(mapAfter);
+
+// Couche dynamique (Noriap variable selon scénario)
+let noriapBeforeLayer = L.layerGroup().addTo(mapBefore);
+let noriapAfterLayer = L.layerGroup().addTo(mapAfter);
+let transferLines = L.layerGroup().addTo(mapAfter);
+
+// Carte AVANT : tous les Noriap actifs
+noriapAll.forEach(n => {
+  const sz = sizeFromTonnage(n.tonnage_r25);
+  L.marker([n.lat, n.lng], { icon: makeIcon('#e60026', sz) })
+    .bindPopup(`<b>${n.site}</b><br>Collecte R25 : ${fmtT(n.tonnage_r25)}`)
+    .addTo(noriapBeforeLayer);
+});
+
+function findSite(siteName) { return noriapAll.find(n => n.site === siteName); }
+function findUneal(name) { return unealIn.find(u => u.site === name); }
+function findTernoveo(name) { return ternoveoIn.find(t => t.site === name); }
+
+function render(scenarioName) {
+  currentScenario = scenarioName;
+  const sc = scenarios[scenarioName];
+  noriapAfterLayer.clearLayers();
+  transferLines.clearLayers();
+
+  const closedSet = new Set(sc.closed_sites);
+
+  // Silos conservés
+  noriapAll.forEach(n => {
+    if (closedSet.has(n.site)) return;
+    const sz = sizeFromTonnage(n.tonnage_r25);
+    L.marker([n.lat, n.lng], { icon: makeIcon('#e60026', sz) })
+      .bindPopup(`<b>${n.site}</b> (conservé)<br>Collecte R25 : ${fmtT(n.tonnage_r25)}`)
+      .addTo(noriapAfterLayer);
+  });
+
+  // Silos fermés : marker en gris/barré + ligne de transfert
+  sc.detail.forEach(d => {
+    const n = findSite(d.site);
+    if (!n) return;
+    const sz = sizeFromTonnage(d.tonnage_r25);
+    L.marker([n.lat, n.lng], { icon: makeIcon('#888', sz, 0.6, true) })
+      .bindPopup(
+        `<b>${d.site}</b> — fermé<br>` +
+        `Tonnage R25 : ${fmtT(d.tonnage_r25)}<br>` +
+        `Noriap restant le + proche : ${d.nearest_noriap_restant} (${d.dist_noriap_restant_km} km)<br>` +
+        `Concurrent le + proche : ${d.dist_concurrent_km} km<br>` +
+        `<b>Conservé : ${fmtT(d.tonnage_conserve)}</b> | <span style="color:#c00"><b>Perdu : ${fmtT(d.tonnage_perdu)}</b></span>`
+      )
+      .addTo(noriapAfterLayer);
+
+    // Ligne vers le silo Noriap conservé le plus proche (en vert si conservé > 50%)
+    if (d.nearest_noriap_restant && d.dist_noriap_restant_km && d.dist_noriap_restant_km <= 30) {
+      const target = findSite(d.nearest_noriap_restant);
+      if (target) {
+        const color = d.ratio_conserve > 0.5 ? '#2ca02c' : (d.ratio_conserve > 0 ? '#888' : '#c00');
+        const dashArray = d.ratio_conserve === 0 ? '4,6' : null;
+        L.polyline([[n.lat, n.lng], [target.lat, target.lng]], {
+          color, weight: d.ratio_conserve > 0 ? 2 : 1.5, opacity: 0.7, dashArray
+        }).addTo(transferLines);
+      }
+    }
+  });
+
+  // KPIs
+  const eco_brute = sc.economies_brutes_k_eur;
+  const perte = sc.perte_marge_brute_k_eur;
+  const eco_net = sc.economies_nettes_k_eur;
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi-mini" style="border-color:#888"><div class="lbl">Fermetures</div><div class="val">${sc.n_fermetures}</div></div>
+    <div class="kpi-mini" style="border-color:#06d6a0"><div class="lbl">Économies fixes</div><div class="val">${fmtEUR(eco_brute)}</div></div>
+    <div class="kpi-mini" style="border-color:#c00"><div class="lbl">Perte marge brute</div><div class="val">-${fmtEUR(perte)}</div></div>
+    <div class="kpi-mini" style="border-color:#ffd166"><div class="lbl">Net</div><div class="val">${fmtEUR(eco_net)}/an</div></div>
+    <div class="kpi-mini" style="border-color:#9c27b0"><div class="lbl">Tonnage perdu</div><div class="val">${fmtT(sc.tonnage_perdu_t)}</div></div>
+  `;
+
+  // Boutons actifs
+  document.querySelectorAll('.sc-btn').forEach(b => b.classList.toggle('active', b.dataset.scenario === scenarioName));
+
+  // Légende sur la carte APRES
+  if (window._legendCtrl) mapAfter.removeControl(window._legendCtrl);
+  const lg = L.control({position:'bottomleft'});
+  lg.onAdd = function() {
+    const div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = `
+      <b>Légende</b><br>
+      <span class="dot" style="background:#e60026"></span> Noriap conservé<br>
+      <span class="dot" style="background:#888;opacity:0.6"></span> Noriap fermé<br>
+      <span class="dot" style="background:#2ca02c;opacity:0.7"></span> Unéal &nbsp;<span class="dot" style="background:#1f77b4;opacity:0.7"></span> Ternoveo<br>
+      <span style="display:inline-block;width:18px;height:0;border-top:2px solid #2ca02c"></span> tonnage conservé<br>
+      <span style="display:inline-block;width:18px;height:0;border-top:1.5px dashed #c00"></span> tonnage perdu
+    `;
+    return div;
+  };
+  lg.addTo(mapAfter);
+  window._legendCtrl = lg;
+}
+
+document.querySelectorAll('.sc-btn').forEach(b => {
+  b.addEventListener('click', () => render(b.dataset.scenario));
+});
+render("MÉDIAN");
+</script>
+</body>
+</html>
