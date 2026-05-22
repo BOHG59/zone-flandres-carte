@@ -2513,8 +2513,8 @@ const collecteData = [
   <div style="font-size:11px;">Source : annuaire-entreprises.data.gouv.fr<br>Unéal 385110234 — Noriap 330189028</div>
   <div class="legend">
     <div><span class="dot" style="background:#2ca02c"></span>Unéal (tous types)</div>
-    <div><span class="dot" style="background:#e60026"></span>Noriap (silos actifs sur collecte)</div>
-    <div style="font-size:11px;color:#555;margin-left:18px;">Taille ∝ tonnage</div>
+    <div><span class="dot" style="background:#e60026"></span>Noriap — silos actifs sur R25</div>
+    <div style="font-size:11px;color:#555;margin-left:18px;">Taille ∝ tonnage R25</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
@@ -2789,24 +2789,30 @@ uneal.forEach(s => s.coop = "Unéal");
 // Remplacer la liste Noriap par les sites avec collecte (source interne)
 let noriapFinal = noriap;
 if (typeof collecteData !== "undefined" && Array.isArray(collecteData)) {
-  noriapFinal = collecteData.map(d => ({
-    commune: d.site,
-    cp: "",
-    dep: "",
-    naf: "46.21Z",
-    type: "silo",
-    notes: "",
-    nom: d.site,
-    tonnage: d.tonnage,
-    tonnage_net: d.tonnage_net,
-    n_mvt: d.n_mvt,
-    recoltes: d.recoltes,
-    societes: d.societes,
-    coop: "Noriap",
-    _coords: [d.lng, d.lat],
-    _score: 1.0
-  }));
-  console.log(`Noriap: ${noriapFinal.length} silos actifs (collecte > 0, source interne)`);
+  const RECOLTE_AFFICHEE = "2025"; // R25
+  noriapFinal = collecteData
+    .map(d => {
+      const tR = (d.recoltes && d.recoltes[RECOLTE_AFFICHEE]) || 0;
+      return {
+        commune: d.site,
+        cp: "",
+        dep: "",
+        naf: "46.21Z",
+        type: "silo",
+        notes: "",
+        nom: d.site,
+        tonnage: tR,                  // tonnage R25 utilisé pour taille + popup
+        tonnage_total: d.tonnage,     // cumul pour info
+        n_mvt: d.n_mvt,
+        recoltes: d.recoltes,
+        societes: d.societes,
+        coop: "Noriap",
+        _coords: [d.lng, d.lat],
+        _score: 1.0
+      };
+    })
+    .filter(s => s.tonnage > 0);     // ne garder que les silos actifs sur R25
+  console.log(`Noriap: ${noriapFinal.length} silos actifs sur R25 (collecte 2025 > 0)`);
 } else {
   noriapFinal.forEach(s => s.coop = "Noriap");
 }
@@ -2927,10 +2933,10 @@ async function processList(sites, cluster) {
         const headerCp = site.cp ? ` (${site.cp})` : '';
         const lines = [`<div class="popup-title">${site.coop} — ${site.commune || site.nom}${headerCp}</div>`];
         if (site.tonnage !== undefined) {
-          lines.push(`<div class="popup-meta"><b>Collecte totale : ${fmtT(site.tonnage)}</b> (norme) — ${site.n_mvt.toLocaleString('fr-FR')} mvts</div>`);
+          lines.push(`<div class="popup-meta"><b>Collecte R25 : ${fmtT(site.tonnage)}</b></div>`);
           if (site.recoltes) {
             const parts = Object.entries(site.recoltes).sort().map(([r,v]) => `R${String(r).slice(-2)}: ${fmtT(v)}`);
-            lines.push(`<div class="popup-meta">${parts.join(' • ')}</div>`);
+            lines.push(`<div class="popup-meta" style="color:#777">historique : ${parts.join(' • ')}${site.tonnage_total ? ` — total ${fmtT(site.tonnage_total)}` : ''}</div>`);
           }
         }
         if (site.adresse) lines.push(`<div class="popup-meta">${site.adresse}</div>`);
