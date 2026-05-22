@@ -8436,12 +8436,25 @@ const neonegoceData = [
   .topbar .tab.active { background: rgba(255,255,255,0.15); color: white; font-weight: 600; }
   .topbar .filters {
     margin-left: auto;
-    display: flex; gap: 10px; align-items: center;
-    font-size: 12px; color: rgba(255,255,255,0.85);
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+    font-size: 11px; color: rgba(255,255,255,0.85);
+    max-width: 70%;
   }
-  .topbar .filters .placeholder {
-    font-size: 11px; color: rgba(255,255,255,0.4); font-style: italic;
+  .topbar .chip {
+    padding: 4px 9px; border-radius: 14px; cursor: pointer;
+    font-size: 11px; font-weight: 600;
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.45);
+    border: 1px solid transparent; transition: all 0.12s;
+    display: inline-flex; align-items: center; gap: 5px;
+    user-select: none;
   }
+  .topbar .chip:hover { background: rgba(255,255,255,0.18); }
+  .topbar .chip .swatch {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--col); opacity: 0.5;
+  }
+  .topbar .chip.on { background: rgba(255,255,255,0.18); color: white; }
+  .topbar .chip.on .swatch { opacity: 1; box-shadow: 0 0 4px var(--col); }
   .panel {
     position:absolute; top:74px; right:10px; z-index:1000;
     background:rgba(255,255,255,0.95); padding:10px 14px; border-radius:6px;
@@ -8466,9 +8479,7 @@ const neonegoceData = [
     <button class="tab active" data-view="all">Tout</button>
     <button class="tab" data-view="nut">NRP × TERNO × UNEAL</button>
   </div>
-  <div class="filters" id="filters">
-    <span class="placeholder">filtres à venir</span>
-  </div>
+  <div class="filters" id="filters"></div>
 </div>
 
 <div id="map"></div>
@@ -9246,44 +9257,82 @@ async function run() {
 
 run();
 
-// ===== Onglets : filtre par groupe d'acteurs =====
-function applyView(view) {
-  // Tous les clusters et leurs buffers
-  const groups = {
-    uneal:    [clusterUneal, buffersUneal],
-    noriap:   [clusterNoriap, buffersNoriap],
-    ternoveo: [clusterTernoveo, buffersTernoveo],
-    natup:    [clusterNatup, buffersNatup],
-    carre:    [clusterCarre, buffersCarre],
-    lepicard: [clusterLepicard, buffersLepicard],
-    vaesken:  [clusterVaesken, buffersVaesken],
-    ducroquet:[clusterDucroquet, buffersDucroquet],
-    charpentier:[clusterCharpentier, buffersCharpentier],
-    agora:    [clusterAgora, buffersAgora],
-    neo:      [clusterNeo, buffersNeo],
-  };
-  // Quels groupes garder ?
-  const keep = view === "nut"
-    ? new Set(["noriap", "uneal", "ternoveo"])
-    : new Set(Object.keys(groups));
+// ===== Acteurs : groupes (cluster + buffer + couleur + label) =====
+const ACTORS = [
+  { key: "noriap",    label: "Noriap",    color: "#e60026", cluster: clusterNoriap,    buffer: buffersNoriap },
+  { key: "uneal",     label: "Unéal",     color: "#2ca02c", cluster: clusterUneal,     buffer: buffersUneal },
+  { key: "ternoveo",  label: "Ternoveo",  color: "#1f77b4", cluster: clusterTernoveo,  buffer: buffersTernoveo },
+  { key: "neo",       label: "Neo",       color: "#FF6F00", cluster: clusterNeo,       buffer: buffersNeo },
+  { key: "natup",     label: "Natup",     color: "#9c27b0", cluster: clusterNatup,     buffer: buffersNatup },
+  { key: "carre",     label: "Carré",     color: "#795548", cluster: clusterCarre,     buffer: buffersCarre },
+  { key: "lepicard",  label: "Lepicard",  color: "#F06292", cluster: clusterLepicard,  buffer: buffersLepicard },
+  { key: "vaesken",   label: "Vaesken",   color: "#FF1493", cluster: clusterVaesken,   buffer: buffersVaesken },
+  { key: "ducroquet", label: "Ducroquet", color: "#FFC107", cluster: clusterDucroquet, buffer: buffersDucroquet },
+  { key: "charpentier", label:"Charpentier", color: "#212121", cluster: clusterCharpentier, buffer: buffersCharpentier },
+  { key: "agora",     label: "Agora",     color: "#009688", cluster: clusterAgora,     buffer: buffersAgora },
+];
 
-  for (const [name, [cluster, buffer]] of Object.entries(groups)) {
-    if (keep.has(name)) {
-      if (!map.hasLayer(cluster)) map.addLayer(cluster);
+// État : pour chaque acteur, visible ou non
+const visible = new Set(ACTORS.map(a => a.key));
+
+function refreshLayers(showBuffers) {
+  for (const a of ACTORS) {
+    if (visible.has(a.key)) {
+      if (!map.hasLayer(a.cluster)) map.addLayer(a.cluster);
+      if (showBuffers && !map.hasLayer(a.buffer)) map.addLayer(a.buffer);
+      else if (!showBuffers && map.hasLayer(a.buffer)) map.removeLayer(a.buffer);
     } else {
-      if (map.hasLayer(cluster)) map.removeLayer(cluster);
-      if (map.hasLayer(buffer)) map.removeLayer(buffer);
+      if (map.hasLayer(a.cluster)) map.removeLayer(a.cluster);
+      if (map.hasLayer(a.buffer)) map.removeLayer(a.buffer);
     }
   }
+}
+
+// Construction des chips dans le bandeau
+const filtersEl = document.getElementById('filters');
+for (const a of ACTORS) {
+  const chip = document.createElement('div');
+  chip.className = 'chip on';
+  chip.style.setProperty('--col', a.color);
+  chip.dataset.key = a.key;
+  chip.innerHTML = `<span class="swatch"></span>${a.label}`;
+  chip.addEventListener('click', () => {
+    if (visible.has(a.key)) { visible.delete(a.key); chip.classList.remove('on'); }
+    else { visible.add(a.key); chip.classList.add('on'); }
+    // Si on touche les chips, on quitte un preset → onglet "Personnalisé"
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    refreshLayers(false);  // pas de buffers en mode chip
+  });
+  filtersEl.appendChild(chip);
+}
+
+function applyTab(view) {
+  // Reset visibilité selon preset
+  visible.clear();
+  if (view === "nut") {
+    ["noriap","uneal","ternoveo"].forEach(k => visible.add(k));
+  } else {
+    ACTORS.forEach(a => visible.add(a.key));
+  }
+  // Mettre à jour les chips
+  document.querySelectorAll('.chip').forEach(ch => {
+    if (visible.has(ch.dataset.key)) ch.classList.add('on');
+    else ch.classList.remove('on');
+  });
+  // En mode preset, pas de buffers (= que des points)
+  refreshLayers(false);
 }
 
 document.querySelectorAll('.tab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    applyView(btn.dataset.view);
+    applyTab(btn.dataset.view);
   });
 });
+
+// État initial : "Tout" = tous les acteurs, pas de buffers
+applyTab("all");
 </script>
 </body>
 </html>
