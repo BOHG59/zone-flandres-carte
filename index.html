@@ -6489,7 +6489,8 @@ const lepicardData = [
 <div class="topbar">
   <div class="brand"><span class="dot"></span>Outil cartographique Noriap</div>
   <div class="tabs" id="tabs">
-    <!-- onglets à définir -->
+    <button class="tab active" data-view="all">Tout</button>
+    <button class="tab" data-view="nut">NRP × TERNO × UNEAL</button>
   </div>
   <div class="filters" id="filters">
     <span class="placeholder">filtres à venir</span>
@@ -7172,6 +7173,40 @@ async function run() {
 }
 
 run();
+
+// ===== Onglets : filtre par groupe d'acteurs =====
+function applyView(view) {
+  // Tous les clusters et leurs buffers
+  const groups = {
+    uneal:    [clusterUneal, buffersUneal],
+    noriap:   [clusterNoriap, buffersNoriap],
+    ternoveo: [clusterTernoveo, buffersTernoveo],
+    natup:    [clusterNatup, buffersNatup],
+    carre:    [clusterCarre, buffersCarre],
+    lepicard: [clusterLepicard, buffersLepicard],
+  };
+  // Quels groupes garder ?
+  const keep = view === "nut"
+    ? new Set(["noriap", "uneal", "ternoveo"])
+    : new Set(["noriap", "uneal", "ternoveo", "natup", "carre", "lepicard"]);
+
+  for (const [name, [cluster, buffer]] of Object.entries(groups)) {
+    if (keep.has(name)) {
+      if (!map.hasLayer(cluster)) map.addLayer(cluster);
+    } else {
+      if (map.hasLayer(cluster)) map.removeLayer(cluster);
+      if (map.hasLayer(buffer)) map.removeLayer(buffer);
+    }
+  }
+}
+
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyView(btn.dataset.view);
+  });
+});
 </script>
 </body>
 </html>
