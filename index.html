@@ -6487,6 +6487,34 @@ const carreData = [
 ];
 
 </script>
+<script>
+const lepicardData = [
+ {"commune":"YERVILLE","cp":"76760","adresse":"21 RUE JACQUES FERNY","lat":49.669066,"lng":0.898469,"siret":"97708003500016","siege":true},
+ {"commune":"ANGLESQUEVILLE-LA-BRAS-LONG","cp":"76740","adresse":"3 ROUTE DE L'EGLISE","lat":49.780226,"lng":0.791642,"siret":"97708003500024"},
+ {"commune":"BOSC-LE-HARD","cp":"76850","adresse":"CHE D'HERMESNIL","lat":49.634302,"lng":1.175612,"siret":"97708003500040"},
+ {"commune":"BELMESNIL","cp":"76590","adresse":"ROUTE DE LA MER","lat":49.775950,"lng":1.049845,"siret":"97708003500065"},
+ {"commune":"MOTTEVILLE","cp":"76970","adresse":"RUE DE LA GARE","lat":49.636890,"lng":0.851675,"siret":"97708003500073"},
+ {"commune":"OFFRANVILLE","cp":"76550","adresse":"200 RUE GEORGES BRAQUE","lat":49.864643,"lng":1.045756,"siret":"97708003500081"},
+ {"commune":"PETIT-CAUX","cp":"76370","adresse":"6 RUE DU TILLEUL","lat":49.932258,"lng":1.289463,"siret":"97708003500099"},
+ {"commune":"MESNIERES-EN-BRAY","cp":"76270","adresse":"ZA CHE DEPARTEMENTAL 1","lat":49.759701,"lng":1.389775,"siret":"97708003500115"},
+ {"commune":"ANGERVILLE-LA-MARTEL","cp":"76540","adresse":"HAM D YPREVILLE","lat":49.769262,"lng":0.488061,"siret":"97708003500149"},
+ {"commune":"TRUN","cp":"61160","adresse":"ZI RTE DE FALAISE","lat":48.844098,"lng":0.029603,"siret":"97708003500156"},
+ {"commune":"VALAMBRAY","cp":"14190","adresse":"RTE DE ST SYLVAIN","lat":49.087106,"lng":-0.235941,"siret":"97708003500172"},
+ {"commune":"GRAND BOURGTHEROULDE","cp":"27520","adresse":"THUIT HEBERT 333 RUE DES BARRABAS","lat":49.315326,"lng":0.839667,"siret":"97708003500180"},
+ {"commune":"VEXIN-SUR-EPTE","cp":"27630","adresse":"RUE DE LA CROIX","lat":49.196201,"lng":1.600143,"siret":"97708003500198"},
+ {"commune":"COMMENY","cp":"95450","adresse":"4 RTE DE MOUSSY","lat":49.127736,"lng":1.895126,"siret":"97708003500206"},
+ {"commune":"BONNEBOSQ","cp":"14340","adresse":"PARC D'ACTIVITES BONNEVAL","lat":49.230948,"lng":0.100788,"siret":"97708003500214"},
+ {"commune":"BEZANCOURT","cp":"76220","adresse":"RTE DES ANDELYS","lat":49.424845,"lng":1.640447,"siret":"97708003500222"},
+ {"commune":"FEUQUIERES","cp":"60960","adresse":"VOIE RENETTE","lat":49.650515,"lng":1.858868,"siret":"97708003500230"},
+ {"commune":"CONCHES-EN-OUCHE","cp":"27190","adresse":"ZI NO2 LES PISTES","lat":48.936835,"lng":0.966466,"siret":"97708003500248"},
+ {"commune":"MESNIL-EN-OUCHE","cp":"27270","adresse":"LA BARRE EN OUCHE - ZA PRES DE L'ETANG RTE DE BEAUMESNIL","lat":49.005547,"lng":0.649879,"siret":"97708003500263"},
+ {"commune":"PISEUX","cp":"27130","adresse":"ROUTE DE VERNEUIL","lat":48.768213,"lng":0.959587,"siret":"97708003500271"},
+ {"commune":"SAP-EN-AUGE","cp":"61120","adresse":"ZA LES TERRIERS","lat":48.897124,"lng":0.332296,"siret":"97708003500305"},
+ {"commune":"CHAILLOUE","cp":"61240","adresse":"ZONE ARTISANALE","lat":48.658173,"lng":0.194063,"siret":"97708003500313"},
+ {"commune":"AUMALE","cp":"76390","adresse":"6 BOULEVARD VICTOR HUGO","lat":49.774105,"lng":1.756179,"siret":"97708003500339"}
+];
+
+</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 <style>
@@ -6519,6 +6547,7 @@ const carreData = [
     <div><span class="dot" style="background:#1f77b4"></span>Ternoveo — silos actifs</div>
     <div><span class="dot" style="background:#9c27b0"></span>Natup — silos actifs</div>
     <div><span class="dot" style="background:#795548"></span>Groupe Carré — silos actifs</div>
+    <div><span class="dot" style="background:#e91e63"></span>Lepicard — silos actifs</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
@@ -6844,6 +6873,24 @@ if (typeof carreData !== "undefined" && Array.isArray(carreData)) {
   console.log(`Groupe Carré: ${carreFinal.length} sites`);
 }
 
+let lepicardFinal = [];
+if (typeof lepicardData !== "undefined" && Array.isArray(lepicardData)) {
+  lepicardFinal = lepicardData.map(d => ({
+    commune: d.commune,
+    cp: d.cp,
+    dep: (d.cp || "").substring(0, 2),
+    naf: "46.21Z",
+    type: d.siege ? "siege" : "silo",
+    notes: d.siege ? "Siège social" : "",
+    nom: d.commune,
+    adresse: d.adresse,
+    coop: "Lepicard",
+    _coords: [d.lng, d.lat],
+    _score: 1.0
+  }));
+  console.log(`Lepicard: ${lepicardFinal.length} sites`);
+}
+
 // Remplacer la liste Noriap par les sites avec collecte (source interne)
 let noriapFinal = noriap;
 if (typeof collecteData !== "undefined" && Array.isArray(collecteData)) {
@@ -6894,7 +6941,9 @@ const colorByCoopType = {
   "Natup-silo": "#9c27b0",
   "Natup-siege": "#9c27b0",
   "Carré-silo": "#795548",
-  "Carré-siege": "#795548"
+  "Carré-siege": "#795548",
+  "Lepicard-silo": "#e91e63",
+  "Lepicard-siege": "#e91e63"
 };
 
 const map = L.map('map').setView([50.0, 2.5], 8);
@@ -6908,11 +6957,13 @@ const clusterNoriap = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterTernoveo = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterNatup = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const clusterCarre = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
+const clusterLepicard = L.markerClusterGroup({ disableClusteringAtZoom: 11 });
 const buffersUneal = L.layerGroup();
 const buffersNoriap = L.layerGroup();
 const buffersTernoveo = L.layerGroup();
 const buffersNatup = L.layerGroup();
 const buffersCarre = L.layerGroup();
+const buffersLepicard = L.layerGroup();
 const overlapLayer = L.layerGroup();
 
 L.control.layers(null, {
@@ -6921,11 +6972,13 @@ L.control.layers(null, {
   "Marqueurs Ternoveo": clusterTernoveo,
   "Marqueurs Natup": clusterNatup,
   "Marqueurs Groupe Carré": clusterCarre,
+  "Marqueurs Lepicard": clusterLepicard,
   "Buffers 7 km Unéal": buffersUneal,
   "Buffers 7 km Noriap": buffersNoriap,
   "Buffers 7 km Ternoveo": buffersTernoveo,
   "Buffers 7 km Natup": buffersNatup,
   "Buffers 7 km Carré": buffersCarre,
+  "Buffers 7 km Lepicard": buffersLepicard,
   "Zone de chevauchement": overlapLayer
 }, { collapsed: false }).addTo(map);
 
@@ -7082,20 +7135,22 @@ function computeUnion(markers) {
 }
 
 async function run() {
-  const [unealMarkers, noriapMarkers, ternoveoMarkers, natupMarkers, carreMarkers] = await Promise.all([
+  const [unealMarkers, noriapMarkers, ternoveoMarkers, natupMarkers, carreMarkers, lepicardMarkers] = await Promise.all([
     processList(uneal, clusterUneal),
     processList(noriapFinal, clusterNoriap),
     processList(ternoveoFinal, clusterTernoveo),
     processList(natupFinal, clusterNatup),
-    processList(carreFinal, clusterCarre)
+    processList(carreFinal, clusterCarre),
+    processList(lepicardFinal, clusterLepicard)
   ]);
   map.addLayer(clusterUneal);
   map.addLayer(clusterNoriap);
   map.addLayer(clusterTernoveo);
   map.addLayer(clusterNatup);
   map.addLayer(clusterCarre);
+  map.addLayer(clusterLepicard);
 
-  const all = [...unealMarkers, ...noriapMarkers, ...ternoveoMarkers, ...natupMarkers, ...carreMarkers];
+  const all = [...unealMarkers, ...noriapMarkers, ...ternoveoMarkers, ...natupMarkers, ...carreMarkers, ...lepicardMarkers];
   if (all.length > 0) {
     const group = L.featureGroup(all);
     map.fitBounds(group.getBounds().pad(0.05));
@@ -7109,6 +7164,7 @@ async function run() {
   drawBuffers(ternoveoMarkers, '#1f77b4', buffersTernoveo);
   drawBuffers(natupMarkers, '#9c27b0', buffersNatup);
   drawBuffers(carreMarkers, '#795548', buffersCarre);
+  drawBuffers(lepicardMarkers, '#e91e63', buffersLepicard);
 
   // Union + intersection (turf.js) — plus lourd, lancé en différé
   setTimeout(() => {
