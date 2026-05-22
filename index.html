@@ -6547,7 +6547,7 @@ const lepicardData = [
     <div><span class="dot" style="background:#1f77b4"></span>Ternoveo — silos actifs</div>
     <div><span class="dot" style="background:#9c27b0"></span>Natup — silos actifs</div>
     <div><span class="dot" style="background:#795548"></span>Groupe Carré — silos actifs</div>
-    <div><span class="dot" style="background:#e91e63"></span>Lepicard — silos actifs</div>
+    <div><span class="dot" style="background:#F06292"></span>Lepicard — silos actifs</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
     <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
@@ -6942,8 +6942,8 @@ const colorByCoopType = {
   "Natup-siege": "#9c27b0",
   "Carré-silo": "#795548",
   "Carré-siege": "#795548",
-  "Lepicard-silo": "#e91e63",
-  "Lepicard-siege": "#e91e63"
+  "Lepicard-silo": "#F06292",
+  "Lepicard-siege": "#F06292"
 };
 
 const map = L.map('map').setView([50.0, 2.5], 8);
@@ -7164,7 +7164,7 @@ async function run() {
   drawBuffers(ternoveoMarkers, '#1f77b4', buffersTernoveo);
   drawBuffers(natupMarkers, '#9c27b0', buffersNatup);
   drawBuffers(carreMarkers, '#795548', buffersCarre);
-  drawBuffers(lepicardMarkers, '#e91e63', buffersLepicard);
+  drawBuffers(lepicardMarkers, '#F06292', buffersLepicard);
 
   // Union + intersection (turf.js) — plus lourd, lancé en différé
   setTimeout(() => {
