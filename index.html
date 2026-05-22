@@ -8434,6 +8434,19 @@ const neonegoceData = [
   }
   .topbar .tab:hover { background: rgba(255,255,255,0.08); color: white; }
   .topbar .tab.active { background: rgba(255,255,255,0.15); color: white; font-weight: 600; }
+  .topbar .layer-btns {
+    display: flex; gap: 5px; margin-left: 12px;
+  }
+  .topbar .layer-btn {
+    padding: 6px 11px; border-radius: 6px; cursor: pointer;
+    font-size: 11.5px; font-weight: 600;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.18); transition: all 0.12s;
+  }
+  .topbar .layer-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+  .topbar .layer-btn.active {
+    background: #ffd166; color: #1a1a2e; border-color: #ffd166;
+  }
   .topbar .filters {
     margin-left: auto;
     display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
@@ -8478,6 +8491,10 @@ const neonegoceData = [
   <div class="tabs" id="tabs">
     <button class="tab active" data-view="all">Tout</button>
     <button class="tab" data-view="nut">NRP × TERNO × UNEAL</button>
+  </div>
+  <div class="layer-btns">
+    <button class="layer-btn" data-mode="circle" title="Affiche les buffers circulaires 7 km autour de chaque silo visible">⊙ 7 km</button>
+    <button class="layer-btn" data-mode="iso" title="Isochrone 15 min en voiture hors autoroute (~25-30 min tracteur). Disponible Flandre uniquement.">🚜 15 min</button>
   </div>
   <div class="filters" id="filters"></div>
 </div>
@@ -9275,16 +9292,41 @@ const ACTORS = [
 
 // État : pour chaque acteur, visible ou non
 const visible = new Set(ACTORS.map(a => a.key));
+const layerModes = { circle: false, iso: false };
 
-function refreshLayers(showBuffers) {
+// Pré-créer les layerGroups d'isochrones par acteur
+const isoLayers = {};
+for (const a of ACTORS) isoLayers[a.key] = L.layerGroup();
+
+function populateIsoLayers() {
+  if (typeof isochrones === "undefined") return;
+  for (const a of ACTORS) {
+    isoLayers[a.key].clearLayers();
+    const dict = isochrones[a.key] || {};
+    for (const [id, geom] of Object.entries(dict)) {
+      L.geoJSON(geom, {
+        style: { color: a.color, weight: 1, fillColor: a.color, fillOpacity: 0.15, opacity: 0.5 },
+        interactive: false
+      }).addTo(isoLayers[a.key]);
+    }
+  }
+}
+populateIsoLayers();
+
+function refreshLayers() {
   for (const a of ACTORS) {
     if (visible.has(a.key)) {
       if (!map.hasLayer(a.cluster)) map.addLayer(a.cluster);
-      if (showBuffers && !map.hasLayer(a.buffer)) map.addLayer(a.buffer);
-      else if (!showBuffers && map.hasLayer(a.buffer)) map.removeLayer(a.buffer);
+      // Buffers 7 km
+      if (layerModes.circle) { if (!map.hasLayer(a.buffer)) map.addLayer(a.buffer); }
+      else { if (map.hasLayer(a.buffer)) map.removeLayer(a.buffer); }
+      // Isochrones 15 min (Flandre uniquement)
+      if (layerModes.iso) { if (!map.hasLayer(isoLayers[a.key])) map.addLayer(isoLayers[a.key]); }
+      else { if (map.hasLayer(isoLayers[a.key])) map.removeLayer(isoLayers[a.key]); }
     } else {
       if (map.hasLayer(a.cluster)) map.removeLayer(a.cluster);
       if (map.hasLayer(a.buffer)) map.removeLayer(a.buffer);
+      if (map.hasLayer(isoLayers[a.key])) map.removeLayer(isoLayers[a.key]);
     }
   }
 }
@@ -9300,9 +9342,8 @@ for (const a of ACTORS) {
   chip.addEventListener('click', () => {
     if (visible.has(a.key)) { visible.delete(a.key); chip.classList.remove('on'); }
     else { visible.add(a.key); chip.classList.add('on'); }
-    // Si on touche les chips, on quitte un preset → onglet "Personnalisé"
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    refreshLayers(false);  // pas de buffers en mode chip
+    refreshLayers();
   });
   filtersEl.appendChild(chip);
 }
@@ -9320,9 +9361,18 @@ function applyTab(view) {
     if (visible.has(ch.dataset.key)) ch.classList.add('on');
     else ch.classList.remove('on');
   });
-  // En mode preset, pas de buffers (= que des points)
-  refreshLayers(false);
+  refreshLayers();
 }
+
+// Boutons "7 km" et "15 min"
+document.querySelectorAll('.layer-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const mode = btn.dataset.mode;
+    layerModes[mode] = !layerModes[mode];
+    btn.classList.toggle('active', layerModes[mode]);
+    refreshLayers();
+  });
+});
 
 document.querySelectorAll('.tab').forEach(btn => {
   btn.addEventListener('click', () => {
