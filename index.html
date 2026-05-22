@@ -6550,7 +6550,8 @@ const lepicardData = [
     <div><span class="dot" style="background:#F06292"></span>Lepicard — silos actifs</div>
     <div style="margin-top:6px;"><span class="dot" style="background:#2ca02c;opacity:0.25"></span>Buffer 7 km Unéal</div>
     <div><span class="dot" style="background:#e60026;opacity:0.25"></span>Buffer 7 km Noriap</div>
-    <div><span class="dot" style="background:#ff8c00"></span>Zone de chevauchement</div>
+    <div><span class="dot" style="background:#ff8c00"></span>Chevauchement Unéal ∩ Noriap</div>
+    <div><span class="dot" style="background:#673ab7"></span>Chevauchement Noriap ∩ Ternoveo</div>
   </div>
   <div style="font-size:11px;margin-top:6px;">Utilisez le contrôle en haut à gauche pour activer/désactiver les couches.</div>
   <div id="status">Chargement…</div>
@@ -6964,7 +6965,8 @@ const buffersTernoveo = L.layerGroup();
 const buffersNatup = L.layerGroup();
 const buffersCarre = L.layerGroup();
 const buffersLepicard = L.layerGroup();
-const overlapLayer = L.layerGroup();
+const overlapLayer = L.layerGroup();         // Unéal ∩ Noriap
+const overlapNT = L.layerGroup();             // Noriap ∩ Ternoveo
 
 L.control.layers(null, {
   "Marqueurs Unéal": clusterUneal,
@@ -6979,7 +6981,8 @@ L.control.layers(null, {
   "Buffers 7 km Natup": buffersNatup,
   "Buffers 7 km Carré": buffersCarre,
   "Buffers 7 km Lepicard": buffersLepicard,
-  "Zone de chevauchement": overlapLayer
+  "Chevauchement Unéal ∩ Noriap": overlapLayer,
+  "Chevauchement Noriap ∩ Ternoveo": overlapNT
 }, { collapsed: false }).addTo(map);
 
 const statusEl = document.getElementById('status');
@@ -7172,28 +7175,35 @@ async function run() {
       const t0 = performance.now();
       const unealU = computeUnion(unealMarkers);
       const noriapU = computeUnion(noriapMarkers);
-      let overlap = null;
+      const ternoveoU = computeUnion(ternoveoMarkers);
+      const overlaps = [];
+
+      // Unéal ∩ Noriap
       if (unealU && noriapU) {
-        try { overlap = turf.intersect(unealU, noriapU); }
-        catch(e) { console.warn('intersect failed', e); }
-      }
-      if (overlap) {
-        L.geoJSON(overlap, {
-          style: {
-            color: '#ff8c00',
-            weight: 2,
-            fillColor: '#ff8c00',
-            fillOpacity: 0.55
+        try {
+          const o = turf.intersect(unealU, noriapU);
+          if (o) {
+            L.geoJSON(o, { style: { color: '#ff8c00', weight: 2, fillColor: '#ff8c00', fillOpacity: 0.55 } }).addTo(overlapLayer);
+            map.addLayer(overlapLayer);
+            overlaps.push(`Unéal∩Noriap ${(turf.area(o)/1e6).toFixed(0)} km²`);
           }
-        }).addTo(overlapLayer);
-        map.addLayer(overlapLayer);
-        // Surface approximative
-        const km2 = turf.area(overlap) / 1e6;
-        const dt = ((performance.now() - t0) / 1000).toFixed(1);
-        statusEl.textContent = `Unéal: ${unealMarkers.length} • Noriap: ${noriapMarkers.length} • Chevauchement: ${km2.toFixed(0)} km² (calc ${dt}s)`;
-      } else {
-        statusEl.textContent = `Unéal: ${unealMarkers.length} • Noriap: ${noriapMarkers.length} — pas de chevauchement détecté`;
+        } catch(e) { console.warn('intersect U∩N failed', e); }
       }
+
+      // Noriap ∩ Ternoveo
+      if (noriapU && ternoveoU) {
+        try {
+          const o = turf.intersect(noriapU, ternoveoU);
+          if (o) {
+            L.geoJSON(o, { style: { color: '#673ab7', weight: 2, fillColor: '#673ab7', fillOpacity: 0.55 } }).addTo(overlapNT);
+            map.addLayer(overlapNT);
+            overlaps.push(`Noriap∩Ternoveo ${(turf.area(o)/1e6).toFixed(0)} km²`);
+          }
+        } catch(e) { console.warn('intersect N∩T failed', e); }
+      }
+
+      const dt = ((performance.now() - t0) / 1000).toFixed(1);
+      statusEl.textContent = `U:${unealMarkers.length} N:${noriapMarkers.length} T:${ternoveoMarkers.length} • ${overlaps.join(' • ') || 'pas de chevauchement'} (calc ${dt}s)`;
     } catch(e) {
       console.error(e);
       statusEl.textContent = `Erreur calcul chevauchement (voir console)`;
